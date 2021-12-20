@@ -26,6 +26,7 @@
 
   <!-- Template Main CSS File -->
   <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet">
+  <link href="<?php echo base_url() ?>assets/css/custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,57 +39,83 @@
         <span>Atoze Capital</span>
       </a>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Teams</a></li>
-          <li><a class="nav-link scrollto" href="#clients">Partnership</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#blog">Blog</a></li> -->
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li class="dropdown"><a href="#"><span>Eng</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="<?php echo site_url('lang_setter/set_to/english');?>">Eng</a></li>
-              <li><a href="<?php echo site_url('lang_setter/set_to/indonesia');?>">Id</a></li>
-            </ul>
-          </li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      <?php if (get_cookie('lang_is')=='in'): ?>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
+            <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+            <li><a class="nav-link scrollto" href="#services">Layanan</a></li>
+            <li><a class="nav-link scrollto" href="#portfolio">Portofolio</a></li>
+            <li><a class="nav-link scrollto" href="#team">Tim</a></li>
+            <li><a class="nav-link scrollto" href="#clients">Kemitraan</a></li>
+            <!-- <li><a class="nav-link scrollto" href="#blog">Blog</a></li> -->
+            <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+            <li class="dropdown"><a href="#"><span>In</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="<?php echo site_url('lang_setter/set_to/english');?>">Eng</a></li>
+                <li><a href="<?php echo site_url('lang_setter/set_to/indonesia');?>">Id</a></li>
+              </ul>
+            </li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+      <?php else: ?>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto" href="#services">Services</a></li>
+            <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
+            <li><a class="nav-link scrollto" href="#team">Teams</a></li>
+            <li><a class="nav-link scrollto" href="#clients">Partnership</a></li>
+            <!-- <li><a class="nav-link scrollto" href="#blog">Blog</a></li> -->
+            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            <li class="dropdown"><a href="#"><span>Eng</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="<?php echo site_url('lang_setter/set_to/english');?>">Eng</a></li>
+                <li><a href="<?php echo site_url('lang_setter/set_to/indonesia');?>">Id</a></li>
+              </ul>
+            </li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+      <?php endif ?>
+      
+      <!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center">
+  <section id="hero" class="hero">
 
     <div class="container">
       <?php foreach ($home as $row => $value): ?>
         <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up"><?php echo $value['judul'] ?></h1>
-          <h2 data-aos="fade-up" data-aos-delay="400"><?php echo $value['content'] ?></h2>
-          <div data-aos="fade-up" data-aos-delay="600">
-            <div class="text-center text-lg-start">
-              <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Gabung Bersama Kami</span>
-                <i class="bi bi-arrow-right"></i>
-              </a>
+          <div class="col-lg-6 d-flex flex-column justify-content-center">
+            <h1 data-aos="fade-up"><?php echo $value['judul'] ?></h1>
+            <h2 data-aos="fade-up" data-aos-delay="400"><?php echo $value['content'] ?></h2>
+            <div data-aos="fade-up" data-aos-delay="600">
+              <div class="text-center text-lg-start">
+                <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                  <?php if (get_cookie('lang_is')=='in'): ?>
+                    <span>Gabung Bersama Kami</span>
+                  <?php else: ?>
+                    <span>Join With Us</span>
+                  <?php endif ?>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
             </div>
           </div>
+          <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+            <img src="assets/img/hero-img.png" class="img-fluid" alt="">
+          </div>
         </div>
-        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-          <img src="assets/img/hero-img.png" class="img-fluid" alt="">
-        </div>
-      </div>
       <?php endforeach ?>
-      
     </div>
-
   </section><!-- End Hero -->
-
+  <svg class="svg-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#242424" fill-opacity="1" d="M0,96L48,117.3C96,139,192,181,288,202.7C384,224,480,224,576,208C672,192,768,160,864,165.3C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
   <main id="main">
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -97,13 +124,13 @@
         <?php foreach ($about as $row => $value): ?>
           <div class="row gx-0">
 
-          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-            <div class="content">
-              <h3><?php echo $value['judul'] ?></h3>
-              <h2><?php echo $value['tagline'] ?></h2>
-              <p>
-                <?php echo $value['content'] ?>
-              </p>
+            <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+              <div class="content">
+                <h3><?php echo $value['judul'] ?></h3>
+                <h2><?php echo $value['tagline'] ?></h2>
+                <p>
+                  <?php echo $value['content'] ?>
+                </p>
               <!-- <div class="text-center text-lg-start">
                 <a href="#" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>Read More</span>
@@ -118,12 +145,12 @@
           </div>
 
         </div>
-        <?php endforeach ?>
-      </div>
+      <?php endforeach ?>
+    </div>
 
-    </section><!-- End About Section -->
+  </section><!-- End About Section -->
 
-    <!-- ======= Values Section ======= -->
+  <!-- ======= Values Section ======= -->
     <!-- <section id="values" class="values">
 
       <div class="container" data-aos="fade-up">
@@ -232,13 +259,13 @@
         <div class="row gy-4">
           <?php foreach ($service as $key => $value): ?>
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-box">
-              <i class="ri-discuss-line icon"></i>
-              <h3><?php echo $value['judul'] ?></h3>
-              <p><?php echo $value['content'] ?></p>
-              <!-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
+              <div class="service-box">
+                <i class="ri-discuss-line icon"></i>
+                <h3><?php echo $value['judul'] ?></h3>
+                <p><?php echo $value['content'] ?></p>
+                <!-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
+              </div>
             </div>
-          </div>
           <?php endforeach ?>
           
 
@@ -286,14 +313,14 @@
               <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
- -->
-        </div>
-
+        -->
       </div>
 
-    </section><!-- End Services Section -->
+    </div>
 
-    <!-- ======= Pricing Section ======= -->
+  </section><!-- End Services Section -->
+
+  <!-- ======= Pricing Section ======= -->
     <!-- <section id="pricing" class="pricing">
 
       <div class="container" data-aos="fade-up">
@@ -386,23 +413,21 @@
           <h2>Portfolio</h2>
           <div class="divider"></div>
         </header>
-
-
         <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
           <?php foreach ($portofolio as $key => $value): ?>
             <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><?php echo $value['judul'] ?></h4>
-                <p><?php echo $value['content'] ?></p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
-                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a> -->
+              <div class="portfolio-wrap">
+                <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4><?php echo $value['judul'] ?></h4>
+                  <p><?php echo $value['content'] ?></p>
+                  <div class="portfolio-links">
+                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
+                    <!-- <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a> -->
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           <?php endforeach ?>
         </div>
 
@@ -416,16 +441,21 @@
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
-          <h2>Team</h2>
+          <?php if (get_cookie('lang_is')=='in'): ?>
+            <h2>TIM</h2>
+          <?php else: ?>
+            <h2>Team</h2>
+          <?php endif ?>
+
           <div class="divider"></div>
         </header>
 
         <div class="row gy-4">
-<?php foreach ($team as $key => $value): ?>
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <div class="member-img">
-                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+          <?php foreach ($team as $key => $value): ?>
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+              <div class="member">
+                <div class="member-img">
+                  <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
                 <!-- <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -440,37 +470,42 @@
               </div>
             </div>
           </div>
-<?php endforeach ?>
-
-        </div>
+        <?php endforeach ?>
 
       </div>
 
-    </section><!-- End Team Section -->
+    </div>
 
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
+  </section><!-- End Team Section -->
 
-      <div class="container" data-aos="fade-up">
+  <!-- ======= Clients Section ======= -->
+  <section id="clients" class="clients">
 
-        <header class="section-header">
-          <h2>Our Clients</h2>
-          <div class="divider"></div>
-        </header>
+    <div class="container" data-aos="fade-up">
 
-        <div class="clients-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <?php foreach ($partner as $key => $value): ?>
-              <div class="swiper-slide"><img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" class="img-fluid" alt=""></div>
-            <?php endforeach ?>
-          </div>
-          <div class="swiper-pagination"></div>
+      <header class="section-header">
+        <?php if (get_cookie('lang_is')=='in'): ?>
+          <h2>Mitra Kami</h2>
+        <?php else: ?>
+          <h2>Our Partner</h2>
+        <?php endif ?>
+        
+        <div class="divider"></div>
+      </header>
+
+      <div class="clients-slider swiper">
+        <div class="swiper-wrapper align-items-center">
+          <?php foreach ($partner as $key => $value): ?>
+            <div class="swiper-slide"><img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" class="img-fluid" alt=""></div>
+          <?php endforeach ?>
         </div>
+        <div class="swiper-pagination"></div>
       </div>
+    </div>
 
-    </section><!-- End Clients Section -->
+  </section><!-- End Clients Section -->
 
-    <!-- ======= Recent Blog Posts Section ======= -->
+  <!-- ======= Recent Blog Posts Section ======= -->
     <!-- <section id="blog" class="recent-blog-posts">
 
       <div class="container" data-aos="fade-up">
@@ -524,24 +559,40 @@
         <header class="section-header">
           <img src="<?php echo base_url('assets/img/logo.png') ?>" alt="">
           <!-- <h2>Contact</h2>
-          <p>Contact Us</p> -->
-        </header>
+            <p>Contact Us</p> -->
+          </header>
 
-        <div class="row gy-4">
-          <div class="col-lg-12">
-            <h2 class="text-center">Join the Community</h2>
-<h3 class="text-center">Get all the latest news and updates from us!</h3>
-          </div>
+          <?php if (get_cookie('lang_is')=='in'): ?>
+            <div class="row gy-4">
+              <div class="col-lg-12">
+                <h2 class="text-center">Bergabung dengan Kami</h2>
+                <h3 class="text-center">Dapatkan kesuksesan bersama kami</h3>
+              </div>
+              <div class="col-lg-12 d-flex justify-content-center">
+                <a href="" class="custom-btn-outline-primary px-5 py-2">Bergabung</a>
+              </div>
+            </div>
+          <?php else: ?>
+            <div class="row gy-4">
+              <div class="col-lg-12">
+                <h2 class="text-center">Join the Community</h2>
+                <h3 class="text-center">Get all the latest news and updates from us!</h3>
+              </div>
+              <div class="col-lg-12 d-flex justify-content-center">
+                <a href="" class="custom-btn-outline-primary px-5 py-2">Join Us</a>
+              </div>
+            </div>
+          <?php endif ?>
+
+
         </div>
 
-      </div>
+      </section><!-- End Contact Section -->
 
-    </section><!-- End Contact Section -->
+    </main><!-- End #main -->
 
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
 
     <!-- <div class="footer-newsletter">
       <div class="container">
@@ -561,13 +612,13 @@
 
     <div class="footer-top">
       <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-5 col-md-12 footer-info">
+        <div class="row gy-4 d-flex justify-content-center">
+          <div class="col-lg-5 col-md-12 footer-info d-flex flex-column align-items-center">
             <a href="index.html" class="logo d-flex align-items-center">
               <img src="assets/img/logo.png" alt="">
               <span>Atoze Capital</span>
             </a>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <p class="text-center">Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -575,41 +626,6 @@
               <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
-
-          <div class="col-lg-2 col-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-            <h4>Contact Us</h4>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-
-          </div>
-
         </div>
       </div>
     </div>

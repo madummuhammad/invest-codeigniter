@@ -1,0 +1,13 @@
+.custom-btn-outline-primary{
+	border: 3px solid #4154F1;
+	text-decoration: none;
+	color: white;
+}
+
+.custom-btn-outline-primary:hover{
+	color: white;
+}
+
+.footer-top p{
+	color: #000;
+}

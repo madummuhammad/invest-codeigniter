@@ -20,20 +20,20 @@ body {
 }
 
 a {
-  /*color: #4154f1;*/
-  color: white;
+  color: #4154f1;
+  /*color: white;*/
   text-decoration: none;
 }
 
 a:hover {
-  /*color: #717ff5;*/
-  color: red;
+  color: #717ff5;
   text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Nunito", sans-serif;
 }
+
 
 .divider{
   height: 5px;
@@ -267,13 +267,14 @@ section {
   font-size: 15px;
   text-transform: none;
   font-weight: 600;
+  color: #4154F1;
 }
 .navbar .dropdown ul a i {
   font-size: 12px;
 }
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
   /*color: #4154f1;*/
-  color: #fff;
+  color: #000;
 }
 .navbar .dropdown:hover > ul {
   opacity: 1;
@@ -395,9 +396,11 @@ section {
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
-  height: 100vh;
+  margin-top: 60px;
+  height: 80vh;
   /*background: url(../img/hero-bg.png) top center no-repeat;*/
   background-size: cover;
+  z-index: 1;
 }
 .hero h1 {
   margin: 0;
@@ -1392,7 +1395,7 @@ section {
 # Contact
 --------------------------------------------------------------*/
 .contact img{
-  width: 300px;
+  width: 200px;
 }
 .contact .info-box {
   color: #444444;
