@@ -251,7 +251,11 @@
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
-          <h2>Layanan</h2>
+          <?php if (get_cookie('lang_is')=='in'): ?>
+            <h2>Layanan</h2>
+          <?php else: ?>
+            <h2>Service</h2>
+          <?php endif ?>
           <div class="divider"></div>
           <!-- <p>Veritatis et dolores facere numquam et praesentium</p> -->
         </header>
