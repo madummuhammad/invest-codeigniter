@@ -37,7 +37,7 @@
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+        <img src="<?php echo base_url() ?>assets/img/logo.png" alt="">
         <span>Atoze Capital</span>
       </a>
 
@@ -78,7 +78,6 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero">
-
     <div class="container">
       <?php foreach ($home as $row => $value): ?>
         <div class="row">
@@ -87,13 +86,14 @@
           </button>
           <div class="modal fade" id="myModal">
             <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Home</h4>
-                  <a type="button" class="close" data-dismiss="modal">&times;</a>
-                </div>
-                <div class="modal-body">
-                  <form>
+              <form action="asdfasdfa" method="POST">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Home</h4>
+                    <a type="button" class="close" data-dismiss="modal">&times;</a>
+                  </div>
+                  <div class="modal-body">
+
                     <div class="row">
                       <div class="col">
                         <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email">
@@ -104,13 +104,14 @@
                         <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Masukan Tagline"></textarea>
                       </div>
                     </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                </div>
 
-              </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary">Kirim</button>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
           <div class="col-lg-6 d-flex flex-column justify-content-center">
@@ -131,9 +132,8 @@
           </div>
           <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
             <img src="<?php echo base_url() ?>/assets/img/hero-img.png" class="img-fluid" alt="">
-
           </div>
-          
+
         </div>
       <?php endforeach ?>
     </div>
@@ -142,18 +142,68 @@
   <main id="main">
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
+      <?php foreach ($about as $row => $value): ?>
+        <div class="container">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAbout">
+            <i class="fas fa-edit"></i>
+          </button>
+          <div class="modal fade" id="modalAbout">
+            <div class="modal-dialog modal-dialog-centered">
+             <form action="asdfasf" method="POST">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">About</h4>
+                  <a type="button" class="close" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body">
 
-      <div class="container" data-aos="fade-up">
-        <?php foreach ($about as $row => $value): ?>
-          <div class="row gx-0">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group text-center">
+                        <label for="" class="text-center p-2">Judul</label>
+                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="<?php echo $value['judul'] ?>">
+                      </div>
+                      <div class="form-group text-center">
+                        <label for="" class="text-center p-2">Tagline</label>
+                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="<?php echo $value['tagline'] ?>">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group text-center">
+                        <label for="" class="p-2">Konten</label>
+                        <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-6">
+                     <div class="form-grop text-center">
+                      <img src="<?php echo base_url() ?>/assets/img/hero-img.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                      <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+                    </div>
+                  </div>
+                </div>
 
-            <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-              <div class="content">
-                <h3><?php echo $value['judul'] ?></h3>
-                <h2><?php echo $value['tagline'] ?></h2>
-                <p>
-                  <?php echo $value['content'] ?>
-                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-primary">Kirim</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container" data-aos="fade-up">
+      <div class="row gx-0">
+
+        <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="content">
+            <h3><?php echo $value['judul'] ?></h3>
+            <h2><?php echo $value['tagline'] ?></h2>
+            <p>
+              <?php echo $value['content'] ?>
+            </p>
               <!-- <div class="text-center text-lg-start">
                 <a href="#" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>Read More</span>
@@ -168,9 +218,9 @@
           </div>
 
         </div>
-      <?php endforeach ?>
-    </div>
 
+      </div>
+    <?php endforeach ?>
   </section><!-- End About Section -->
 
   <!-- ======= Services Section ======= -->
@@ -179,7 +229,7 @@
     <div class="container" data-aos="fade-up">
 
       <header class="section-header">
-        <?php if ($this->uri->segment(3)=='indonesia'): ?>
+        <?php if ($this->uri->segment(2)=='indonesia'): ?>
           <h2>Layanan</h2>
         <?php else: ?>
           <h2>Service</h2>
@@ -193,15 +243,21 @@
         <?php foreach ($service as $key => $value): ?>
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-box">
-              <i class="ri-discuss-line icon"></i>
+              <i class="far fa-handshake icon"></i>
               <h3><?php echo $value['judul'] ?></h3>
               <p><?php echo $value['content'] ?></p>
               <!-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+              </div>
             </div>
+          </div>
+          <div class="col-lg-4">
+            <button type="button" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
           </div>
         <?php endforeach ?>
       </div>
-
     </div>
 
   </section><!-- End Services Section -->
@@ -229,8 +285,17 @@
                 </div>
               </div>
             </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></button>
+              <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+            </div>
           </div>
         <?php endforeach ?>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -270,10 +335,19 @@
                 <span><?php echo $value['jabatan'] ?></span>
                 <p><?php echo $value['tagline'] ?></p>
               </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+              </div>
             </div>
+
           </div>
         <?php endforeach ?>
-
+        <div class="col-lg-3 col-md-6">
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -399,10 +473,11 @@
 
     <!-- Template Main JS File -->
     <script src="<?php echo base_url() ?>assets/js/main.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/script.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/script.js"></script>
 
   </body>
 

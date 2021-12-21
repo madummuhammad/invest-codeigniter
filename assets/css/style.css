@@ -400,7 +400,6 @@ section {
   height: 80vh;
   /*background: url(../img/hero-bg.png) top center no-repeat;*/
   background-size: cover;
-  z-index: 1;
 }
 .hero h1 {
   margin: 0;
@@ -711,7 +710,7 @@ section {
   background-color: #0F0E0E;
 }
 .services .service-box .icon {
-  font-size: 36px;
+  font-size: 66px;
   padding: 40px 20px;
   border-radius: 4px;
   position: relative;
