@@ -85,47 +85,31 @@
           <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
             <i class="fas fa-edit"></i>
           </button>
-
-          <!-- The Modal -->
           <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Modal Heading</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  Modal body..
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div id="modalhome" class="modal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                  <h4 class="modal-title">Home</h4>
+                  <a type="button" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <div class="modal-body">
-                  <p>Modal body text goes here.</p>
+                  <form>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email">
+                        <img src="<?php echo base_url() ?>/assets/img/hero-img.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                        <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+                      </div>
+                      <div class="col">
+                        <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Masukan Tagline"></textarea>
+                      </div>
+                    </div>
+                  </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                 </div>
+
               </div>
             </div>
           </div>
@@ -415,6 +399,7 @@
 
     <!-- Template Main JS File -->
     <script src="<?php echo base_url() ?>assets/js/main.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
