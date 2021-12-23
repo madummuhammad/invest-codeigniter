@@ -524,7 +524,7 @@
         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
           <div class="member">
             <div class="member-img">
-              <img src="<?php echo base_url() ?>/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url('assets/img/team/').$value['gambar'] ?>" class="img-fluid" alt="">
                 <!-- <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -539,10 +539,9 @@
               </div>
               <div class="btn-group">
                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalTeamEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalTeamHapus<?php echo $value['id'] ?>"><i class="fas fa-trash"></i></button>
               </div>
             </div>
-
           </div>
         <?php endforeach ?>
         <div class="col-lg-3 col-md-6">
@@ -555,10 +554,81 @@
     </div>
     <div class="modal fade" id="modalTeam">
       <div class="modal-dialog modal-dialog-centered">
-       <form action="asdfasf" method="POST">
+        <form action="<?php echo admin_url('website/team') ?>" method="POST" enctype="multipart/form-data">
+          <?php echo method('_post') ?>
+          <?php echo bahasa($this->uri->segment(2)) ?>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Tambah Tim</h4>
+              <a type="button" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group text-center">
+                    <label for="" class="text-center p-2">Nama</label>
+                    <input type="text" class="form-control" id="email" placeholder="Masukan Nama" name="nama" value="">
+                  </div>
+                  <div class="form-group text-center">
+                    <label for="" class="text-center p-2">Jabatan</label>
+                    <input type="text" class="form-control" id="email" placeholder="Masukan Jabatan" name="jabatan" value="">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group text-center">
+                    <label for="" class="p-2">Keterangan</label>
+                    <textarea name="tagline" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Keterangan"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-center">
+                <div class="col-6">
+                 <div class="form-grop text-center">
+                  <img src="<?php echo base_url('assets/img/team/default.png') ?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                  <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="gambar">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-primary">Kirim</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <?php foreach ($team as $key => $value): ?>
+    <form action="<?php echo admin_url('website/team') ?>" method="POST">
+
+      <div class="modal fade" id="modalTeamHapus<?php echo $value['id'] ?>">
+        <div class="modal-dialog modal-dialog-centered">
+          <?php echo method('_get')?>
+          <?php echo get_id($value['id'])?>
+          <?php echo bahasa($this->uri->segment(2))?>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Konfirmasi Hapus</h4>
+              <a type="button" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-outline-primary">Konfirmasi</button>
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+    <div class="modal fade" id="modalTeamEdit<?php echo $value['id'] ?>">
+      <div class="modal-dialog modal-dialog-centered">
+       <form action="<?php echo admin_url('website/team') ?>" method="POST" enctype="multipart/form-data">
+        <?php echo method('_patch') ?>
+        <?php echo bahasa($this->uri->segment(2)) ?>
+        <?php echo get_id($value['id']) ?>
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">About</h4>
+            <h4 class="modal-title">Edit <?php echo $value['nama'] ?></h4>
             <a type="button" class="close" data-dismiss="modal">&times;</a>
           </div>
           <div class="modal-body">
@@ -566,25 +636,25 @@
               <div class="col">
                 <div class="form-group text-center">
                   <label for="" class="text-center p-2">Nama</label>
-                  <input type="text" class="form-control" id="email" placeholder="Masukan Nama" name="email" value="">
+                  <input type="text" class="form-control" id="email" placeholder="Masukan Nama" name="nama" value="<?php echo $value['nama'] ?>">
                 </div>
                 <div class="form-group text-center">
                   <label for="" class="text-center p-2">Jabatan</label>
-                  <input type="text" class="form-control" id="email" placeholder="Masukan Jabatan" name="email" value="">
+                  <input type="text" class="form-control" id="email" placeholder="Masukan Jabatan" name="jabatan" value="<?php echo $value['jabatan'] ?>">
                 </div>
               </div>
               <div class="col">
                 <div class="form-group text-center">
                   <label for="" class="p-2">Keterangan</label>
-                  <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Keterangan"></textarea>
+                  <textarea name="tagline" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Keterangan"><?php echo $value['tagline'] ?></textarea>
                 </div>
               </div>
             </div>
             <div class="row d-flex justify-content-center">
               <div class="col-6">
                <div class="form-grop text-center">
-                <img src="<?php echo base_url() ?>/assets/img/team/team-1.jpg" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+                <img src="<?php echo base_url('assets/img/team/').$value['gambar'] ?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="gambar">
               </div>
             </div>
           </div>
@@ -597,52 +667,6 @@
       </div>
     </form>
   </div>
-</div>
-<?php foreach ($team as $key => $value): ?>
-  <div class="modal fade" id="modalTeamEdit<?php echo $value['id'] ?>">
-    <div class="modal-dialog modal-dialog-centered">
-     <form action="asdfasf" method="POST">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">About</h4>
-          <a type="button" class="close" data-dismiss="modal">&times;</a>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col">
-              <div class="form-group text-center">
-                <label for="" class="text-center p-2">Nama</label>
-                <input type="text" class="form-control" id="email" placeholder="Masukan Nama" name="email" value="<?php echo $value['nama'] ?>">
-              </div>
-              <div class="form-group text-center">
-                <label for="" class="text-center p-2">Jabatan</label>
-                <input type="text" class="form-control" id="email" placeholder="Masukan Jabatan" name="email" value="<?php echo $value['jabatan'] ?>">
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group text-center">
-                <label for="" class="p-2">Keterangan</label>
-                <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Keterangan"><?php echo $value['tagline'] ?></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-center">
-            <div class="col-6">
-             <div class="form-grop text-center">
-              <img src="<?php echo base_url() ?>/assets/img/team/team-1.jpg" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-              <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-primary">Kirim</button>
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </form>
-</div>
 </div>
 <?php endforeach ?>
 

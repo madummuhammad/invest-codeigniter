@@ -38,4 +38,17 @@ class Home extends CI_Controller {
 			redirect(admin_url());
 		}
 	}
+
+	public function team()
+	{
+		if ($this->input->post('_patch') !== NULL) {
+			$this->M_Team->update();
+		} elseif ($this->input->post('_post') !== NULL) {
+			$this->M_Team->create();
+		} elseif ($this->input->post('_get') !== NULL) {
+			$this->M_Team->delete();
+		} else {
+			redirect(admin_url());
+		}
+	}
 }

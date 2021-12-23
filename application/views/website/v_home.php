@@ -18,7 +18,7 @@
 
   <!-- Vendor CSS Files -->
   <link href="<?php echo base_url() ?>assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="<?php echo base_url() ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo base_url() ?>assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
   <link href="<?php echo base_url() ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="<?php echo base_url() ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="<?php echo base_url() ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
@@ -27,6 +27,8 @@
   <!-- Template Main CSS File -->
   <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet">
   <link href="<?php echo base_url() ?>assets/css/custom.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -109,7 +111,7 @@
             </div>
           </div>
           <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets/img/hero-img.png" class="img-fluid" alt="">
+            <img src="<?php echo base_url('/assets/img/main/').$value['gambar'] ?>" class="img-fluid" alt="">
           </div>
         </div>
       <?php endforeach ?>
@@ -141,7 +143,7 @@
           </div>
 
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="<?php echo base_url('/assets/img/about/').$value['gambar'] ?>" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -264,7 +266,9 @@
           <?php foreach ($service as $key => $value): ?>
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
               <div class="service-box">
-                <i class="ri-discuss-line icon"></i>
+                <div class="icon">
+                  <?php echo $value['icon'] ?>
+                </div>
                 <h3><?php echo $value['judul'] ?></h3>
                 <p><?php echo $value['content'] ?></p>
                 <!-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
@@ -421,12 +425,12 @@
           <?php foreach ($portofolio as $key => $value): ?>
             <div class="col-lg-4 col-md-6 portfolio-item filter-app">
               <div class="portfolio-wrap">
-                <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                <img src="<?php echo base_url('assets/img/portfolio/').$value['gambar'] ?>" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4><?php echo $value['judul'] ?></h4>
                   <p><?php echo $value['content'] ?></p>
                   <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
+                    <a href="<?php echo base_url('assets/img/portfolio/').$value['gambar'] ?>" data-gallery="portfolioGallery" class="portfokio-lightbox" title="<?php echo $value['judul'] ?>"><i class="bi bi-plus"></i></a>
                     <!-- <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a> -->
                   </div>
                 </div>
@@ -459,7 +463,7 @@
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
               <div class="member">
                 <div class="member-img">
-                  <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                  <img src="<?php echo base_url('assets/img/team/').$value['gambar'] ?>" class="img-fluid" alt="">
                 <!-- <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -661,6 +665,9 @@
 
   <!-- Template Main JS File -->
   <script src="<?php echo base_url() ?>assets/js/main.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/script.js"></script>
 
 </body>
 
