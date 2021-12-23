@@ -60,3 +60,4 @@ $route['website/english']='admin/website/english';
 $route['adminsystem/website']='admin/home/index';
 $route['adminsystem/website/about']='admin/home/about';
 $route['adminsystem/website/layanan']='admin/home/layanan';
+$route['adminsystem/website/portofolio']='admin/home/portofolio';

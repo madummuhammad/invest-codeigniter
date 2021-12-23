@@ -25,4 +25,17 @@ class Home extends CI_Controller {
 			redirect(admin_url());
 		}
 	}
+
+	public function portofolio()
+	{
+		if ($this->input->post('_patch') !== NULL) {
+			$this->M_Portofolio->update();
+		} elseif ($this->input->post('_post') !== NULL) {
+			$this->M_Portofolio->create();
+		} elseif ($this->input->post('_get') !== NULL) {
+			$this->M_Portofolio->delete();
+		} else {
+			redirect(admin_url());
+		}
+	}
 }

@@ -379,19 +379,19 @@
       <?php foreach ($portofolio as $key => $value): ?>
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
           <div class="portfolio-wrap">
-            <img src="<?php echo base_url() ?>/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+            <img src="<?php echo base_url('assets/img/portfolio/').$value['gambar'] ?>" class="img-fluid" alt="">
             <div class="portfolio-info">
               <h4><?php echo $value['judul'] ?></h4>
               <p><?php echo $value['content'] ?></p>
               <div class="portfolio-links">
-                <a href="<?php echo base_url() ?>/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="<?php echo $value['judul'] ?>"><i class="bi bi-plus"></i></a>
+                <a href="<?php echo base_url('assets/img/portfolio/').$value['gambar'] ?>" data-gallery="portfolioGallery" class="portfokio-lightbox" title="<?php echo $value['judul'] ?>"><i class="bi bi-plus"></i></a>
                 <!-- <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a> -->
               </div>
             </div>
           </div>
           <div class="btn-group">
             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPortofolioEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalPortofolioHapus<?php echo $value['id'] ?>"><i class="fas fa-trash"></i></button>
           </div>
         </div>
       <?php endforeach ?>
@@ -404,7 +404,9 @@
   </div>
   <div class="modal fade" id="modalPortofolio">
     <div class="modal-dialog modal-dialog-centered">
-     <form action="asdfasf" method="POST">
+     <form action="<?php echo admin_url('website/portofolio') ?>" method="POST" enctype="multipart/form-data">
+      <?php echo method('_post') ?>
+      <?php echo bahasa($this->uri->segment(2)) ?>
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Portofolio</h4>
@@ -416,17 +418,17 @@
             <div class="col">
               <div class="form-group text-center">
                 <label for="" class="text-center p-2">Judul</label>
-                <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="">
+                <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="judul" value="">
               </div>
               <div class="form-grop text-center">
-                <img src="<?php echo base_url() ?>/assets/img/hero-img.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+                <img src="<?php echo base_url('assets/img/portfolio/default.png')?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="gambar">
               </div>
             </div>
             <div class="col">
               <div class="form-group text-center">
                 <label for="" class="p-2">Konten</label>
-                <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"></textarea>
+                <textarea name="content" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"></textarea>
               </div>
             </div>
           </div>
@@ -440,12 +442,34 @@
   </div>
 </div>
 <?php foreach ($portofolio as $key => $value): ?>
+  <form action="<?php echo admin_url('website/portofolio') ?>" method="POST">
+    <div class="modal fade" id="modalPortofolioHapus<?php echo $value['id'] ?>">
+      <div class="modal-dialog modal-dialog-centered">
+        <?php echo method('_get') ?>
+        <?php echo get_id($value['id']) ?>
+        <?php echo bahasa($this->uri->segment(2)) ?>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Konfirmasi Hapus</h4>
+            <a type="button" class="close" data-dismiss="modal">&times;</a>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-primary">Konfirmasi</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
   <div class="modal fade" id="modalPortofolioEdit<?php echo $value['id'] ?>">
     <div class="modal-dialog modal-dialog-centered">
-     <form action="asdfasf" method="POST">
+     <form action="<?php echo admin_url('website/portofolio') ?>" method="POST" enctype="multipart/form-data">
+      <?php echo method('_patch') ?>
+      <?php echo get_id($value['id']) ?>
+      <?php echo bahasa($this->uri->segment(2)) ?>
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Portofolio</h4>
+          <h4 class="modal-title">Edit Portofolio</h4>
           <a type="button" class="close" data-dismiss="modal">&times;</a>
         </div>
         <div class="modal-body">
@@ -454,17 +478,17 @@
             <div class="col">
               <div class="form-group text-center">
                 <label for="" class="text-center p-2">Judul</label>
-                <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="<?php echo $value['judul'] ?>">
+                <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="judul" value="<?php echo $value['judul'] ?>">
               </div>
               <div class="form-grop text-center">
-                <img src="<?php echo base_url() ?>/assets/img/hero-img.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+                <img src="<?php echo base_url('assets/img/portfolio/').$value['gambar'] ?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="gambar">
               </div>
             </div>
             <div class="col">
               <div class="form-group text-center">
                 <label for="" class="p-2">Konten</label>
-                <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
+                <textarea name="content" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
               </div>
             </div>
           </div>

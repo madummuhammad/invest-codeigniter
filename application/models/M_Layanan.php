@@ -91,6 +91,6 @@ class M_Layanan extends CI_Model {
 		$this->db->where('id',$id);
 		$this->db->delete('service_ind');
 
-		redirect(admin_url('website/'.$bahasa));
+		redirect(base_url('website/'.$bahasa));
 	}
 }
