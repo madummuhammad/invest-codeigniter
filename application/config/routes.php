@@ -56,3 +56,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['adminsystem']='admin/dashboard/index';
 $route['website/indonesia']='admin/website/indonesia';
 $route['website/english']='admin/website/english';
+
+$route['adminsystem/website']='admin/home/index';

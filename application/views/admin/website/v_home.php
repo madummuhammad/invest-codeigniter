@@ -86,22 +86,22 @@
           </button>
           <div class="modal fade" id="myModal">
             <div class="modal-dialog modal-dialog-centered">
-              <form action="asdfasdfa" method="POST">
+              <form action="<?php echo base_url('adminsystem/website') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h4 class="modal-title">Home</h4>
                     <a type="button" class="close" data-dismiss="modal">&times;</a>
                   </div>
                   <div class="modal-body">
-
                     <div class="row">
                       <div class="col">
-                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email">
-                        <img src="<?php echo base_url() ?>/assets/img/hero-img.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-                        <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+                        <input type="text" name="_bahasa" value="<?php echo $this->uri->segment(2) ?>" hidden>
+                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="judul" value="<?php echo $value['judul'] ?>">
+                        <img src="<?php echo base_url('/assets/img/main/').$value['gambar'] ?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                        <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Gambar" name="gambar">
                       </div>
                       <div class="col">
-                        <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Masukan Tagline"></textarea>
+                        <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Masukan Keterangan"><?php echo $value['content'] ?></textarea>
                       </div>
                     </div>
 
@@ -131,7 +131,7 @@
             </div>
           </div>
           <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-            <img src="<?php echo base_url() ?>/assets/img/hero-img.png" class="img-fluid" alt="">
+            <img src="<?php echo base_url('/assets/img/main/').$value['gambar'] ?>" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -156,7 +156,6 @@
                   <a type="button" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <div class="modal-body">
-
                   <div class="row">
                     <div class="col">
                       <div class="form-group text-center">
@@ -196,7 +195,6 @@
     </div>
     <div class="container" data-aos="fade-up">
       <div class="row gx-0">
-
         <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
           <div class="content">
             <h3><?php echo $value['judul'] ?></h3>
@@ -243,86 +241,238 @@
         <?php foreach ($service as $key => $value): ?>
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-box">
-              <i class="far fa-handshake icon"></i>
+              <?php echo $value['icon'] ?>
               <h3><?php echo $value['judul'] ?></h3>
               <p><?php echo $value['content'] ?></p>
               <!-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
               <div class="btn-group">
-                <button type="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalLayananEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
                 <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
               </div>
             </div>
           </div>
           <div class="col-lg-4">
-            <button type="button" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalLayanan"><i class="fas fa-plus"></i></button>
           </div>
         <?php endforeach ?>
       </div>
     </div>
+    <div class="modal fade" id="modalLayanan">
+      <div class="modal-dialog modal-dialog-centered">
+       <form action="asdfasf" method="POST">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Layanan</h4>
+            <a type="button" class="close" data-dismiss="modal">&times;</a>
+          </div>
+          <div class="modal-body">
 
-  </section><!-- End Services Section -->
-
-  <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio">
-
-    <div class="container" data-aos="fade-up">
-
-      <header class="section-header">
-        <h2>Portfolio</h2>
-        <div class="divider"></div>
-      </header>
-      <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-        <?php foreach ($portofolio as $key => $value): ?>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="<?php echo base_url() ?>/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><?php echo $value['judul'] ?></h4>
-                <p><?php echo $value['content'] ?></p>
-                <div class="portfolio-links">
-                  <a href="<?php echo base_url() ?>/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
-                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a> -->
+            <div class="row">
+              <div class="col">
+                <div class="form-group text-center">
+                  <label for="" class="text-center p-2">Judul</label>
+                  <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="">
+                </div>
+                <div class="form-group text-center">
+                  <label for="" class="text-center p-2">Icon</label>
+                  <textarea type="text" class="form-control" id="email" placeholder="Masukan Icon" name="email"></textarea>
+                  <div class="icon-message">
+                    <p>* Copy icon dari fontawesome.com</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group text-center">
+                  <label for="" class="p-2">Konten</label>
+                  <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Isi Konten"></textarea>
                 </div>
               </div>
             </div>
-            <div class="btn-group">
-              <button type="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></button>
-              <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
-            </div>
           </div>
-        <?php endforeach ?>
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="btn-group">
-            <button type="button" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-primary">Kirim</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
           </div>
         </div>
-      </div>
-
+      </form>
     </div>
+  </div>
+  <?php foreach ($service as $key => $value): ?>
+    <div class="modal fade" id="modalLayananEdit<?php echo $value['id'] ?>">
+      <div class="modal-dialog modal-dialog-centered">
+       <form action="asdfasf" method="POST">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Layanan</h4>
+            <a type="button" class="close" data-dismiss="modal">&times;</a>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <div class="form-group text-center">
+                  <label for="" class="text-center p-2">Judul</label>
+                  <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="<?php echo $value['judul'] ?>">
+                </div>
+                <div class="form-group text-center">
+                  <label for="" class="text-center p-2">Icon</label>
+                  <textarea type="text" class="form-control" id="email" placeholder="Masukan Icon" name="email"><?php echo $value['icon'] ?></textarea>
+                  <div class="icon-message">
+                    <p>* Copy icon dari fontawesome.com</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group text-center">
+                  <label for="" class="p-2">Konten</label>
+                  <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-primary">Kirim</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<?php endforeach ?>
+</section><!-- End Services Section -->
 
-  </section><!-- End Portfolio Section -->
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+  <div class="container" data-aos="fade-up">
+    <header class="section-header">
+      <h2>Portfolio</h2>
+      <div class="divider"></div>
+    </header>
+    <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+      <?php foreach ($portofolio as $key => $value): ?>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="<?php echo base_url() ?>/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><?php echo $value['judul'] ?></h4>
+              <p><?php echo $value['content'] ?></p>
+              <div class="portfolio-links">
+                <a href="<?php echo base_url() ?>/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="<?php echo $value['judul'] ?>"><i class="bi bi-plus"></i></a>
+                <!-- <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a> -->
+              </div>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPortofolioEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
+            <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      <?php endforeach ?>
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <div class="btn-group">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPortofolio"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalPortofolio">
+    <div class="modal-dialog modal-dialog-centered">
+     <form action="asdfasf" method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Portofolio</h4>
+          <a type="button" class="close" data-dismiss="modal">&times;</a>
+        </div>
+        <div class="modal-body">
 
-  <!-- ======= Team Section ======= -->
-  <section id="team" class="team">
+          <div class="row">
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="text-center p-2">Judul</label>
+                <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="">
+              </div>
+              <div class="form-grop text-center">
+                <img src="<?php echo base_url() ?>/assets/img/hero-img.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="p-2">Konten</label>
+                <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-primary">Kirim</button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<?php foreach ($portofolio as $key => $value): ?>
+  <div class="modal fade" id="modalPortofolioEdit<?php echo $value['id'] ?>">
+    <div class="modal-dialog modal-dialog-centered">
+     <form action="asdfasf" method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Portofolio</h4>
+          <a type="button" class="close" data-dismiss="modal">&times;</a>
+        </div>
+        <div class="modal-body">
 
-    <div class="container" data-aos="fade-up">
+          <div class="row">
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="text-center p-2">Judul</label>
+                <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="<?php echo $value['judul'] ?>">
+              </div>
+              <div class="form-grop text-center">
+                <img src="<?php echo base_url() ?>/assets/img/hero-img.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="p-2">Konten</label>
+                <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-primary">Kirim</button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<?php endforeach ?>
+</section><!-- End Portfolio Section -->
 
-      <header class="section-header">
-        <?php if ($this->uri->segment(2)=='indonesia'): ?>
-          <h2>TIM</h2>
-        <?php else: ?>
-          <h2>Team</h2>
-        <?php endif ?>
+<!-- ======= Team Section ======= -->
+<section id="team" class="team">
 
-        <div class="divider"></div>
-      </header>
+  <div class="container" data-aos="fade-up">
 
-      <div class="row gy-4">
-        <?php foreach ($team as $key => $value): ?>
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <div class="member-img">
-                <img src="<?php echo base_url() ?>/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+    <header class="section-header">
+      <?php if ($this->uri->segment(2)=='indonesia'): ?>
+        <h2>TIM</h2>
+      <?php else: ?>
+        <h2>Team</h2>
+      <?php endif ?>
+
+      <div class="divider"></div>
+    </header>
+
+    <div class="row gy-4">
+      <?php foreach ($team as $key => $value): ?>
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="member">
+            <div class="member-img">
+              <img src="<?php echo base_url() ?>/assets/img/team/team-1.jpg" class="img-fluid" alt="">
                 <!-- <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -336,7 +486,7 @@
                 <p><?php echo $value['tagline'] ?></p>
               </div>
               <div class="btn-group">
-                <button type="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalTeamEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
                 <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
               </div>
             </div>
@@ -345,50 +495,142 @@
         <?php endforeach ?>
         <div class="col-lg-3 col-md-6">
           <div class="btn-group">
-            <button type="button" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalTeam"><i class="fas fa-plus"></i></button>
           </div>
         </div>
       </div>
 
     </div>
+    <div class="modal fade" id="modalTeam">
+      <div class="modal-dialog modal-dialog-centered">
+       <form action="asdfasf" method="POST">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">About</h4>
+            <a type="button" class="close" data-dismiss="modal">&times;</a>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <div class="form-group text-center">
+                  <label for="" class="text-center p-2">Nama</label>
+                  <input type="text" class="form-control" id="email" placeholder="Masukan Nama" name="email" value="">
+                </div>
+                <div class="form-group text-center">
+                  <label for="" class="text-center p-2">Jabatan</label>
+                  <input type="text" class="form-control" id="email" placeholder="Masukan Jabatan" name="email" value="">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group text-center">
+                  <label for="" class="p-2">Keterangan</label>
+                  <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Keterangan"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-6">
+               <div class="form-grop text-center">
+                <img src="<?php echo base_url() ?>/assets/img/team/team-1.jpg" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+              </div>
+            </div>
+          </div>
 
-  </section><!-- End Team Section -->
-
-  <!-- ======= Clients Section ======= -->
-  <section id="clients" class="clients">
-
-    <div class="container" data-aos="fade-up">
-
-      <header class="section-header">
-        <?php if ($this->uri->segment(2)=='indonesia'): ?>
-          <h2>Mitra Kami</h2>
-        <?php else: ?>
-          <h2>Our Partner</h2>
-        <?php endif ?>
-        
-        <div class="divider"></div>
-      </header>
-
-      <div class="clients-slider swiper">
-        <div class="swiper-wrapper align-items-center">
-          <?php foreach ($partner as $key => $value): ?>
-            <div class="swiper-slide"><img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" class="img-fluid" alt=""></div>
-          <?php endforeach ?>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-primary">Kirim</button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<?php foreach ($team as $key => $value): ?>
+  <div class="modal fade" id="modalTeamEdit<?php echo $value['id'] ?>">
+    <div class="modal-dialog modal-dialog-centered">
+     <form action="asdfasf" method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">About</h4>
+          <a type="button" class="close" data-dismiss="modal">&times;</a>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="text-center p-2">Nama</label>
+                <input type="text" class="form-control" id="email" placeholder="Masukan Nama" name="email" value="<?php echo $value['nama'] ?>">
+              </div>
+              <div class="form-group text-center">
+                <label for="" class="text-center p-2">Jabatan</label>
+                <input type="text" class="form-control" id="email" placeholder="Masukan Jabatan" name="email" value="<?php echo $value['jabatan'] ?>">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="p-2">Keterangan</label>
+                <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Keterangan"><?php echo $value['tagline'] ?></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-6">
+             <div class="form-grop text-center">
+              <img src="<?php echo base_url() ?>/assets/img/team/team-1.jpg" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+              <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-primary">Kirim</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
+  </form>
+</div>
+</div>
+<?php endforeach ?>
 
-  </section><!-- End Clients Section -->
-  <!-- End Recent Blog Posts Section -->
+</section><!-- End Team Section -->
 
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
+<!-- ======= Clients Section ======= -->
+<section id="clients" class="clients">
 
-    <div class="container" data-aos="fade-up">
+  <div class="container" data-aos="fade-up">
 
-      <header class="section-header">
-        <img src="<?php echo base_url('assets/img/logo.png') ?>" alt="">
+    <header class="section-header">
+      <?php if ($this->uri->segment(2)=='indonesia'): ?>
+        <h2>Mitra Kami</h2>
+      <?php else: ?>
+        <h2>Our Partner</h2>
+      <?php endif ?>
+
+      <div class="divider"></div>
+    </header>
+
+    <div class="clients-slider swiper">
+      <div class="swiper-wrapper align-items-center">
+        <?php foreach ($partner as $key => $value): ?>
+          <div class="swiper-slide"><img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" class="img-fluid" alt=""></div>
+        <?php endforeach ?>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+</section><!-- End Clients Section -->
+<!-- End Recent Blog Posts Section -->
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+
+  <div class="container" data-aos="fade-up">
+
+    <header class="section-header">
+      <img src="<?php echo base_url('assets/img/logo.png') ?>" alt="">
           <!-- <h2>Contact</h2>
             <p>Contact Us</p> -->
           </header>
