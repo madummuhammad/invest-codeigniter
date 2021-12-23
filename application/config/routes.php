@@ -58,3 +58,5 @@ $route['website/indonesia']='admin/website/indonesia';
 $route['website/english']='admin/website/english';
 
 $route['adminsystem/website']='admin/home/index';
+$route['adminsystem/website/about']='admin/home/about';
+$route['adminsystem/website/layanan']='admin/home/layanan';

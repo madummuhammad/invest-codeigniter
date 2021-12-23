@@ -1,4 +1,26 @@
 <?php 
+
+function admin_url($url='')
+{
+	return base_url('adminsystem/'.$url);
+}
+
+function bahasa($bahasa='')
+{
+	return '<input type="text" name="_bahasa" value="'.$bahasa.'" hidden>';
+}
+
+function get_id($id='')
+{
+	return '<input type="text" name="id" value="'.$id.'" hidden>';
+}
+
+function method($method='')
+{
+	return '<input type="text" name="'.$method.'" hidden>';
+}
+
+
 function rules_array($field, $rules)
 {
 	return [

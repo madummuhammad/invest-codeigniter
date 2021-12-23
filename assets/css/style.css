@@ -709,7 +709,7 @@ section {
   border-radius: 5px;
   background-color: #0F0E0E;
 }
-.services .service-box .icon {
+.services .service-box .icon svg {
   font-size: 66px;
   padding: 40px 20px;
   border-radius: 4px;

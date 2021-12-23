@@ -149,7 +149,7 @@
           </button>
           <div class="modal fade" id="modalAbout">
             <div class="modal-dialog modal-dialog-centered">
-             <form action="asdfasf" method="POST">
+             <form action="<?php echo admin_url('website/about') ?>" method="POST" enctype="multipart/form-data">
               <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title">About</h4>
@@ -160,25 +160,26 @@
                     <div class="col">
                       <div class="form-group text-center">
                         <label for="" class="text-center p-2">Judul</label>
-                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="<?php echo $value['judul'] ?>">
+                        <input type="text" name="_bahasa" value="<?php echo $this->uri->segment(2) ?>" hidden>
+                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="judul" value="<?php echo $value['judul'] ?>">
                       </div>
                       <div class="form-group text-center">
                         <label for="" class="text-center p-2">Tagline</label>
-                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="<?php echo $value['tagline'] ?>">
+                        <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="tagline" value="<?php echo $value['tagline'] ?>">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group text-center">
                         <label for="" class="p-2">Konten</label>
-                        <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
+                        <textarea name="content" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
                       </div>
                     </div>
                   </div>
                   <div class="row d-flex justify-content-center">
                     <div class="col-6">
                      <div class="form-grop text-center">
-                      <img src="<?php echo base_url() ?>/assets/img/hero-img.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-                      <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="email">
+                      <img src="<?php echo base_url('/assets/img/about/').$value['gambar'] ?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                      <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Gambar" name="gambar">
                     </div>
                   </div>
                 </div>
@@ -212,7 +213,7 @@
           </div>
 
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="<?php echo base_url() ?>/assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="<?php echo base_url('/assets/img/about/').$value['gambar'] ?>" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -241,28 +242,32 @@
         <?php foreach ($service as $key => $value): ?>
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-box">
-              <?php echo $value['icon'] ?>
+              <div class="icon">
+                <?php echo $value['icon'] ?>
+              </div>
               <h3><?php echo $value['judul'] ?></h3>
               <p><?php echo $value['content'] ?></p>
               <!-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
               <div class="btn-group">
                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalLayananEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalLayananHapus<?php echo $value['id'] ?>"><i class="fas fa-trash"></i></button>
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalLayanan"><i class="fas fa-plus"></i></button>
-          </div>
         <?php endforeach ?>
+        <div class="col-lg-4">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalLayanan"><i class="fas fa-plus"></i></button>
+        </div>
       </div>
     </div>
     <div class="modal fade" id="modalLayanan">
       <div class="modal-dialog modal-dialog-centered">
-       <form action="asdfasf" method="POST">
+       <form action="<?php echo admin_url('website/layanan') ?>" method="POST">
+        <?php echo method('_post') ?>
+        <?php echo bahasa($this->uri->segment('2')); ?>
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Layanan</h4>
+            <h4 class="modal-title">Tambah Layanan</h4>
             <a type="button" class="close" data-dismiss="modal">&times;</a>
           </div>
           <div class="modal-body">
@@ -271,11 +276,11 @@
               <div class="col">
                 <div class="form-group text-center">
                   <label for="" class="text-center p-2">Judul</label>
-                  <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="">
+                  <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="judul" value="">
                 </div>
                 <div class="form-group text-center">
                   <label for="" class="text-center p-2">Icon</label>
-                  <textarea type="text" class="form-control" id="email" placeholder="Masukan Icon" name="email"></textarea>
+                  <textarea type="text" class="form-control" id="email" placeholder="Masukan Icon" name="icon"></textarea>
                   <div class="icon-message">
                     <p>* Copy icon dari fontawesome.com</p>
                   </div>
@@ -284,7 +289,7 @@
               <div class="col">
                 <div class="form-group text-center">
                   <label for="" class="p-2">Konten</label>
-                  <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Isi Konten"></textarea>
+                  <textarea name="content" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Isi Konten"></textarea>
                 </div>
               </div>
             </div>
@@ -298,12 +303,34 @@
     </div>
   </div>
   <?php foreach ($service as $key => $value): ?>
+    <form action="<?php echo admin_url('website/layanan') ?>" method="POST">
+      <div class="modal fade" id="modalLayananHapus<?php echo $value['id'] ?>">
+        <div class="modal-dialog modal-dialog-centered">
+          <?php echo method('_get') ?>
+          <?php echo get_id($value['id']) ?>
+          <?php echo bahasa($this->uri->segment(2)) ?>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Konfirmasi Hapus</h4>
+              <a type="button" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-outline-primary">Konfirmasi</button>
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
     <div class="modal fade" id="modalLayananEdit<?php echo $value['id'] ?>">
       <div class="modal-dialog modal-dialog-centered">
-       <form action="asdfasf" method="POST">
+       <form action="<?php echo admin_url('website/layanan') ?>" method="POST">
+        <?php echo method('_patch') ?>
+        <?php echo get_id($value['id']) ?>
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Layanan</h4>
+            <h4 class="modal-title">Edit Layanan</h4>
             <a type="button" class="close" data-dismiss="modal">&times;</a>
           </div>
           <div class="modal-body">
@@ -311,11 +338,12 @@
               <div class="col">
                 <div class="form-group text-center">
                   <label for="" class="text-center p-2">Judul</label>
-                  <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="email" value="<?php echo $value['judul'] ?>">
+                  <input type="text" class="form-control" id="email" placeholder="Masukan Judul" name="judul" value="<?php echo $value['judul'] ?>">
+                  <input type="text" name="_bahasa" value="<?php echo $this->uri->segment(2) ?>" hidden>
                 </div>
                 <div class="form-group text-center">
                   <label for="" class="text-center p-2">Icon</label>
-                  <textarea type="text" class="form-control" id="email" placeholder="Masukan Icon" name="email"><?php echo $value['icon'] ?></textarea>
+                  <textarea type="text" class="form-control" id="email" placeholder="Masukan Icon" name="icon"><?php echo $value['icon'] ?></textarea>
                   <div class="icon-message">
                     <p>* Copy icon dari fontawesome.com</p>
                   </div>
@@ -324,7 +352,7 @@
               <div class="col">
                 <div class="form-group text-center">
                   <label for="" class="p-2">Konten</label>
-                  <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
+                  <textarea name="content" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Tagline"><?php echo $value['content'] ?></textarea>
                 </div>
               </div>
             </div>
