@@ -18,4 +18,10 @@ $(document).ready(function(){
 		};
 		reader.readAsDataURL(this.files[0]);
 	});
-})
+	$('.toast').toast('hide');
+
+	$('button[type="submit"]').on('click',function(){
+		$('button span').addClass('spinner-border');
+		$('.toast').toast('show');
+	});
+});

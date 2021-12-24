@@ -1,11 +1,18 @@
 <?php 
 function is_logged_in()
 {
-
 	$ci=get_instance();
 	if (!$ci->session->userdata('email')) {
-		redirect();
-	} 
+		redirect(admin_url('login'));
+	}
+}
+
+function login_in()
+{
+	$ci=get_instance();
+	if ($ci->session->userdata('email')) {
+		redirect(admin_url());
+	}
 }
 
 // function check_access($role_id,$menu_id)
