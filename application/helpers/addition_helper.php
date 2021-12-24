@@ -5,6 +5,17 @@ function admin_url($url='')
 	return base_url('adminsystem/'.$url);
 }
 
+function form($name='')
+{
+	$ci=get_instance();
+	return $ci->input->post($name);
+}
+
+function timenow()
+{
+	return date('Y-m-d, H:i:s');
+}
+
 function bahasa($bahasa='')
 {
 	return '<input type="text" name="_bahasa" value="'.$bahasa.'" hidden>';

@@ -36,8 +36,8 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+      <a href="" class="logo d-flex align-items-center">
+        <img src="<?php echo base_url() ?>assets/img/logo.png" alt="">
         <span>Atoze Capital</span>
       </a>
 
@@ -99,7 +99,7 @@
             <h2 data-aos="fade-up" data-aos-delay="400"><?php echo $value['content'] ?></h2>
             <div data-aos="fade-up" data-aos-delay="600">
               <div class="text-center text-lg-start">
-                <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <a href="#joinUs" data-toggle="modal" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <?php if (get_cookie('lang_is')=='in'): ?>
                     <span>Gabung Bersama Kami</span>
                   <?php else: ?>
@@ -118,6 +118,116 @@
     </div>
   </section><!-- End Hero -->
   <svg class="svg-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#242424" fill-opacity="1" d="M0,96L48,117.3C96,139,192,181,288,202.7C384,224,480,224,576,208C672,192,768,160,864,165.3C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+  <div class="modal fade" id="joinUs">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3">
+        <div class="modal-body">
+          <?php if (get_cookie('lang_is')=='in'): ?>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#registrasi">Daftar</a>
+              </li>
+            </ul>
+          <?php else: ?>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#login">Sign in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#registrasi">Register</a>
+              </li>
+            </ul>
+          <?php endif ?>
+
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane container active" id="login">
+              <?php if (get_cookie('lang_is')=='in'): ?>
+                <h3 class="text-center">Silakan Login</h3>
+              <?php else: ?>
+                <h3 class="text-center">Sign in</h3>
+              <?php endif ?>
+              <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
+                <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                <?php echo method('_get') ?>
+                <div class="form-group mb-3">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="pwd">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Enter password" id="pwd">
+                </div>
+                <!-- div class="form-group mb-3">
+                  <a class="nav-link" data-toggle="tab" href="#registrasi">Not a member yet? Get started now!</a>
+                </div> -->
+                <button type="submit" class="btn btn-outline-primary">Sign in</button>
+              </form>
+            </div>
+            <div class="tab-pane container fade" id="registrasi">
+              <?php if (get_cookie('lang_is')=='in'): ?>
+                <h3 class="text-center">Silakan Daftar</h3>
+              <?php else: ?>
+                <h3 class="text-center">Register</h3>
+              <?php endif ?>
+              <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
+                <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                <?php echo method('_post') ?>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-3">
+                      <label for="email">Full Name</label>
+                      <input type="text" class="form-control" placeholder="Enter full name" name="nama" id="email">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="email">Telegram Account</label>
+                      <input type="text" class="form-control" placeholder="Enter telegram account" name="telegram" id="email">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="pwd">Phone</label>
+                      <input type="number" class="form-control" placeholder="Enter number phone" name="phone" id="pwd">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="pwd">Wallet address</label>
+                      <input type="text" class="form-control" placeholder="Enter wallet address" name="wallet" id="pwd">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group mb-3">
+                      <label for="pwd">Referral ID</label>
+                      <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="pwd">Password</label>
+                      <input type="password" class="form-control" placeholder="Enter password" name="password" id="pwd">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="pwd">Repeat Password</label>
+                      <input type="password" class="form-control" placeholder="Repeat password" name="repeat_password" id="pwd">
+                    </div>
+                  </div>
+                </div>
+               <!--  <div class="form-group mb-3">
+                  <a class="nav-link" data-toggle="tab" href="#login">Already have an account?</a>
+                </div> -->
+                <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
   <main id="main">
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -587,7 +697,7 @@
                 <h3 class="text-center">Get all the latest news and updates from us!</h3>
               </div>
               <div class="col-lg-12 d-flex justify-content-center">
-                <a href="" class="custom-btn-outline-primary px-5 py-2">Join Us</a>
+                <a href="#joinUs" data-toggle="modal" class="custom-btn-outline-primary px-5 py-2">Join Us</a>
               </div>
             </div>
           <?php endif ?>
@@ -666,6 +776,9 @@
   <!-- Template Main JS File -->
   <script src="<?php echo base_url() ?>assets/js/main.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
   <script src="<?php echo base_url() ?>assets/js/script.js"></script>
 

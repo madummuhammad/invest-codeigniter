@@ -24,4 +24,9 @@ $(document).ready(function(){
 		$('button span').addClass('spinner-border');
 		$('.toast').toast('show');
 	});
+
+	$("#joinUs").modal('show');
+	$('#joinUs [data-dismiss="modal"]').on('click',function(){
+		$("#joinUs").modal('hide');
+	})
 });

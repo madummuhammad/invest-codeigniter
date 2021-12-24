@@ -64,3 +64,4 @@ $route['adminsystem/website/portofolio']='admin/home/portofolio';
 $route['adminsystem/website/team']='admin/home/team';
 
 $route['adminsystem/login']='admin/auth/index';
+$route['login']='member/auth';
