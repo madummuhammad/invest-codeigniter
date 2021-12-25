@@ -32,7 +32,8 @@
                     <ul class="metismenu" id="menu">
                         <li class="nav-label first">Main Menu</li>
                         <li><a href="<?php echo member_url() ?>" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a></li>
-                        <li class="nav-label">Pengaturan</li>
+                        <li class="nav-label">Pembelian</li>
+                        <li><a href="<?php echo member_url('riwayat') ?>" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Riwayat Pembelian</span></a></li>
                     </ul>
                 </div>
             </div>

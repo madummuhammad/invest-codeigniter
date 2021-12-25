@@ -36,12 +36,11 @@
                                         <div class="stat-content mt-2">
                                             <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalBuy<?php echo $value['id'] ?>">Buy Project</button>
                                             <div class="modal fade" id="modalBuy<?php echo $value['id'] ?>">
-                                                <form action="<?php echo admin_url('project') ?>" method="POST">
+                                                <form action="<?php echo base_url('member/buy') ?>" method="POST" enctype="multipart/form-data">
                                                   <div class="modal-dialog modal-dialog-centered">
-
-                                                    <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                                                    <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
                                                     <?php echo method('_post') ?>
-                                                    <?php echo bahasa($this->uri->segment('2')); ?>
+                                                    <input type="text" name="project" value="<?php echo $value['id'] ?>" hidden>
                                                     <div class="modal-content">
                                                       <div class="modal-header">
                                                         <h4 class="modal-title">Buy Project</h4>
@@ -52,7 +51,7 @@
                                                           <div class="col">
                                                             <div class="form-group text-center">
                                                               <label for="" class="text-center p-2">Jumlah Beli ( Min:Rp.  <?php echo $value['min'] ?>, Max:Rp. <?php echo $value['max'] ?>)</label>
-                                                              <input type="number" class="form-control" id="email" placeholder="" name="nama_project" value="" min="<?php echo $value['min'] ?>" max="<?php echo $value['max'] ?>">
+                                                              <input type="number" class="form-control" id="email" placeholder="" name="jml" value="" min="<?php echo $value['min'] ?>" max="<?php echo $value['max'] ?>">
                                                           </div>
                                                       </div>
                                                       <div class="col">

@@ -68,3 +68,5 @@ $route['adminsystem/project']='admin/project/index';
 $route['adminsystem/login']='admin/auth/index';
 $route['login']='member/auth';
 $route['member']='member/member_area/index';
+$route['member/buy']='project/index';
+$route['member/riwayat']='project/riwayat';

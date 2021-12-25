@@ -1,0 +1,89 @@
+**********************************
+Content body start
+***********************************-->
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Order Baru</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Member</th>
+                                        <th>Project</th>
+                                        <th>Jumlah</th>
+                                        <th>Waktu Pembelian</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($project as $key => $value): ?>
+                                        <tr>
+                                            <td>
+                                                <div class="round-img">
+                                                    <a href=""><img width="35" src="<?php echo base_url('assets/img/member').$value['gambar'] ?>" alt="<?php echo $value['gambar'] ?>"></a>
+                                                </div>
+                                            </td>
+                                            <td><?php echo $value['name'] ?> </td>
+                                            <td><?php echo $value['id'].'-'.$value['nama_project'] ?></td>
+                                            <td><span><?php echo $value['jml'] ?></span></td>
+                                            <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
+                                            <td>
+                                                <div class="custom-control custom-switch">
+                                                   <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
+                                                   <input type="checkbox" data-id="<?php echo $value['id'] ?>" class="custom-control-input konfirmasi" id="switch1" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
+                                                   <?php echo 'checked' ?>
+                                                   <?php endif ?>>
+                                                   <label class="custom-control-label" for="switch1">Konfirmasi</label>
+                                                   <?php echo $value['order.id'] ?>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                   <?php endforeach ?>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+        <!--**********************************
+            Content body end
+            ***********************************-->
+            <?php 
+            $this->load->view('admin/partial/v_footer');
+            ?>
+            <script type="text/javascript">
+                var button_modal = $(".konfirmasi");
+                for (let i = 0; i < button_modal.length; i++) {
+                    button_modal[i].onclick = function () {
+                        var id=$(this).data('id');
+                        var status = $(this).val();
+                        var method = '_post';
+                        var csrf=$('input[name=csrf_test_name]').val(); 
+                        alert(id);
+                        // $.ajax({
+                        //     url: "<?php echo base_url('adminsystem') ?>",
+                        //     type:'POST',
+                        //     data:{
+                        //         id:id,
+                        //         applied:status,
+                        //         _post:method,
+                        //         csrf_test_name:csrf
+                        //     },
+                        //     success: function(e){
+                        //         alert('success');
+                        //     }
+                        // });
+                    }
+                }
+            </script>

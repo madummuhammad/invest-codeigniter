@@ -14,6 +14,7 @@ class M_Project extends CI_Model {
 	{
 		$this->db->select('SUM(jml) AS jml');
 		$this->db->where('id_project',$id);
+		$this->db->where('applied',1);
 		return $this->db->get('order')->row_array();
 	}
 
