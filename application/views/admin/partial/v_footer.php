@@ -59,6 +59,7 @@
 
 
         <script src="<?php echo base_url() ?>/assets/admin/js/dashboard/dashboard-1.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
     </body>
 

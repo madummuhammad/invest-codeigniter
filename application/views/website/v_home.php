@@ -38,7 +38,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="" class="logo d-flex align-items-center">
         <img src="<?php echo base_url() ?>assets/img/logo.png" alt="">
-        <span>Atoze Capital</span>
+        <!-- <span>Atoze Capital</span> -->
       </a>
 
       <?php if (get_cookie('lang_is')=='in'): ?>
@@ -58,6 +58,9 @@
                 <li><a href="<?php echo site_url('lang_setter/set_to/indonesia');?>">Id</a></li>
               </ul>
             </li>
+            <?php if (null !== $this->session->userdata('email')): ?>
+              <li><a class="getstarted scrollto" href="<?php echo base_url('adminsystem') ?>">Area Member</a></li>
+            <?php endif ?>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -78,6 +81,9 @@
                 <li><a href="<?php echo site_url('lang_setter/set_to/indonesia');?>">Id</a></li>
               </ul>
             </li>
+            <?php if (null !== $this->session->userdata('email')): ?>
+              <li><a class="getstarted scrollto" href="<?php echo base_url('member') ?>">Member Area</a></li>
+            <?php endif ?>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -90,7 +96,6 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero">
-
     <div class="container">
       <?php foreach ($home as $row => $value): ?>
         <div class="row">
@@ -118,50 +123,51 @@
     </div>
   </section><!-- End Hero -->
   <svg class="svg-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#242424" fill-opacity="1" d="M0,96L48,117.3C96,139,192,181,288,202.7C384,224,480,224,576,208C672,192,768,160,864,165.3C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-  <div class="modal fade" id="joinUs">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content p-3">
-        <div class="modal-body">
-          <?php if (get_cookie('lang_is')=='in'): ?>
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#login">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#registrasi">Daftar</a>
-              </li>
-            </ul>
-          <?php else: ?>
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#login">Sign in</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#registrasi">Register</a>
-              </li>
-            </ul>
-          <?php endif ?>
+  <?php if (null == $this->session->userdata('email')): ?>
+    <div class="modal fade" id="joinUs">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+          <div class="modal-body">
+            <?php if (get_cookie('lang_is')=='in'): ?>
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#login">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#registrasi">Daftar</a>
+                </li>
+              </ul>
+            <?php else: ?>
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#login">Sign in</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#registrasi">Register</a>
+                </li>
+              </ul>
+            <?php endif ?>
 
 
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane container active" id="login">
-              <?php if (get_cookie('lang_is')=='in'): ?>
-                <h3 class="text-center">Silakan Login</h3>
-              <?php else: ?>
-                <h3 class="text-center">Sign in</h3>
-              <?php endif ?>
-              <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
-                <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-                <?php echo method('_get') ?>
-                <div class="form-group mb-3">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
-                </div>
-                <div class="form-group mb-3">
-                  <label for="pwd">Password</label>
-                  <input type="password" class="form-control" name="password" placeholder="Enter password" id="pwd">
-                </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane container active" id="login">
+                <?php if (get_cookie('lang_is')=='in'): ?>
+                  <h3 class="text-center">Silakan Login</h3>
+                <?php else: ?>
+                  <h3 class="text-center">Sign in</h3>
+                <?php endif ?>
+                <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
+                  <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                  <?php echo method('_get') ?>
+                  <div class="form-group mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Enter password" id="pwd">
+                  </div>
                 <!-- div class="form-group mb-3">
                   <a class="nav-link" data-toggle="tab" href="#registrasi">Not a member yet? Get started now!</a>
                 </div> -->
@@ -228,21 +234,22 @@
 
     </div>
   </div>
-  <main id="main">
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+<?php endif ?>
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
 
-      <div class="container" data-aos="fade-up">
-        <?php foreach ($about as $row => $value): ?>
-          <div class="row gx-0">
+    <div class="container" data-aos="fade-up">
+      <?php foreach ($about as $row => $value): ?>
+        <div class="row gx-0">
 
-            <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-              <div class="content">
-                <h3><?php echo $value['judul'] ?></h3>
-                <h2><?php echo $value['tagline'] ?></h2>
-                <p>
-                  <?php echo $value['content'] ?>
-                </p>
+          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="content">
+              <h3><?php echo $value['judul'] ?></h3>
+              <h2><?php echo $value['tagline'] ?></h2>
+              <p>
+                <?php echo $value['content'] ?>
+              </p>
               <!-- <div class="text-center text-lg-start">
                 <a href="#" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>Read More</span>

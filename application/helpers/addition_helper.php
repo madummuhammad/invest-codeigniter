@@ -5,6 +5,11 @@ function admin_url($url='')
 	return base_url('adminsystem/'.$url);
 }
 
+function member_url($url='')
+{
+	return base_url('member/'.$url);
+}
+
 function form($name='')
 {
 	$ci=get_instance();

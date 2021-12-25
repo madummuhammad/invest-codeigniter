@@ -7,16 +7,20 @@
             Nav header start
             ***********************************-->
             <div class="nav-header">
-                <a href="index.html" class="brand-logo d-flex align-items-center justify-content-center">
+                <a href="index.html" class="brand-logo d-flex align-items-center justify-content-center flex-column">
                     <img class="logo-abbr" src="<?php echo base_url() ?>/assets/img/logo.png" alt="">
-                    <!-- <h3 class="text-white">Atoze Capital</h3> -->
-                </a>
-                <div class="nav-control">
-                    <div class="hamburger">
-                        <span class="line"></span><span class="line"></span><span class="line"></span>
-                    </div>
+                    <?php if ($this->session->userdata('role_id')==1): ?>
+                       <h3 class="text-muted">Admin Area</h3>
+                   <?php else: ?>
+                    <h3 class="text-secondary">Member Area</h3> 
+                <?php endif ?>
+            </a>
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
                 </div>
             </div>
+        </div>
         <!--**********************************
             Nav header end
             ***********************************-->
@@ -30,7 +34,6 @@
                         <div class="collapse navbar-collapse justify-content-between">
                             <div class="header-left">
                             </div>
-
                             <ul class="navbar-nav header-right">
                                 <li class="nav-item dropdown notification_dropdown">
                                     <a class="nav-link" href="#" role="button" data-toggle="dropdown">

@@ -265,6 +265,7 @@
        <form action="<?php echo admin_url('website/layanan') ?>" method="POST">
         <?php echo method('_post') ?>
         <?php echo bahasa($this->uri->segment('2')); ?>
+        <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Tambah Layanan</h4>

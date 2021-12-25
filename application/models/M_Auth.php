@@ -138,14 +138,13 @@ class M_Auth extends CI_Model {
 				$this->db->where('role_id',2);
 				$data=$this->db->get('users')->row_array();
 				if (password_verify($password, $data['password'])) {
-					echo "berhasil";
-					// $this->session->set_userdata($data);
-					// redirect('');
+					$this->session->set_userdata($data);
+					redirect('');
 				} else{
-					// redirect('');
+					redirect('');
 				}
 			} else {
-				// redirect('');
+				redirect('');
 			}
 		}	
 	}

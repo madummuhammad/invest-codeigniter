@@ -63,5 +63,8 @@ $route['adminsystem/website/layanan']='admin/home/layanan';
 $route['adminsystem/website/portofolio']='admin/home/portofolio';
 $route['adminsystem/website/team']='admin/home/team';
 
+$route['adminsystem/project']='admin/project/index';
+
 $route['adminsystem/login']='admin/auth/index';
 $route['login']='member/auth';
+$route['member']='member/member_area/index';
