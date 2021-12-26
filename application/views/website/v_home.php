@@ -58,7 +58,7 @@
                 <li><a href="<?php echo site_url('lang_setter/set_to/indonesia');?>">Id</a></li>
               </ul>
             </li>
-            <?php if (null !== $this->session->userdata('email')): ?>
+            <?php if ($this->session->userdata('authentication')=='member'): ?>
               <li><a class="getstarted scrollto" href="<?php echo base_url('adminsystem') ?>">Area Member</a></li>
             <?php endif ?>
           </ul>
@@ -81,7 +81,7 @@
                 <li><a href="<?php echo site_url('lang_setter/set_to/indonesia');?>">Id</a></li>
               </ul>
             </li>
-            <?php if (null !== $this->session->userdata('email')): ?>
+            <?php if ($this->session->userdata('authentication')=='member'): ?>
               <li><a class="getstarted scrollto" href="<?php echo base_url('member') ?>">Member Area</a></li>
             <?php endif ?>
           </ul>
@@ -123,7 +123,7 @@
     </div>
   </section><!-- End Hero -->
   <svg class="svg-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#242424" fill-opacity="1" d="M0,96L48,117.3C96,139,192,181,288,202.7C384,224,480,224,576,208C672,192,768,160,864,165.3C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-  <?php if (null == $this->session->userdata('email')): ?>
+  <?php if ($this->session->userdata('authentication') !=='member'): ?>
     <div class="modal fade" id="joinUs">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-3">

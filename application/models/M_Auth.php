@@ -38,6 +38,9 @@ class M_Auth extends CI_Model {
 	{
 		$email=$this->input->post('email');
 		$password=$this->input->post('password');
+		$auth=[
+			'authentication'=>'admin'
+		];
 
 		$rules=[
 			rules_array('email','required'),
@@ -46,7 +49,7 @@ class M_Auth extends CI_Model {
 		$validasi=$this->form_validation->set_rules(rules($rules));
 		if ($validasi->run()==false) {
 			redirect(admin_url('login'));
-		} else{
+		}else{
 			$this->db->where('email',$email);
 			$this->db->where('role_id',1);
 			$num_rows=$this->db->get('users')->num_rows();
@@ -56,6 +59,7 @@ class M_Auth extends CI_Model {
 				$this->db->where('role_id',1);
 				$data=$this->db->get('users')->row_array();
 				if (password_verify($password, $data['password'])) {
+					$this->session->set_userdata($auth);
 					$this->session->set_userdata($data);
 					redirect(admin_url());
 				} else{
@@ -128,6 +132,9 @@ class M_Auth extends CI_Model {
 	{
 		$email=$this->input->post('email');
 		$password=$this->input->post('password');
+		$auth=[
+			'authentication'=>'member'
+		];
 
 		$rules=[
 			rules_array('email','required'),
@@ -146,6 +153,7 @@ class M_Auth extends CI_Model {
 				$this->db->where('role_id',2);
 				$data=$this->db->get('users')->row_array();
 				if (password_verify($password, $data['password'])) {
+					$this->session->set_userdata($auth);
 					$this->session->set_userdata($data);
 					redirect('');
 				} else{

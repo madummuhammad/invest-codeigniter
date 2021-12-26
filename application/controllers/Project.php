@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Project extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+		is_logged_in_member();
+	}
+
 	public function index()
 	{
 		if ($this->input->post('_patch') !== NULL) {
@@ -15,7 +21,6 @@ class Project extends CI_Controller {
 			redirect(base_url('member'));
 		}
 	}
-
 	public function riwayat()
 	{
 		$data['project']=$this->M_Order->index();

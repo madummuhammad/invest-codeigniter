@@ -39,6 +39,7 @@ Content body start
                                         <th>Email</th>
                                         <th>Telegram</th>
                                         <th>Phone</th>
+                                        <th>Wallet Address</th>
                                     </tr>
                                 </tfoot>
                             </table>

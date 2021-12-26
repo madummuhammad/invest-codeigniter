@@ -1,9 +1,17 @@
 <?php 
-function is_logged_in()
+function is_logged_in_admin()
 {
 	$ci=get_instance();
-	if (!$ci->session->userdata('email')) {
+	if ($ci->session->userdata('authentication') !=='admin') {
 		redirect(admin_url('login'));
+	}
+}
+
+function is_logged_in_member()
+{
+	$ci=get_instance();
+	if ($ci->session->userdata('authentication') !== 'member') {
+		redirect('');
 	}
 }
 

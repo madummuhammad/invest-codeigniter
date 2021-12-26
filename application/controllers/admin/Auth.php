@@ -18,7 +18,7 @@ class Auth extends CI_Controller {
 		} elseif ($this->input->post('_get') !== NULL) {
 			$this->M_Auth->loginAdmin();
 		} else {
-			login_in();
+			// login_in();
 			$this->db->where('role_id',1);
 			$admin=$this->db->get('users')->num_rows();
 			if ($admin<1) {
