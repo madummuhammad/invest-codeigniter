@@ -10,8 +10,8 @@
                 <a href="index.html" class="brand-logo d-flex align-items-center justify-content-center flex-column">
                     <img class="logo-abbr" src="<?php echo base_url() ?>/assets/img/logo.png" alt="">
                     <?php if ($this->session->userdata('role_id')==1): ?>
-                       <h3 class="text-muted">Admin Area</h3>
-                   <?php else: ?>
+                     <h3 class="text-muted">Admin Area</h3>
+                 <?php else: ?>
                     <h3 class="text-secondary">Member Area</h3> 
                 <?php endif ?>
             </a>
@@ -100,14 +100,18 @@
                                             <i class="mdi mdi-account"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="./app-profile.html" class="dropdown-item">
-                                                <i class="icon-user"></i>
-                                                <span class="ml-2">Profile </span>
-                                            </a>
-                                            <a href="./email-inbox.html" class="dropdown-item">
-                                                <i class="icon-envelope-open"></i>
-                                                <span class="ml-2">Inbox </span>
-                                            </a>
+                                            <?php if ($this->session->userdata('role_id')==1): ?>
+                                                <a href="<?php echo admin_url('profile') ?>" class="dropdown-item">
+                                                    <i class="icon-user"></i>
+                                                    <span class="ml-2">Profile </span>
+                                                </a>
+                                            <?php else: ?>
+                                                <a href="<?php echo member_url('profile') ?>" class="dropdown-item">
+                                                    <i class="icon-user"></i>
+                                                    <span class="ml-2">Profile </span>
+                                                </a>
+                                            <?php endif ?>
+                                            
                                             <a href="#modalLogout" data-toggle="modal" class="dropdown-item">
                                                 <i class="icon-key"></i>
                                                 <span class="ml-2">Logout </span>
@@ -120,24 +124,45 @@
                         </nav>
                     </div>
                 </div>
-                <form action="<?php echo admin_url('login') ?>" method="POST">
-                  <div class="modal fade" id="modalLogout">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-                        <?php echo method('_patch') ?>
-                        <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 class="modal-title">Konfirmasi Logout</h4>
-                              <a type="button" class="close" data-dismiss="modal">&times;</a>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="submit" class="btn btn-outline-primary">Logout</button>
-                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                <?php if ($this->session->userdata('role_id')==1): ?>
+                    <form action="<?php echo admin_url('login') ?>" method="POST">
+                      <div class="modal fade" id="modalLogout">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                            <?php echo method('_patch') ?>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Konfirmasi Logout</h4>
+                                  <a type="button" class="close" data-dismiss="modal">&times;</a>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="submit" class="btn btn-outline-primary">Logout</button>
+                                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                              </div>
                           </div>
                       </div>
                   </div>
+              </form>
+          <?php else: ?>
+            <form action="<?php echo base_url('login') ?>" method="POST">
+              <div class="modal fade" id="modalLogout">
+                <div class="modal-dialog modal-dialog-centered">
+                    <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                    <?php echo method('_patch') ?>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Konfirmasi Logout</h4>
+                          <a type="button" class="close" data-dismiss="modal">&times;</a>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="submit" class="btn btn-outline-primary">Logout</button>
+                          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                      </div>
+                  </div>
               </div>
-          </form>
+          </div>
+      </form>
+  <?php endif ?>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->

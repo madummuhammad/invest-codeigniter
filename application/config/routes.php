@@ -64,9 +64,13 @@ $route['adminsystem/website/portofolio']='admin/home/portofolio';
 $route['adminsystem/website/team']='admin/home/team';
 
 $route['adminsystem/project']='admin/project/index';
+$route['adminsystem/member']='admin/member/index';
+$route['adminsystem/order']='order/index';
+$route['adminsystem/profile']='admin/profile/index';
 
 $route['adminsystem/login']='admin/auth/index';
 $route['login']='member/auth';
 $route['member']='member/member_area/index';
+$route['member/profile']='admin/profile/index';
 $route['member/buy']='project/index';
 $route['member/riwayat']='project/riwayat';

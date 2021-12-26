@@ -75,12 +75,10 @@ class M_Auth extends CI_Model {
 		$phone=form('phone');
 		$wallet=form('wallet');
 		$referral=form('referral');
-		$ownreferral=rand();
 		$password=form('password');
 		$repeatPassword=form('repeat_password');
 		$passwordHash=password_hash($password, PASSWORD_DEFAULT);
-
-
+		$ownreferral=rand();
 		$rules=[
 			rules_array('nama','required|trim'),
 			rules_array('email','required|trim|is_unique[users.email]'),
@@ -100,7 +98,6 @@ class M_Auth extends CI_Model {
 			'phone'=>$phone,
 			'wallet'=>$wallet,
 			'referral_id'=>$referral,
-			'own_referral'=>$ownreferral,
 			'password'=>$passwordHash,
 			'created_at'=>timenow(),
 			'updated_at'=>timenow(),
@@ -112,6 +109,17 @@ class M_Auth extends CI_Model {
 			redirect('');
 		} else {
 			$this->db->insert('users',$data);
+
+			$this->db->where('role_id',2);
+			$this->db->where('email',$email);
+			$id=$this->db->get('users')->row_array();
+
+
+			$datareferral=[
+				'own_referral'=>$ownreferral.$id['id'],
+			];
+			$this->db->where('email',$email);
+			$this->db->update('users',$datareferral);
 			redirect('');
 		}
 	}
@@ -152,6 +160,5 @@ class M_Auth extends CI_Model {
 	public function destroy()
 	{
 		session_destroy();
-		redirect('adminsystem/login');
 	}
 }

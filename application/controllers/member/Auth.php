@@ -12,6 +12,7 @@ class Auth extends CI_Controller {
 	{
 		if ($this->input->post('_patch') !== NULL) {
 			$this->M_Auth->destroy();
+			redirect('');
 		} elseif ($this->input->post('_post') !== NULL) {
 			$this->M_Auth->registrasiMember();
 		} elseif ($this->input->post('_get') !== NULL) {

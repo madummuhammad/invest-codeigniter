@@ -162,11 +162,11 @@
                   <?php echo method('_get') ?>
                   <div class="form-group mb-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+                    <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" autocomplete="off" autofocus="on">
                   </div>
                   <div class="form-group mb-3">
                     <label for="pwd">Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Enter password" id="pwd">
+                    <input type="password" class="form-control" name="password" placeholder="Enter password" id="pwd" autocomplete="off">
                   </div>
                 <!-- div class="form-group mb-3">
                   <a class="nav-link" data-toggle="tab" href="#registrasi">Not a member yet? Get started now!</a>
@@ -187,37 +187,37 @@
                   <div class="col">
                     <div class="form-group mb-3">
                       <label for="email">Full Name</label>
-                      <input type="text" class="form-control" placeholder="Enter full name" name="nama" id="email">
+                      <input type="text" class="form-control" placeholder="Enter full name" name="nama" id="email" autocomplete="off" autofocus="on">
                     </div>
                     <div class="form-group mb-3">
                       <label for="email">Telegram Account</label>
-                      <input type="text" class="form-control" placeholder="Enter telegram account" name="telegram" id="email">
+                      <input type="text" class="form-control" placeholder="Enter telegram account" name="telegram" id="email" autocomplete="off">
                     </div>
                     <div class="form-group mb-3">
                       <label for="pwd">Phone</label>
-                      <input type="number" class="form-control" placeholder="Enter number phone" name="phone" id="pwd">
+                      <input type="number" class="form-control" placeholder="Enter number phone" name="phone" id="pwd" autocomplete="off">
                     </div>
                     <div class="form-group mb-3">
                       <label for="pwd">Wallet address</label>
-                      <input type="text" class="form-control" placeholder="Enter wallet address" name="wallet" id="pwd">
+                      <input type="text" class="form-control" placeholder="Enter wallet address" name="wallet" id="pwd" autocomplete="off">
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group mb-3">
                       <label for="pwd">Referral ID</label>
-                      <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd">
+                      <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off">
                     </div>
                     <div class="form-group mb-3">
                       <label for="email">Email</label>
-                      <input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+                      <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" autocomplete="off">
                     </div>
                     <div class="form-group mb-3">
                       <label for="pwd">Password</label>
-                      <input type="password" class="form-control" placeholder="Enter password" name="password" id="pwd">
+                      <input type="password" class="form-control" placeholder="Enter password" name="password" id="pwd" autocomplete="off">
                     </div>
                     <div class="form-group mb-3">
                       <label for="pwd">Repeat Password</label>
-                      <input type="password" class="form-control" placeholder="Repeat password" name="repeat_password" id="pwd">
+                      <input type="password" class="form-control" placeholder="Repeat password" name="repeat_password" id="pwd" autocomplete="off">
                     </div>
                   </div>
                 </div>

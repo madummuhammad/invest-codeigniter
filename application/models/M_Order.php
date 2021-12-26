@@ -21,18 +21,25 @@ class M_Order extends CI_Model {
 		return $this->db->get('order')->result_array();
 	}
 
+	public function all_order()
+	{
+		$this->db->join('users','order.id_member=users.id');
+		$this->db->join('project','order.id_project=project.id');
+		return $this->db->get('order')->result_array();
+	}
+
 	public function konfirmasi()
 	{
 		$id=form('id');
 		$applied=form('applied');
 		if ($applied == 0) {
-			$this->db->where('id',$id);
+			$this->db->where('id_order',$id);
 			$this->db->update('order',['applied'=>1]);
-			redirect('asdf');
+			// redirect('asdf');
 		} else {
-			$this->db->where('id',$id);
+			$this->db->where('id_order',$id);
 			$this->db->update('order',['applied'=>0]);
-			redirect('fdsaa');
+			// redirect('fdsaa');
 		}
 		
 	}

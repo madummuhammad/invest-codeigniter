@@ -5,55 +5,66 @@ Content body start
     <!-- row -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Order Baru</h4>
+                        <h4 class="card-title">Data Member</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table mb-0">
+                            <table id="example" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th>Member</th>
                                         <th>Project</th>
                                         <th>Jumlah</th>
                                         <th>Waktu Pembelian</th>
+                                        <th>Bukti Pembayaran</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($project as $key => $value): ?>
+                                    <?php foreach ($order as $key => $value): ?>
                                         <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img width="35" src="<?php echo base_url('assets/img/member').$value['gambar'] ?>" alt="<?php echo $value['gambar'] ?>"></a>
-                                                </div>
-                                            </td>
-                                            <td><?php echo $value['name'] ?> </td>
+                                            <td><?php echo $value['id_member'].'-'.$value['name'] ?> </td>
                                             <td><?php echo $value['id_order'].'-'.$value['nama_project'] ?></td>
                                             <td><span><?php echo $value['jml'] ?></span></td>
                                             <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
                                             <td>
-                                                <div class="custom-control custom-switch">
-                                                   <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
-                                                   <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch1" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
-                                                   <?php echo 'checked' ?>
-                                                   <?php endif ?>>
-                                                   <label class="custom-control-label" for="switch1">Konfirmasi</label>
+                                                <div class="img-table d-flex justify-content-center">
+                                                   <img class="img-thumbnail" src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf'] ?> " alt="<?php echo $value['bukti_tf'] ?>">
                                                </div>
                                            </td>
-                                       </tr>
-                                   <?php endforeach ?>
-                               </tbody>
-                           </table>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
+                                           <td>
+                                            <div class="custom-control custom-switch">
+                                             <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
+                                             <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch1" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
+                                             <?php echo 'checked' ?>
+                                             <?php endif ?>>
+                                             <label class="custom-control-label" for="switch1">Konfirmasi</label>
+
+                                         </div>
+                                     </td>
+                                 </tr>
+                             <?php endforeach ?>
+                         </tbody>
+                         <tfoot>
+                            <tr>
+                                <th>Member</th>
+                                <th>Project</th>
+                                <th>Jumlah</th>
+                                <th>Waktu Pembelian</th>
+                                <th>Bukti Pembayaran</th>
+                                <th>Status</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 </div>
         <!--**********************************
             Content body end
@@ -70,7 +81,7 @@ Content body start
                         var method = '_post';
                         var csrf=$('input[name=csrf_test_name]').val(); 
                         $.ajax({
-                            url: "<?php echo base_url('adminsystem') ?>",
+                            url: "<?php echo base_url('adminsystem/member') ?>",
                             type:'POST',
                             data:{
                                 id:id,
