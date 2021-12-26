@@ -21,7 +21,7 @@
                                     <div class="stat-widget-two card-body">
                                         <div class="stat-content">
                                             <div class="stat-text"><?php echo $value['nama_project'] ?></div>
-                                            <div class="stat-digit">Rp. <?php echo $value['target'] ?></div>
+                                            <div class="stat-digit">$<?php echo $value['target'] ?></div>
                                         </div>
                                         <?php if ($jml>0): ?>
                                             <p><?php echo $jml.'/'.$value['target'] ?></p>

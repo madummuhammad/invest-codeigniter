@@ -19,6 +19,7 @@
     <link href="<?php echo base_url() ?>/assets/admin/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>/assets/admin/css/custom_style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>/assets/admin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/assets/admin/vendor/toastr/css/toastr.min.css">
 
 
 

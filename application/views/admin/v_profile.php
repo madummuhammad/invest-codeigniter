@@ -148,7 +148,6 @@
             Content body end
             ***********************************-->
             <?php $this->load->view('admin/partial/v_footer'); ?>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
             <script>
                 const copyBtn = document.getElementById('copyBtn')
                 const copyText = document.getElementById('copyText')

@@ -79,6 +79,15 @@ Content body start
                                 csrf_test_name:csrf
                             },
                             success: function(e){
+                                Swal.fire({         //displays a pop up with sweetalert
+                                    icon: 'success',
+                                    title: 'Berhasil Dikonfirmasi',
+                                    showConfirmButton: false,
+                                    timer: 1000
+                                });
+                                setTimeout(function (){
+                                    window.location.href="<?php echo base_url('adminsystem/order') ?>";
+                                }, 1000);
                             }
                         });
                     }

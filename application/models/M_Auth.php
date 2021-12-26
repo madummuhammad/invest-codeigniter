@@ -48,6 +48,10 @@ class M_Auth extends CI_Model {
 		];
 		$validasi=$this->form_validation->set_rules(rules($rules));
 		if ($validasi->run()==false) {
+			$message=[
+				'message'=>'gagal'
+			];
+			$this->session->set_flashdata($message);
 			redirect(admin_url('login'));
 		}else{
 			$this->db->where('email',$email);
@@ -61,11 +65,23 @@ class M_Auth extends CI_Model {
 				if (password_verify($password, $data['password'])) {
 					$this->session->set_userdata($auth);
 					$this->session->set_userdata($data);
-					redirect(admin_url());
+					$message=[
+						'message'=>'success'
+					];
+					$this->session->set_flashdata($message);
+					redirect(admin_url('login'));
 				} else{
+					$message=[
+						'message'=>'gagal'
+					];
+					$this->session->set_flashdata($message);
 					redirect(admin_url('login'));
 				}
 			} else {
+				$message=[
+					'message'=>'gagal'
+				];
+				$this->session->set_flashdata($message);
 				redirect(admin_url('adminsystem/login'));
 			}
 		}	
@@ -142,6 +158,10 @@ class M_Auth extends CI_Model {
 		];
 		$validasi=$this->form_validation->set_rules(rules($rules));
 		if ($validasi->run()==false) {
+			$message=[
+				'message'=>'gagal'
+			];
+			$this->session->set_flashdata($message);
 			redirect('');
 		} else{
 			$this->db->where('email',$email);
@@ -155,11 +175,23 @@ class M_Auth extends CI_Model {
 				if (password_verify($password, $data['password'])) {
 					$this->session->set_userdata($auth);
 					$this->session->set_userdata($data);
+					$message=[
+						'message'=>'success'
+					];
+					$this->session->set_flashdata($message);
 					redirect('');
 				} else{
+					$message=[
+						'message'=>'gagal'
+					];
+					$this->session->set_flashdata($message);
 					redirect('');
 				}
 			} else {
+				$message=[
+					'message'=>'gagal'
+				];
+				$this->session->set_flashdata($message);
 				redirect('');
 			}
 		}	

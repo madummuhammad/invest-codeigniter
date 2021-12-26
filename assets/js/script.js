@@ -18,12 +18,12 @@ $(document).ready(function(){
 		};
 		reader.readAsDataURL(this.files[0]);
 	});
-	$('.toast').toast('hide');
+	// $('.toast').toast('hide');
 
-	$('button[type="submit"]').on('click',function(){
-		$('button span').addClass('spinner-border');
-		$('.toast').toast('show');
-	});
+	// $('button[type="submit"]').on('click',function(){
+	// 	$('button span').addClass('spinner-border');
+	// 	$('.toast').toast('show');
+	// });
 
 	$("#joinUs").modal('show');
 	$('#joinUs [data-dismiss="modal"]').on('click',function(){
