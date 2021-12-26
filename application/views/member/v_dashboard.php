@@ -34,7 +34,12 @@
                                             <div class="progress-bar progress-bar-primary" style="width:<?php echo $persen.'%';  ?>" role="progressbar" aria-valuenow="90" aria-valuemin="88" aria-valuemax="100"></div>
                                         </div>
                                         <div class="stat-content mt-2">
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalBuy<?php echo $value['id'] ?>">Buy Project</button>
+                                            <?php if ($jml==$value['target']): ?>
+                                                <p class="btn btn-success text-white">Sold Out <i class="fas fa-check"></i></p>
+                                            <?php else: ?>
+                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalBuy<?php echo $value['id'] ?>">Buy Project</button>
+                                            <?php endif ?>
+                                            
                                             <div class="modal fade" id="modalBuy<?php echo $value['id'] ?>">
                                                 <form action="<?php echo base_url('member/buy') ?>" method="POST" enctype="multipart/form-data">
                                                   <div class="modal-dialog modal-dialog-centered">
@@ -50,22 +55,13 @@
                                                         <div class="row">
                                                           <div class="col">
                                                             <div class="form-group text-center">
-                                                              <label for="" class="text-center p-2">Jumlah Beli ( Min:Rp.  <?php echo $value['min'] ?>, Max:Rp. <?php echo $value['max'] ?>)</label>
-                                                              <input type="number" class="form-control" id="email" placeholder="" name="jml" value="" min="<?php echo $value['min'] ?>" max="<?php echo $value['max'] ?>">
+                                                              <label for="" class="text-center p-2">Jumlah Beli ( Min: $<?php echo $value['min'] ?>, Max: $<?php echo $value['max'] ?>)</label>
+                                                              <input type="number" class="form-control" id="email" placeholder="" name="jml" value="" min="<?php echo $value['min'] ?>" max="<?php echo $value['max'] ?>" autocomplete="off">
                                                           </div>
                                                       </div>
-                                                      <div class="col">
-                                                          <div class="form-group text-center">
-                                                              <div class="form-grop text-center">
-                                                                <label for="">Upload Bukti Transfer</label>
-                                                                <img src="<?php echo base_url('assets/img/portfolio/default.png')?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-                                                                <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="gambar">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
+                                                  </div>
+                                              </div>
+                                              <div class="modal-footer">
                                                 <button type="submit" class="btn btn-outline-primary">Buy</button>
                                                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                             </div>

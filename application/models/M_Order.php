@@ -46,12 +46,8 @@ class M_Order extends CI_Model {
 
 	public function create()
 	{
-		$path='./assets/admin/images/bukti';
-		$type='jpg|png|jpeg';
-		$file_name='bukti';
 		$id_member=$this->session->userdata('id');
 		$id_project=form('project');
-		$bukti_tf=upload_gambar($path, $type, $file_name);
 		$jml=form('jml');
 		$applied=0;
 
@@ -65,7 +61,7 @@ class M_Order extends CI_Model {
 		$data=[
 			'id_member'=>$id_member,
 			'id_project'=>$id_project,
-			'bukti_tf'=>$bukti_tf,
+			'bukti_tf'=>'default.png',
 			'jml'=>$jml,
 			'applied'=>0,
 			'timestamp'=>time()
@@ -75,7 +71,46 @@ class M_Order extends CI_Model {
 			redirect(member_url());
 		} else {
 			$this->db->insert('order',$data);
-			redirect(member_url());
+			redirect(member_url('riwayat'));
+		}
+	}
+
+	public function update()
+	{
+		$path='./assets/admin/images/bukti';
+		$type='jpg|png|jpeg';
+		$file_name='bukti';
+		$link=form('link');
+		$id=form('order');
+		$bukti_tf=upload_gambar($path, $type, $file_name);
+		$this->db->where('id_order',$id);
+		$gambar_lama=$this->db->get('order')->row_array();
+		
+
+		$rules=[
+			rules_array('link','required')
+		];
+
+		$validasi=$this->form_validation->set_rules(rules($rules));
+
+		$data=[
+			'bukti_tf'=>$bukti_tf,
+			'link'=>$link
+		];
+
+		if ($validasi->run()==false) {
+			redirect(member_url('riwayat'));
+		} else {
+			if ($bukti_tf !== NULL) {
+				if ($gambar_lama['gambar'] !== 'default.png') {
+					unlink(FCPATH . 'assets/admin/images/bukti/'.$gambar_lama['gambar']);
+				}
+				$this->db->where('id_order',$id);
+				$this->db->update('order',$data);
+				redirect(member_url('riwayat'));
+			} else {
+				redirect(member_url('riwayat'));
+			}
 		}
 	}
 }
