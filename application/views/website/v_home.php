@@ -205,7 +205,11 @@
                   <div class="col">
                     <div class="form-group mb-3">
                       <label for="pwd">Referral ID</label>
-                      <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off">
+                      <?php if ($referral !== ''): ?>
+                        <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo $referral?>" readonly>
+                      <?php else: ?>
+                        <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="">
+                      <?php endif ?>
                     </div>
                     <div class="form-group mb-3">
                       <label for="email">Email</label>

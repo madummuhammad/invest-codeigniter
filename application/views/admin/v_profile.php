@@ -102,27 +102,36 @@
                                                                 <label>My Referral</label>
                                                                 <p class="form-control"><?= $profile['own_referral'] ?></p>
                                                             </div>
-                                                        <?php endif ?>
-                                                        <button class="btn btn-primary" type="button" id="submit-edit-profile">Ganti Profile</button>
-                                                    </form>
-                                                </div>
+                                                            <div class="form-group">
+                                                                <label>Link Referral</label>
+                                                                <div class="input-group mb-3">
+                                                                  <input id="copyText" class="form-control" value="<?php echo base_url('referral/') ?><?= $profile['own_referral'] ?>" readonly>
+                                                                  <div class="input-group-append">
+                                                                    <button type="button" class="btn-outline-success btn" id="copyBtn">Copy</button>
+                                                                </div>
+                                                            </div>
+                                                            <button class="btn btn-primary" type="button" id="submit-edit-profile">Ganti Profile</button>
+                                                        </div>
+                                                    <?php endif ?>
+
+                                                </form>
                                             </div>
-                                            <div id="profile-settings" class="tab-pane fade">
-                                                <div class="pt-3">
-                                                    <div class="settings-form">
-                                                        <h4 class="text-primary text-center">Ubah Kata Sandi</h4>
-                                                        <form>
-                                                            <div class="form-group">
-                                                                <label>Password Lama</label>
-                                                                <input type="password" placeholder="Password Lama" name="password_lama" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Password Baru</label>
-                                                                <input type="password" placeholder="Password Baru" name="password_baru" class="form-control">
-                                                            </div>
-                                                            <button class="btn btn-primary" type="button" id="submit-ganti-sandi">Ganti Sandi</button>
-                                                        </form>
-                                                    </div>
+                                        </div>
+                                        <div id="profile-settings" class="tab-pane fade">
+                                            <div class="pt-3">
+                                                <div class="settings-form">
+                                                    <h4 class="text-primary text-center">Ubah Kata Sandi</h4>
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label>Password Lama</label>
+                                                            <input type="password" placeholder="Password Lama" name="password_lama" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Password Baru</label>
+                                                            <input type="password" placeholder="Password Baru" name="password_baru" class="form-control">
+                                                        </div>
+                                                        <button class="btn btn-primary" type="button" id="submit-ganti-sandi">Ganti Sandi</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -134,6 +143,24 @@
                 </div>
             </div>
         </div>
+    </div>
         <!--**********************************
             Content body end
-        ***********************************-->
+            ***********************************-->
+            <?php $this->load->view('admin/partial/v_footer'); ?>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            <script>
+                const copyBtn = document.getElementById('copyBtn')
+                const copyText = document.getElementById('copyText')
+
+                copyBtn.onclick = () => {
+                copyText.select();    // Selects the text inside the input
+                document.execCommand('copy');    // Simply copies the selected text to clipboard 
+                 Swal.fire({         //displays a pop up with sweetalert
+                    icon: 'success',
+                    title: 'Link Berhasil Disalin',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+             }
+         </script>

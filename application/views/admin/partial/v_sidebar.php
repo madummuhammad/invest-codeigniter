@@ -37,6 +37,8 @@
                         <li><a href="<?php echo member_url() ?>" aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span class="nav-text">Dashboard</span></a></li>
                         <li class="nav-label">Pembelian</li>
                         <li><a href="<?php echo member_url('riwayat') ?>" aria-expanded="false"><i class="icon icon-single-copy-06"></i><span class="nav-text">Riwayat Pembelian</span></a></li>
+                        <li class="nav-label">Pengaturan</li>
+                        <li><a href="<?php echo member_url('profile') ?>" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Profile</span></a></li>
                     </ul>
                 </div>
             </div>

@@ -3,8 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
-	public function index()
+	public function index($referral='')
 	{
+		$data['referral']=$referral;
 		$data['home']=$this->M_Home->index();
 		$data['about']=$this->M_Home->about();
 		$data['service']=$this->M_Home->service();
