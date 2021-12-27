@@ -126,6 +126,11 @@ class M_Auth extends CI_Model {
 
 		$validasi=$this->form_validation->set_rules(rules($rules));
 		if ($validasi->run()==false) {
+			$message=[
+				'message'=>'gagal',
+				'request'=>'registrasi'
+			];
+			$this->session->set_flashdata($message);
 			redirect('');
 		} else {
 			$this->db->insert('users',$data);
@@ -140,6 +145,12 @@ class M_Auth extends CI_Model {
 			];
 			$this->db->where('email',$email);
 			$this->db->update('users',$datareferral);
+
+			$message=[
+				'message'=>'success',
+				'request'=>'registrasi'
+			];
+			$this->session->set_flashdata($message);
 			redirect('');
 		}
 	}
@@ -159,6 +170,7 @@ class M_Auth extends CI_Model {
 		$validasi=$this->form_validation->set_rules(rules($rules));
 		if ($validasi->run()==false) {
 			$message=[
+				'request'=>'loginMember',
 				'message'=>'gagal'
 			];
 			$this->session->set_flashdata($message);
@@ -176,12 +188,14 @@ class M_Auth extends CI_Model {
 					$this->session->set_userdata($auth);
 					$this->session->set_userdata($data);
 					$message=[
+						'request'=>'loginMember',
 						'message'=>'success'
 					];
 					$this->session->set_flashdata($message);
 					redirect('');
 				} else{
 					$message=[
+						'request'=>'loginMember',
 						'message'=>'gagal'
 					];
 					$this->session->set_flashdata($message);
@@ -189,6 +203,7 @@ class M_Auth extends CI_Model {
 				}
 			} else {
 				$message=[
+					'request'=>'loginMember',
 					'message'=>'gagal'
 				];
 				$this->session->set_flashdata($message);

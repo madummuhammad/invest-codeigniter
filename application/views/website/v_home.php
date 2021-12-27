@@ -794,7 +794,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script>
     $(document).ready(function(){
-      <?php if (null !== $this->session->flashdata('message')): ?>
+      <?php if ($this->session->flashdata('request')=='loginMember'): ?>
         <?php if ($this->session->flashdata('message')=='success'): ?>
           const Toast = Swal.mixin({
             toast: true,
@@ -824,11 +824,50 @@
               toast.addEventListener('mouseenter', Swal.stopTimer)
               toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
-          })
+          });
 
           Toast.fire({
             icon: 'error',
             title: 'Login gagal ! Isi form dengan benar'
+          })
+        <?php endif ?>
+      <?php endif ?>
+
+      <?php if ($this->session->flashdata('request')=='registrasi'): ?>
+        <?php if ($this->session->flashdata('message')=='success'): ?>
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Registrasi berhasil! Silahkan login'
+          })
+        <?php endif ?>
+        <?php if ($this->session->flashdata('message')=='gagal'): ?>
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'error',
+            title: 'Registrasi gagal ! Isi form dengan benar'
           })
         <?php endif ?>
       <?php endif ?>

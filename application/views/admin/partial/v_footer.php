@@ -68,6 +68,8 @@
         <script src="<?php echo base_url() ?>assets/admin/js/plugins-init/datatables.init.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+        <script src="<?php echo base_url() ?>assets/admin/vendor/toastr/js/toastr.min.js"></script>
+
 
     </body>
 
