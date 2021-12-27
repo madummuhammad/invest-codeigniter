@@ -147,10 +147,10 @@ class M_Auth extends CI_Model {
 
 			ini_set( 'display_errors', 1 );   
 			error_reporting( E_ALL );    
-			$from = "verifikasi@atozecapital.com";    
-			$to = "muhammad.madum2018@gmail.com";    
-			$subject = "Checking PHP mail";    
-			$message = "PHP mail berjalan dengan baik";   
+			$from = "atozeverifikasi@atozecapital.com";    
+			$to = $email;    
+			$subject = "Verifikasi Email Anda";    
+			$message = "<p>Hi,".$nama."</p><br><br><p>Kode verifikasi untuk akun anda adalah: ".$rand."</p><br><br><p>Terimakasih</p>";   
 			$headers = "From:" . $from;    
 			mail($to,$subject,$message, $headers);    
 
