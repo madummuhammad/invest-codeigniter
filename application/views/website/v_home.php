@@ -150,6 +150,9 @@
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#registrasi">Register</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#forgot">Forgot password?</a>
+            </li>
           </ul>
         <?php endif ?>
 
@@ -173,67 +176,85 @@
                 <label for="pwd">Password</label>
                 <input type="password" class="form-control" name="password" placeholder="Enter password" id="pwd" autocomplete="off">
               </div>
-                <!-- div class="form-group mb-3">
-                  <a class="nav-link" data-toggle="tab" href="#registrasi">Not a member yet? Get started now!</a>
-                </div> -->
-                <button type="submit" class="btn btn-outline-primary">Sign in</button>
-              </form>
-            </div>
-            <div class="tab-pane container fade" id="registrasi">
-              <?php if (get_cookie('lang_is')=='in'): ?>
-                <h3 class="text-center">Silakan Daftar</h3>
-              <?php else: ?>
-                <h3 class="text-center">Register</h3>
-              <?php endif ?>
-              <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
-                <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-                <?php echo method('_post') ?>
-                <div class="row">
-                  <div class="col">
-                    <div class="form-group mb-3">
-                      <label for="email">Full Name</label>
-                      <input type="text" class="form-control" placeholder="Enter full name" name="nama" id="email" autocomplete="off" autofocus="on">
-                    </div>
-                    <div class="form-group mb-3">
-                      <label for="email">Telegram Account</label>
-                      <input type="text" class="form-control" placeholder="Enter telegram account" name="telegram" id="email" autocomplete="off">
-                    </div>
-                    <div class="form-group mb-3">
-                      <label for="pwd">Phone</label>
-                      <input type="number" class="form-control" placeholder="Enter number phone" name="phone" id="pwd" autocomplete="off">
-                    </div>
-                    <div class="form-group mb-3">
-                      <label for="pwd">Wallet address</label>
-                      <input type="text" class="form-control" placeholder="Enter wallet address" name="wallet" id="pwd" autocomplete="off">
-                    </div>
+              <div class="form-group mb-3">
+                <a class="nav-link" data-toggle="modal" id="btn-forgot" href="#forgot">Forgot password?</a>
+              </div>
+              <button type="submit" class="btn btn-outline-primary">Sign in</button>
+            </form>
+          </div>
+          <div class="tab-pane container fade" id="registrasi">
+            <?php if (get_cookie('lang_is')=='in'): ?>
+              <h3 class="text-center">Silakan Daftar</h3>
+            <?php else: ?>
+              <h3 class="text-center">Register</h3>
+            <?php endif ?>
+            <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
+              <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+              <?php echo method('_post') ?>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group mb-3">
+                    <label for="email">Full Name</label>
+                    <input type="text" class="form-control" placeholder="Enter full name" name="nama" id="email" autocomplete="off" autofocus="on">
                   </div>
-                  <div class="col">
-                    <div class="form-group mb-3">
-                      <label for="pwd">Referral ID</label>
-                      <?php if ($referral !== ''): ?>
-                        <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo $referral?>" readonly>
-                      <?php else: ?>
-                        <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="">
-                      <?php endif ?>
-                    </div>
-                    <div class="form-group mb-3">
-                      <label for="email">Email</label>
-                      <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" autocomplete="off">
-                    </div>
-                    <div class="form-group mb-3">
-                      <label for="pwd">Password</label>
-                      <input type="password" class="form-control" placeholder="Enter password" name="password" id="pwd" autocomplete="off">
-                    </div>
-                    <div class="form-group mb-3">
-                      <label for="pwd">Repeat Password</label>
-                      <input type="password" class="form-control" placeholder="Repeat password" name="repeat_password" id="pwd" autocomplete="off">
-                    </div>
+                  <div class="form-group mb-3">
+                    <label for="email">Telegram Account</label>
+                    <input type="text" class="form-control" placeholder="Enter telegram account" name="telegram" id="email" autocomplete="off">
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="pwd">Phone</label>
+                    <input type="number" class="form-control" placeholder="Enter number phone" name="phone" id="pwd" autocomplete="off">
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="pwd">Wallet address</label>
+                    <input type="text" class="form-control" placeholder="Enter wallet address" name="wallet" id="pwd" autocomplete="off">
                   </div>
                 </div>
+                <div class="col">
+                  <div class="form-group mb-3">
+                    <label for="pwd">Referral ID</label>
+                    <?php if ($referral !== ''): ?>
+                      <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo $referral?>" readonly>
+                    <?php else: ?>
+                      <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="">
+                    <?php endif ?>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" autocomplete="off">
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter password" name="password" id="pwd" autocomplete="off">
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="pwd">Repeat Password</label>
+                    <input type="password" class="form-control" placeholder="Repeat password" name="repeat_password" id="pwd" autocomplete="off">
+                  </div>
+                </div>
+              </div>
                <!--  <div class="form-group mb-3">
                   <a class="nav-link" data-toggle="tab" href="#login">Already have an account?</a>
                 </div> -->
                 <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+              </form>
+            </div>
+            <div class="tab-pane container fade pt-3" id="forgot">
+              <?php if (get_cookie('lang_is')=='in'): ?>
+                <h3 class="text-center">Masukan Email</h3>
+                <p class="text-center">Link akan dikirimkan ke email anda</p>
+              <?php else: ?>
+                <h3 class="text-center">Masukan Email</h3>
+                <p class="text-center">Link akan dikirimkan ke email anda</p>
+              <?php endif ?>
+              <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
+                <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                <?php echo method('_forgot') ?>
+                <div class="form-group mb-3">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" placeholder="" name="email" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Send</button>
               </form>
             </div>
           </div>
@@ -972,6 +993,44 @@
           Toast.fire({
             icon: 'error',
             title: 'Email belum terverifikasi!'
+          })
+        <?php endif ?>
+      <?php endif ?>
+      <?php if ($this->session->flashdata('request')=='forgotPassword'): ?>
+        <?php if ($this->session->flashdata('message')=='gagal'): ?>
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'error',
+            title: 'Email tidak terikirim! Cek kembali email anda'
+          })
+        <?php endif ?>
+        <?php if ($this->session->flashdata('message')=='success'): ?>
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Email terikirim! Silakan cek email'
           })
         <?php endif ?>
       <?php endif ?>

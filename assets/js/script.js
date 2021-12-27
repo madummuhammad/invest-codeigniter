@@ -24,7 +24,10 @@ $(document).ready(function(){
 	// 	$('button span').addClass('spinner-border');
 	// 	$('.toast').toast('show');
 	// });
-
+	// $("#btn-forgot").on('click',function(){
+	// 	$(".modal").modal('hide');
+	// })
+	
 	$("#joinUs").modal('show');
 	$('#joinUs [data-dismiss="modal"]').on('click',function(){
 		$("#joinUs").modal('hide');
@@ -34,6 +37,8 @@ $(document).ready(function(){
 	$('#verifikasi [data-dismiss="modal"]').on('click',function(){
 		$("#verifikasi").modal('hide');
 	});
+
+	
 
 
 });
