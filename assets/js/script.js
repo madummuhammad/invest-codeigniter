@@ -28,5 +28,12 @@ $(document).ready(function(){
 	$("#joinUs").modal('show');
 	$('#joinUs [data-dismiss="modal"]').on('click',function(){
 		$("#joinUs").modal('hide');
-	})
+	});
+
+	$("#verifikasi").modal('show');
+	$('#verifikasi [data-dismiss="modal"]').on('click',function(){
+		$("#verifikasi").modal('hide');
+	});
+
+
 });
