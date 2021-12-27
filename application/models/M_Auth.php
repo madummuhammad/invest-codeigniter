@@ -153,7 +153,7 @@ class M_Auth extends CI_Model {
 			$this->email->initialize($config);
 			$this->email->to($email);
 			$this->email->from('atozeverifikasi@atozecapital.com','Atoze Capital');
-			$this->email->subject('Test Email (HTML)');
+			$this->email->subject('Kode Verifikasi');
 			$this->email->message($htmlContent);
 			$this->email->send();    
 
