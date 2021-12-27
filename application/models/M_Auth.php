@@ -144,18 +144,10 @@ class M_Auth extends CI_Model {
 		} else {
 			$this->session->set_userdata($auth);
 			$this->db->insert('users',$data);
+			$htmlContent = '<h3>Hi, '.$nama.'</h3>';
+			$htmlContent .= '<p>Kode verifikasi email anda adalah: '.$rand.'</p><br>';
+			$htmlContent .= '<p>Terimakasih</p>';
 
-			// ini_set( 'display_errors', 1 );   
-			// error_reporting( E_ALL );    
-			// $from = "atozeverifikasi@atozecapital.com";    
-			// $to = $email;    
-			// $subject = "Verifikasi Email Anda";    
-			// $message = "<p>Hi,".$nama."</p><br><br><p>Kode verifikasi untuk akun anda adalah: ".$rand."</p><br><br><p>Terimakasih</p>";   
-			// $headers = "From:" . $from;    
-			// mail($to,$subject,$message, $headers);
-
-			$htmlContent = '<h1>Mengirim email HTML dengan Codeigniter</h1>';
-			$htmlContent .= '<div>Contoh pengiriman email yang memiliki tag HTML dengan menggunakan Codeigniter</div>';
 
 			$config['mailtype'] = 'html';
 			$this->email->initialize($config);
