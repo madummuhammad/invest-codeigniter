@@ -155,7 +155,7 @@ class M_Auth extends CI_Model {
 			$this->email->from('atozeverifikasi@atozecapital.com','Atoze Capital');
 			$this->email->subject('Kode Verifikasi');
 			$this->email->message($htmlContent);
-			$this->email->send();    
+			$this->email->send();
 
 			$this->db->where('role_id',2);
 			$this->db->where('email',$email);
@@ -323,6 +323,68 @@ class M_Auth extends CI_Model {
 				redirect('');
 			}
 		}	
+	}
+
+	public function forgot()
+	{
+		$email=form('email');
+		$kode=password_hash($email, PASSWORD_DEFAULT);
+		$rules=[
+			rules_array('email','required')
+		];
+		$validasi=$this->form_validation->set_rules(rules($rules));
+		if ($validasi->run()==false) {
+			$message=[
+				'request'=>'forgotPassword',
+				'message'=>'gagal'
+			];
+			$this->session->set_flashdata($message);
+			redirect('');
+		} else{
+			$this->db->where('email',$email);
+			$this->db->where('role_id',2);
+			$this->db->where('is_verified',1);
+			$num_rows=$this->db->get('users')->num_rows();
+
+			if ($num_rows>0) {
+				$dataForgot=[
+					'token'=>$kode,
+				];
+
+				$htmlContent = '<h3>Hi, '.$email.'</h3>';
+				$htmlContent .= '<p>Untuk melanjukan, silahkan klik link berikut </p><a target="_blank" href="'.base_url('password/').$kode.'">Klik link</a><br>';
+				$htmlContent .= '<p>Terimakasih</p>';
+
+
+				$config['mailtype'] = 'html';
+				$this->email->initialize($config);
+				$this->email->to($email);
+				$this->email->from('atozeverifikasi@atozecapital.com','Atoze Capital');
+				$this->email->subject('Kode Verifikasi');
+				$this->email->message($htmlContent);
+				$this->email->send();
+
+				$this->db->where('email',$email);
+				$this->db->where('role_id',2);
+				$this->db->where('is_verified',1);
+				$this->db->update('users',$dataForgot);
+				$message=[
+					'request'=>'forgotPassword',
+					'message'=>'success'
+				];
+				$this->session->set_flashdata($message);
+				redirect('');
+				
+			} else {
+				$message=[
+					'request'=>'forgotPassword',
+					'message'=>'gagal'
+				];
+				$this->session->set_flashdata($message);
+				redirect('');
+			}
+		}	
+
 	}
 
 	public function destroy()

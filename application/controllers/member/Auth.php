@@ -19,6 +19,13 @@ class Auth extends CI_Controller {
 			$this->M_Auth->loginMember();
 		} elseif ($this->input->post('_verifikasi') !== NULL) {
 			$this->M_Auth->memberVerifikasi();
+		} elseif ($this->input->post('_forgot') !== NULL) {
+			$this->M_Auth->forgot();
 		}
+	}
+
+	public function forgot()
+	{
+		echo "string";
 	}
 }
