@@ -328,7 +328,7 @@ class M_Auth extends CI_Model {
 	public function forgot()
 	{
 		$email=form('email');
-		$kode=password_hash($email, PASSWORD_DEFAULT);
+		$kode=md5($email);
 		$rules=[
 			rules_array('email','required')
 		];
