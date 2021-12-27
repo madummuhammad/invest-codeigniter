@@ -56,7 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['adminsystem']='admin/dashboard/index';
 $route['website/indonesia']='admin/website/indonesia';
 $route['website/english']='admin/website/english';
-$route['password/(:any)']='member/auth/forgot';
+$route['password/(:any)']='member/auth/forgot/$1';
 
 $route['adminsystem/website']='admin/home/index';
 $route['adminsystem/website/about']='admin/home/about';
