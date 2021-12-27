@@ -17,6 +17,8 @@ class Auth extends CI_Controller {
 			$this->M_Auth->registrasiMember();
 		} elseif ($this->input->post('_get') !== NULL) {
 			$this->M_Auth->loginMember();
-		} 
+		} elseif ($this->input->post('_verifikasi') !== NULL) {
+			$this->M_Auth->memberVerifikasi();
+		}
 	}
 }
