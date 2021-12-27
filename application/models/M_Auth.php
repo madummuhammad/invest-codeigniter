@@ -145,14 +145,25 @@ class M_Auth extends CI_Model {
 			$this->session->set_userdata($auth);
 			$this->db->insert('users',$data);
 
-			ini_set( 'display_errors', 1 );   
-			error_reporting( E_ALL );    
-			$from = "atozeverifikasi@atozecapital.com";    
-			$to = $email;    
-			$subject = "Verifikasi Email Anda";    
-			$message = "<p>Hi,".$nama."</p><br><br><p>Kode verifikasi untuk akun anda adalah: ".$rand."</p><br><br><p>Terimakasih</p>";   
-			$headers = "From:" . $from;    
-			mail($to,$subject,$message, $headers);    
+			// ini_set( 'display_errors', 1 );   
+			// error_reporting( E_ALL );    
+			// $from = "atozeverifikasi@atozecapital.com";    
+			// $to = $email;    
+			// $subject = "Verifikasi Email Anda";    
+			// $message = "<p>Hi,".$nama."</p><br><br><p>Kode verifikasi untuk akun anda adalah: ".$rand."</p><br><br><p>Terimakasih</p>";   
+			// $headers = "From:" . $from;    
+			// mail($to,$subject,$message, $headers);
+
+			$htmlContent = '<h1>Mengirim email HTML dengan Codeigniter</h1>';
+			$htmlContent .= '<div>Contoh pengiriman email yang memiliki tag HTML dengan menggunakan Codeigniter</div>';
+
+			$config['mailtype'] = 'html';
+			$this->email->initialize($config);
+			$this->email->to($email);
+			$this->email->from('atozeverifikasi@atozecapital.com','Atoze Capital');
+			$this->email->subject('Test Email (HTML)');
+			$this->email->message($htmlContent);
+			$this->email->send();    
 
 			$this->db->where('role_id',2);
 			$this->db->where('email',$email);
