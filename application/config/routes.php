@@ -57,6 +57,7 @@ $route['adminsystem']='admin/dashboard/index';
 $route['website/indonesia']='admin/website/indonesia';
 $route['website/english']='admin/website/english';
 $route['password/(:any)']='member/auth/forgot/$1';
+$route['forgotpassword']='member/auth/forgot';
 
 $route['adminsystem/website']='admin/home/index';
 $route['adminsystem/website/about']='admin/home/about';
