@@ -24,8 +24,27 @@ class Auth extends CI_Controller {
 		}
 	}
 
-	public function forgot()
+	public function forgot($token='')
 	{
-		echo "string";
+		$data['token']=$token;
+		if ($this->input->post('_patch') !== NULL) {
+			$this->M_Auth->update_password();
+		} elseif ($this->input->post('_post') !== NULL) {
+			$this->M_Profile->create();
+		} elseif ($this->input->post('_get') !== NULL) {
+			$this->M_Profile->delete();
+		} else {
+			$this->db->where('token',$token);
+			$this->db->where('token_end',date('Y-m-d'));
+			$row=$this->db->get('users')->row_array();
+			if ($row>0) {
+				$this->load->view('website/v_forgotPassword',$data);
+			} else {
+				if ($this->uri->segment(1) !== 'forgotpassword') {
+					$this->load->view('error_404');
+				}
+			}
+			$this->load->view('website/v_forgotPassword',$data);
+		}
 	}
 }

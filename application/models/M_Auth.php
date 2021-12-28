@@ -322,7 +322,7 @@ class M_Auth extends CI_Model {
 				$this->session->set_flashdata($message);
 				redirect('');
 			}
-		}	
+		}
 	}
 
 	public function forgot()
@@ -349,10 +349,12 @@ class M_Auth extends CI_Model {
 			if ($num_rows>0) {
 				$dataForgot=[
 					'token'=>$kode,
+					'token_end'=>date('Y-m-d')
 				];
 
 				$htmlContent = '<h3>Hi, '.$email.'</h3>';
 				$htmlContent .= '<p>Untuk melanjukan, silahkan klik link berikut </p><a target="_blank" href="'.base_url('password/').$kode.'">Klik link</a><br>';
+				$htmlContent .= '<p>Link hanya berlaku pada hari ini, '.date('Y-m-d').'</p>';
 				$htmlContent .= '<p>Terimakasih</p>';
 
 
@@ -383,8 +385,61 @@ class M_Auth extends CI_Model {
 				$this->session->set_flashdata($message);
 				redirect('');
 			}
-		}	
+		}
+	}
 
+	public function update_password()
+	{
+		$password=form('password');
+		$repeatPassword=form('repeat_password');
+		$token=form('token');
+		$kode=password_hash($password, PASSWORD_DEFAULT);
+		$rules=[
+			rules_array('password','required'),
+			rules_array('repeat_password','required|matches[password]'),
+			rules_array('token','required'),
+		];
+
+		$validasi=$this->form_validation->set_rules(rules($rules));
+		if ($validasi->run()==false) {
+			$message=[
+				'request'=>'gantiPassword',
+				'message'=>'gagal'
+			];
+			$this->session->set_flashdata($message);
+			redirect('password/'.$token);
+		} else{
+			$this->db->where('token',$token);
+			$this->db->where('role_id',2);
+			$this->db->where('is_verified',1);
+			$num_rows=$this->db->get('users')->num_rows();
+
+			if ($num_rows>0) {
+				$message=[
+					'request'=>'gantiPassword',
+					'message'=>'success'
+				];
+
+				$dataPassword=[
+					'password'=>$kode,
+					'token'=>password_hash($token, PASSWORD_DEFAULT)
+				];
+
+				$this->session->set_flashdata($message);
+				$this->db->where('role_id',2);
+				$this->db->where('is_verified',1);
+				$this->db->update('users',$dataPassword);
+				$this->session->set_flashdata($message);
+				redirect('password/'.$token);
+			} else {
+				$message=[
+					'request'=>'gantiPassword',
+					'message'=>'gagal'
+				];
+				$this->session->set_flashdata($message);
+				redirect('password/'.$token);
+			}
+		}
 	}
 
 	public function destroy()
