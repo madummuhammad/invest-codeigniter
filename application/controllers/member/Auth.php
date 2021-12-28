@@ -37,6 +37,7 @@ class Auth extends CI_Controller {
 			$this->db->where('token',$token);
 			$this->db->where('token_end',date('Y-m-d'));
 			$row=$this->db->get('users')->row_array();
+			$data['row']=$row;
 			if ($row>0) {
 				$this->load->view('website/v_forgotPassword',$data);
 			} else {

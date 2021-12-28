@@ -30,35 +30,38 @@
 						</div>
 					</div>
 				<?php else: ?>
-					<div class="modal fade" id="verifikasi">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content p-3">
-								<div class="modal-body">
-									<?php if (get_cookie('lang_is')=='in'): ?>
-										<h3 class="text-center">Ganti Password</h3>
-										<p class="text-center">Password ini akan digunakan setelah diganti</p>
-									<?php else: ?>
-										<h3 class="text-center">Ganti Password</h3>
-										<p class="text-center">Password ini akan digunakan setelah diganti</p>
-									<?php endif ?>
-									<form action="<?php echo base_url('forgotpassword') ?>" method="POST" enctype="multipart/form-data">
-										<?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-										<?php echo method('_patch') ?>
-										<input type="text" name="token" value="<?php echo $token ?>" hidden>
-										<div class="form-group mb-3">
-											<label for="email">Password</label>
-											<input type="password" class="form-control" placeholder="" name="password" autocomplete="off">
-										</div>
-										<div class="form-group mb-3">
-											<label for="email">Repeat Password</label>
-											<input type="password" class="form-control" placeholder="" name="repeat_password" autocomplete="off">
-										</div>
-										<button type="submit" class="btn btn-outline-primary">Send</button>
-									</form>
+					<?php if ($row>0): ?>
+						<div class="modal fade" id="verifikasi">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content p-3">
+									<div class="modal-body">
+										<?php if (get_cookie('lang_is')=='in'): ?>
+											<h3 class="text-center">Ganti Password</h3>
+											<p class="text-center">Password ini akan digunakan setelah diganti</p>
+										<?php else: ?>
+											<h3 class="text-center">Ganti Password</h3>
+											<p class="text-center">Password ini akan digunakan setelah diganti</p>
+										<?php endif ?>
+										<form action="<?php echo base_url('forgotpassword') ?>" method="POST" enctype="multipart/form-data">
+											<?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+											<?php echo method('_patch') ?>
+											<input type="text" name="token" value="<?php echo $token ?>" hidden>
+											<div class="form-group mb-3">
+												<label for="email">Password</label>
+												<input type="password" class="form-control" placeholder="" name="password" autocomplete="off">
+											</div>
+											<div class="form-group mb-3">
+												<label for="email">Repeat Password</label>
+												<input type="password" class="form-control" placeholder="" name="repeat_password" autocomplete="off">
+											</div>
+											<button type="submit" class="btn btn-outline-primary">Send</button>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					<?php endif ?>
+
 				<?php endif ?>
 			</div>
 		</div>
