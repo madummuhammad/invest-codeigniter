@@ -12,11 +12,7 @@ Content body start
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <form action="<?php echo admin_url('member') ?>" method="POST">
-                                <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-                                <?php echo method('_ex') ?>
-                                <button type="submit" class="btn btn-outline-primary mb-4">Export CSV</button>
-                            </form>
+                                <a href="<?php echo admin_url('member/export') ?>" class="btn btn-outline-primary mb-4">Export CSV</a>
                             <table id="example" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>

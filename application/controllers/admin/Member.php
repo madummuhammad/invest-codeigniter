@@ -16,8 +16,6 @@ class Member extends CI_Controller {
 			$this->M_Member->konfirmasi();
 		} elseif ($this->input->post('_get') !== NULL) {
 			$this->M_Member->delete();
-		} elseif ($this->input->post('_ex') !== NULL) {
-			$this->M_Member->export();
 		} else {
 			$data['member']=$this->M_Member->index();
 			$this->load->view('admin/partial/v_header');
@@ -25,5 +23,10 @@ class Member extends CI_Controller {
 			$this->load->view('admin/partial/v_sidebar');
 			$this->load->view('admin/v_member',$data);
 		}
+	}
+
+	public function export()
+	{
+		$this->M_Member->export();
 	}
 }
