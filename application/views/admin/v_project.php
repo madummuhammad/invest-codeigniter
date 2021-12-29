@@ -193,12 +193,75 @@
                                 hideMethod: "fadeOut",
                                 tapToDismiss: !1
                             })
-                            setTimeout(function (){
-                                window.location.href="<?php echo base_url('adminsystem') ?>";
-                            }, 1000);
                         <?php endif ?>
                         <?php if ($this->session->flashdata('message')=='gagal'): ?>
                             toastr.error("Isi form dengan benar!", "Tambah project gagal", {
+                                timeOut: 2000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-center",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
+                        <?php endif ?>
+                    <?php endif ?>
+                    
+                    <?php if ($this->session->flashdata('request')=='update'): ?>
+                        <?php if ($this->session->flashdata('message')=='success'): ?>
+                            toastr.success("Edit data berhasil", {
+                                timeOut: 2000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-center",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
+                        <?php endif ?>
+                        <?php if ($this->session->flashdata('message')=='gagal'): ?>
+                            toastr.error("Isi form dengan benar!", "Edit project gagal", {
+                                timeOut: 2000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-center",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
+                        <?php endif ?>
+                    <?php endif ?>
+
+                    <?php if ($this->session->flashdata('request')=='delete'): ?>
+                        <?php if ($this->session->flashdata('message')=='success'): ?>
+                            toastr.success("Hapus data berhasil", {
                                 timeOut: 2000,
                                 closeButton: !0,
                                 debug: !1,
