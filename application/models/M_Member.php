@@ -12,7 +12,7 @@ class M_Member extends CI_Model {
 	public function export()
 	{
 
-		$connect = mysqli_connect("localhost", "root", "", "invest"); 
+		$connect = mysqli_connect("localhost", "u7992544_atoze", "atozecapital", "u7992544_atozecapital"); 
 
 		header('Content-Type: text/csv; charset=utf-8'); 
 
