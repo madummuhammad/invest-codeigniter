@@ -48,7 +48,7 @@ class M_Project extends CI_Model {
 		} else {
 			$message=[
 				'request'=>'create',
-				'message'=>'gagal'
+				'message'=>'success'
 			];
 			$this->db->insert('project',$data);
 			$this->session->set_flashdata($message);
@@ -83,14 +83,16 @@ class M_Project extends CI_Model {
 				'request'=>'update',
 				'message'=>'gagal'
 			];
+			$this->session->set_flashdata($message);
 			redirect(admin_url('project'));
 		} else {
 			$this->db->where('id',$id);
 			$this->db->update('project',$data);
 			$message=[
 				'request'=>'update',
-				'message'=>'gagal'
+				'message'=>'success'
 			];
+			$this->session->set_flashdata($message);
 			redirect(admin_url('project'));
 		}
 	}
@@ -98,6 +100,11 @@ class M_Project extends CI_Model {
 	public function delete()
 	{
 		$id=form('id');
+		$message=[
+			'request'=>'delete',
+			'message'=>'success'
+		];
+		$this->session->set_flashdata($message);
 		$this->db->where('id',$id);
 		$this->db->delete('project');
 		redirect(admin_url('project'));

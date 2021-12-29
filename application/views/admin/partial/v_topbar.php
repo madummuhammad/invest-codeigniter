@@ -10,9 +10,9 @@
                 <a href="index.html" class="brand-logo d-flex align-items-center justify-content-center flex-column">
                     <img class="logo-abbr" src="<?php echo base_url() ?>/assets/img/logo.png" alt="">
                     <?php if ($this->session->userdata('role_id')==1): ?>
-                     <h3 class="text-muted">Admin Area</h3>
+                     <!-- <h3 class="text-muted">Admin Area</h3> -->
                  <?php else: ?>
-                    <h3 class="text-secondary">Member Area</h3> 
+                    <!-- <h3 class="text-secondary">Member Area</h3>  -->
                 <?php endif ?>
             </a>
             <div class="nav-control">
