@@ -17,6 +17,12 @@ class M_Project extends CI_Model {
 		return $this->db->get('order')->row_array();
 	}
 
+	public function show($id)
+	{
+		$this->db->where('id',$id);
+		return $this->db->get('project')->row_array();
+	}
+
 	public function create()
 	{
 		$nama_project=form('nama_project');

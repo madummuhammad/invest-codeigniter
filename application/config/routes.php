@@ -67,7 +67,10 @@ $route['adminsystem/website/team']='admin/home/team';
 
 $route['adminsystem/project']='admin/project/index';
 $route['adminsystem/member']='admin/member/index';
+$route['adminsystem/member/export']='admin/member/export';
 $route['adminsystem/order']='order/index';
+$route['adminsystem/order/(:any)']='order/show/$1';
+$route['adminsystem/order/export/(:any)']='order/export/$1';
 $route['adminsystem/profile']='admin/profile/index';
 
 $route['adminsystem/login']='admin/auth/index';

@@ -28,6 +28,38 @@ class M_Order extends CI_Model {
 		return $this->db->get('order')->result_array();
 	}
 
+	public function show($id)
+	{
+		$this->db->join('users','order.id_member=users.id');
+		$this->db->join('project','order.id_project=project.id');
+		$this->db->where('id_project',$id);
+		return $this->db->get('order')->result_array();
+	}
+
+	public function export()
+	{
+		header('Content-Type: text/csv; charset=utf-8'); 
+
+		header('Content-Disposition: attachment; filename=pesanan'.date('Y-m-d').'.csv'); 
+
+		$output = fopen("php://output", "w"); 
+
+		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet','referral_id','my_referral'));
+
+		$id=$this->uri->segment(4);
+		$this->db->select('id_member,name,telegram,phone,wallet,referral_id,own_referral');
+		$this->db->join('users','order.id_member=users.id');
+		$this->db->join('project','order.id_project=project.id');
+		$this->db->where('id_project',$id);
+		$this->db->where('role_id',2);
+		$data=$this->db->get('order')->result_array();
+
+		foreach ($data as $key => $value) {
+			fputcsv($output, $value);
+		}
+		fclose($output);
+	}
+
 	public function konfirmasi()
 	{
 		$id=form('id');

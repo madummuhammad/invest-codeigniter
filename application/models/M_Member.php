@@ -22,16 +22,15 @@ class M_Member extends CI_Model {
 
 		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet','referral_id','my_referral'));
 
-		$query = "SELECT id,name,email,telegram,phone,wallet,referral_id,own_referral from users WHERE role_id=2 ORDER BY id DESC"; 
+		$this->db->select('id,name,email,telegram,phone,wallet,referral_id,own_referral');
+		$this->db->where('role_id',2);
+		$this->db->order_by('id','DESC');
+		$data=$this->db->get('users')->result_array();
 
-		$result = mysqli_query($connect, $query); 
+		foreach ($data as $key => $value) {
+			fputcsv($output, $value);
+		}
 
-		while($row = mysqli_fetch_assoc($result)) 
-		{ 
-			fputcsv($output, $row);
-
-		} 
-
-		fclose($output); 
+		fclose($output);
 	}
 }

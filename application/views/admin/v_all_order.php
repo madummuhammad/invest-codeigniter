@@ -11,59 +11,48 @@ Content body start
                         <h4 class="card-title">Data Order</h4>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="example" class="display" style="min-width: 845px">
-                                <thead>
-                                    <tr>
-                                        <th>Member</th>
-                                        <th>Project</th>
-                                        <th>Jumlah</th>
-                                        <th>Waktu Pembelian</th>
-                                        <th>Bukti Pembayaran</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($order as $key => $value): ?>
-                                        <tr>
-                                            <td><?php echo $value['id_member'].'-'.$value['name'] ?> </td>
-                                            <td><?php echo $value['id_order'].'-'.$value['nama_project'] ?></td>
-                                            <td><span><?php echo $value['jml'] ?></span></td>
-                                            <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
-                                            <td>
-                                                <div class="img-table d-flex justify-content-center">
-                                                   <img class="img-thumbnail" src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf'] ?> " alt="<?php echo $value['bukti_tf'] ?>">
-                                               </div>
-                                           </td>
-                                           <td>
-                                            <div class="custom-control custom-switch">
-                                             <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
-                                             <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch1" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
-                                             <?php echo 'checked' ?>
-                                             <?php endif ?>>
-                                             <label class="custom-control-label" for="switch1">Konfirmasi</label>
+                        <div class="row">
+                            <?php foreach ($project as $key => $value): ?>
+                                <?php
+                                $jml=$this->M_Project->sum($value['id'])['jml'];
+                                $target=$value['target'];
+                                if ($jml==0) {
+                                    $persen=0;
+                                } else {
+                                    $persen=$jml/$target*100;
+                                }
+                                ?>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card">
+                                        <div class="stat-widget-two card-body">
+                                            <div class="stat-content">
+                                                <div class="stat-text"><?php echo $value['nama_project'] ?></div>
+                                                <div class="stat-digit">$<?php echo $value['target'] ?></div>
+                                            </div>
+                                            <?php if ($jml>0): ?>
+                                                <p><?php echo $jml.'/'.$value['target'] ?></p>
+                                            <?php else: ?>
+                                                <p><?php echo '0'.'/'.$value['target'] ?></p>
+                                            <?php endif ?>
 
-                                         </div>
-                                     </td>
-                                 </tr>
-                             <?php endforeach ?>
-                         </tbody>
-                         <tfoot>
-                            <tr>
-                                <th>Member</th>
-                                <th>Project</th>
-                                <th>Jumlah</th>
-                                <th>Waktu Pembelian</th>
-                                <th>Bukti Pembayaran</th>
-                                <th>Status</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-primary" style="width:<?php echo $persen.'%';  ?>" role="progressbar" aria-valuenow="90" aria-valuemin="88" aria-valuemax="100"></div>
+                                            </div>
+                                            <div class="stat-content mt-2">
+                                               <div class="btn-group">
+                                                <a href="<?php echo admin_url('order/').$value['id'] ?>" class="btn btn-outline-primary">Lihat Pesanan<i class="fas fa-edit"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                        <!-- /# column -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </div>
         <!--**********************************
