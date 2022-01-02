@@ -87,7 +87,7 @@ class M_Auth extends CI_Model {
 		}	
 	}
 
-	public function registrasiMember()
+	public function registrasiMember($referral='')
 	{
 		$rand=rand(1,100000000);
 		$nama=$this->input->post('nama');
@@ -139,8 +139,16 @@ class M_Auth extends CI_Model {
 				'message'=>'gagal',
 				'request'=>'registrasi'
 			];
-			$this->session->set_flashdata($message);
-			redirect('');
+			
+			$data['referral']=$referral;
+			$data['home']=$this->M_Home->index();
+			$data['about']=$this->M_Home->about();
+			$data['service']=$this->M_Home->service();
+			$data['portofolio']=$this->M_Home->portofolio();
+			$data['team']=$this->M_Home->team();
+			$data['partner']=$this->M_Home->partner();
+			$this->load->view('website/v_home',$data);
+
 		} else {
 			$this->session->set_userdata($auth);
 			$this->db->insert('users',$data);

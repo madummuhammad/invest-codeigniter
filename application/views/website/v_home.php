@@ -97,19 +97,31 @@
                 <div class="col">
                   <div class="form-group mb-3">
                     <label for="email">Full Name</label>
-                    <input type="text" class="form-control" placeholder="Enter full name" name="nama" id="email" autocomplete="off" autofocus="on">
+                    <input type="text" class="form-control <?php if (form_error('nama')): ?>
+                      <?php echo 'is-invalid' ?>
+                    <?php endif ?>" placeholder="Enter full name" name="nama" id="email" autocomplete="off" autofocus="on" value="<?php echo set_value('nama') ?>">
+                    <div class="invalid-feedback"><?= form_error('nama') ?></div>
                   </div>
                   <div class="form-group mb-3">
                     <label for="email">Telegram Account</label>
-                    <input type="text" class="form-control" placeholder="Enter telegram account" name="telegram" id="email" autocomplete="off">
+                    <input type="text" class="form-control <?php if (form_error('telegram')): ?>
+                      <?php echo 'is-invalid' ?>
+                    <?php endif ?>" placeholder="Enter telegram account" name="telegram" id="email" autocomplete="off" value="<?php echo set_value('telegram') ?>">
+                    <div class="invalid-feedback"><?= form_error('telegram') ?></div>
                   </div>
                   <div class="form-group mb-3">
                     <label for="pwd">Phone</label>
-                    <input type="number" class="form-control" placeholder="Enter number phone" name="phone" id="pwd" autocomplete="off">
+                    <input type="number" class="form-control <?php if (form_error('phone')): ?>
+                      <?php echo 'is-invalid' ?>
+                    <?php endif ?>" placeholder="Enter number phone" name="phone" id="pwd" autocomplete="off" value="<?php echo set_value('phone') ?>">
+                    <div class="invalid-feedback"><?= form_error('phone') ?></div>
                   </div>
                   <div class="form-group mb-3">
                     <label for="pwd">Wallet address</label>
-                    <input type="text" class="form-control" placeholder="Enter wallet address" name="wallet" id="pwd" autocomplete="off">
+                    <input type="text" class="form-control <?php if (form_error('wallet')): ?>
+                      <?php echo 'is-invalid' ?>
+                    <?php endif ?>" placeholder="Enter wallet address" name="wallet" id="pwd" autocomplete="off" value="<?php echo set_value('wallet') ?>">
+                    <div class="invalid-feedback"><?= form_error('wallet') ?></div>
                   </div>
                 </div>
                 <div class="col">
@@ -118,20 +130,32 @@
                     <?php if ($referral !== ''): ?>
                       <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo $referral?>" readonly>
                     <?php else: ?>
-                      <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="">
+                      <input type="number" class="form-control <?php if (form_error('referral')): ?>
+                      <?php echo 'is-invalid' ?>
+                    <?php endif ?>" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo set_value('referral') ?>">
+                    <div class="invalid-feedback"><?= form_error('referral') ?></div>
                     <?php endif ?>
                   </div>
                   <div class="form-group mb-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" autocomplete="off">
+                    <input type="email" class="form-control <?php if (form_error('email')): ?>
+                      <?php echo 'is-invalid' ?>
+                    <?php endif ?>" placeholder="Enter email" name="email" id="email" autocomplete="off" value="<?php echo set_value('email') ?>">
+                    <div class="invalid-feedback"><?= form_error('email') ?></div>
                   </div>
                   <div class="form-group mb-3">
                     <label for="pwd">Password</label>
-                    <input type="password" class="form-control" placeholder="Enter password" name="password" id="pwd" autocomplete="off">
+                    <input type="password" class="form-control <?php if (form_error('password')): ?>
+                      <?php echo 'is-invalid' ?>
+                    <?php endif ?>" placeholder="Enter password" name="password" id="pwd" autocomplete="off" value="<?php echo set_value('password') ?>">
+                    <div class="invalid-feedback"><?= form_error('password') ?></div>
                   </div>
                   <div class="form-group mb-3">
                     <label for="pwd">Repeat Password</label>
-                    <input type="password" class="form-control" placeholder="Repeat password" name="repeat_password" id="pwd" autocomplete="off">
+                    <input type="password" class="form-control <?php if (form_error('repeat_password')): ?>
+                      <?php echo 'is-invalid' ?>
+                    <?php endif ?>" placeholder="Repeat password" name="repeat_password" id="pwd" autocomplete="off" value="<?php echo set_value('repeat_password') ?>">
+                    <div class="invalid-feedback"><?= form_error('repeat_password') ?></div>
                   </div>
                 </div>
               </div>
