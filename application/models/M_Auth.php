@@ -27,9 +27,17 @@ class M_Auth extends CI_Model {
 
 		$validasi=$this->form_validation->set_rules(rules($rules));
 		if ($validasi->run()==false) {
+			$message=[
+				'message'=>'gagal'
+			];
+			$this->session->set_flashdata($message);
 			redirect(admin_url('login'));
 		} else {
 			$this->db->insert('users',$data);
+			$message=[
+				'message'=>'success'
+			];
+			$this->session->set_flashdata($message);
 			redirect(admin_url());
 		}
 	}
