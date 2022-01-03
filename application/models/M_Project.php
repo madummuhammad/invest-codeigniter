@@ -55,15 +55,36 @@ class M_Project extends CI_Model {
 			$this->load->view('admin/partial/v_topbar');
 			$this->load->view('admin/partial/v_sidebar');
 			$this->load->view('admin/v_project',$data);
-			// redirect(admin_url('project'));
 		} else {
-			$message=[
-				'request'=>'create',
-				'message'=>'success'
-			];
-			$this->db->insert('project',$data);
-			$this->session->set_flashdata($message);
-			redirect(admin_url('project'));
+			if ($max<$min) {
+				$message=[
+					'request'=>'create',
+					'message'=>'gagal',
+					'description'=>'Max target tidak boleh lebih kecil dari min target'
+				];
+				$this->session->set_flashdata($message);
+				$this->session->set_flashdata($data);
+				redirect(admin_url('project'));
+			} else {
+				if ($max>$target) {
+					$message=[
+						'request'=>'create',
+						'message'=>'gagal',
+						'description'=>'Max target tidak boleh lebih besar dari target alokasi'
+					];
+					$this->session->set_flashdata($message);
+					$this->session->set_flashdata($data);
+					redirect(admin_url('project'));
+				} else {
+					$message=[
+						'request'=>'create',
+						'message'=>'success'
+					];
+					$this->db->insert('project',$data);
+					$this->session->set_flashdata($message);
+					redirect(admin_url('project'));
+				}
+			}
 		}
 	}
 
@@ -101,14 +122,36 @@ class M_Project extends CI_Model {
 			$this->load->view('admin/partial/v_sidebar');
 			$this->load->view('admin/v_project',$data);
 		} else {
-			$this->db->where('id',$id);
-			$this->db->update('project',$data);
-			$message=[
-				'request'=>'update',
-				'message'=>'success'
-			];
-			$this->session->set_flashdata($message);
-			redirect(admin_url('project'));
+			if ($max<$min) {
+				$message=[
+					'edit'=>true,
+					'request'=>'update',
+					'message'=>'gagal',
+					'description'=>'Max target tidak boleh lebih kecil dari min target'
+				];
+				$this->session->set_flashdata($message);
+				redirect(admin_url('project'));
+			} else {
+				if ($max>$target) {
+					$message=[
+						'edit'=>true,
+						'request'=>'update',
+						'message'=>'gagal',
+						'description'=>'Max target tidak boleh lebih besar dari target alokasi'
+					];
+					$this->session->set_flashdata($message);
+					redirect(admin_url('project'));
+				} else {
+					$this->db->where('id',$id);
+					$this->db->update('project',$data);
+					$message=[
+						'request'=>'update',
+						'message'=>'success'
+					];
+					$this->session->set_flashdata($message);
+					redirect(admin_url('project'));
+				}
+			}
 		}
 	}
 
