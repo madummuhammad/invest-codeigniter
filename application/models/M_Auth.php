@@ -12,7 +12,7 @@ class M_Auth extends CI_Model {
 
 		$rules=[
 			rules_array('nama','required'),
-			rules_array('email','required'),
+			rules_array('email','required|valid_email'),
 			rules_array('password','required')
 		];
 
@@ -43,7 +43,7 @@ class M_Auth extends CI_Model {
 		];
 
 		$rules=[
-			rules_array('email','required'),
+			rules_array('email','required|valid_email'),
 			rules_array('password','required')
 		];
 		$validasi=$this->form_validation->set_rules(rules($rules));
@@ -53,6 +53,7 @@ class M_Auth extends CI_Model {
 			];
 			$this->session->set_flashdata($message);
 			redirect(admin_url('login'));
+
 		}else{
 			$this->db->where('email',$email);
 			$this->db->where('role_id',1);
@@ -107,7 +108,7 @@ class M_Auth extends CI_Model {
 		];
 		$rules=[
 			rules_array('nama','required|trim'),
-			rules_array('email','required|trim|is_unique[users.email]'),
+			rules_array('email','required|trim|is_unique[users.email]|valid_email'),
 			rules_array('password','required|trim'),
 			rules_array('telegram','required|trim'),
 			rules_array('phone','required|numeric|min_length[11]|max_length[13]'),
@@ -139,6 +140,8 @@ class M_Auth extends CI_Model {
 				'message'=>'gagal',
 				'request'=>'registrasi'
 			];
+
+			$this->session->set_flashdata($message);
 			
 			$data['referral']=$referral;
 			$data['home']=$this->M_Home->index();
@@ -185,17 +188,17 @@ class M_Auth extends CI_Model {
 		}
 	}
 
-	public function loginMember()
+	public function loginMember($referral='')
 	{
-		$email=$this->input->post('email');
-		$password=$this->input->post('password');
+		$email=$this->input->post('login_email');
+		$password=$this->input->post('login_password');
 		$auth=[
 			'authentication'=>'member'
 		];
 
 		$rules=[
-			rules_array('email','required'),
-			rules_array('password','required')
+			rules_array('login_email','required'),
+			rules_array('login_password','required')
 		];
 
 		$validasi=$this->form_validation->set_rules(rules($rules));
@@ -205,7 +208,15 @@ class M_Auth extends CI_Model {
 				'message'=>'gagal'
 			];
 			$this->session->set_flashdata($message);
-			redirect('');
+			$data['referral']=$referral;
+			$data['home']=$this->M_Home->index();
+			$data['about']=$this->M_Home->about();
+			$data['service']=$this->M_Home->service();
+			$data['portofolio']=$this->M_Home->portofolio();
+			$data['team']=$this->M_Home->team();
+			$data['partner']=$this->M_Home->partner();
+			$this->load->view('website/v_home',$data);
+			// redirect('');
 		} else{
 			$this->db->where('email',$email);
 			$this->db->where('role_id',2);
@@ -247,7 +258,9 @@ class M_Auth extends CI_Model {
 				} else{
 					$message=[
 						'request'=>'loginMember',
-						'message'=>'gagal'
+						'message'=>'gagal',
+						'error'=>'wrongakun',
+						'email'=>$email
 					];
 					$this->session->set_flashdata($message);
 					redirect('');
@@ -255,7 +268,9 @@ class M_Auth extends CI_Model {
 			} else {
 				$message=[
 					'request'=>'loginMember',
-					'message'=>'gagal'
+					'message'=>'gagal',
+					'error'=>'wrongakun',
+					'email'=>$email
 				];
 				$this->session->set_flashdata($message);
 				redirect('');
