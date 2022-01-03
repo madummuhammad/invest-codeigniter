@@ -24,7 +24,7 @@
               </ul>
             </li>
             <?php if ($this->session->userdata('authentication')=='member'): ?>
-              <li><a class="getstarted scrollto" href="<?php echo base_url('adminsystem') ?>">Area Member</a></li>
+              <li><a class="getstarted scrollto" href="<?php echo base_url('member') ?>">Area Member</a></li>
             <?php endif ?>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>

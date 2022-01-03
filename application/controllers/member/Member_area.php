@@ -15,7 +15,6 @@ class Member_area extends CI_Controller {
 		$this->load->view('admin/partial/v_topbar');
 		$this->load->view('admin/partial/v_sidebar');
 		$this->load->view('member/v_dashboard',$data);
-		$this->load->view('admin/partial/v_footer');
 	}
 
 }

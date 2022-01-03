@@ -29,12 +29,12 @@ Content body start
                                             <td><span><?php echo $value['jml'] ?></span></td>
                                             <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
                                             <td>
-                                                <button class="btn badge btn-outline-primary" data-toggle="modal" data-target="#buktitf<?php echo $value['id'] ?>">Bukti Transfer <?php if ($value['bukti_tf']!=='default.png'): ?>
+                                                <button class="btn badge btn-outline-primary" data-toggle="modal" data-target="#buktitf<?php echo $value['id_order'] ?>">Bukti Transfer <?php if ($value['bukti_tf']!=='default.png'): ?>
                                                 <i class="fas fa-check"></i>
                                             <?php else: ?>
                                                 <i class="fas fa-times text-danger"></i>
                                                 <?php endif ?></button>
-                                                <div class="modal fade" id="buktitf<?php echo $value['id'] ?>">
+                                                <div class="modal fade" id="buktitf<?php echo $value['id_order'] ?>">
                                                     <form action="<?php echo base_url('member/buy') ?>" method="POST" enctype="multipart/form-data">
                                                       <div class="modal-dialog modal-dialog-centered">
                                                         <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
@@ -50,7 +50,12 @@ Content body start
                                                               <div class="col">
                                                                 <div class="form-group text-center">
                                                                     <label for="" class="text-center p-2">Link</label>
-                                                                    <input type="text" class="form-control" id="email" placeholder="" name="link" value="<?php echo $value['link'] ?>">
+                                                                    <input type="text" class="form-control <?php if (form_error('link')): ?>
+                                                                    <?php echo 'is-invalid' ?>
+                                                                    <?php endif ?>" id="email" placeholder="" name="link" value="<?php echo $value['link'] ?>" value="<?php echo set_value('link') ?>">
+                                                                    <div class="invalid-feedback">
+                                                                        <?= form_error('link') ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col">
@@ -98,4 +103,54 @@ Content body start
         </div>
         <!--**********************************
             Content body end
-        ***********************************
+            ***********************************-->
+            <?php $this->load->view('admin/partial/v_footer'); ?>
+            <script>
+                $(document).ready(function(){
+                    <?php if (null !== $this->session->flashdata('message')): ?>
+                        <?php if ($this->session->flashdata('message')=='success'): ?>
+                            toastr.success("Silakan tunggu konfrimasi! Silakan upload bukti transfer", "Upload Bukti Transfer Berhasil", {
+                                timeOut: 3000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-center",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
+                            setTimeout(function (){
+                                window.location.href="<?php echo member_url('riwayat') ?>";
+                            }, 1000);
+                        <?php endif ?>
+                        <?php if ($this->session->flashdata('message')=='gagal'): ?>
+                            toastr.error("Isi form dengan benar!", "Upload Bukti Transfer Gagal", {
+                                timeOut: 2000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-center",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
+                        <?php endif ?>
+                    <?php endif ?>
+                })
+            </script>
