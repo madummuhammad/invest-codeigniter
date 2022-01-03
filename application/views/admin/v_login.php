@@ -16,21 +16,6 @@
 <body class="h-100">
 	<div class="authincation h-100">
 		<div class="container-fluid h-100">
-			<div aria-live="polite" aria-atomic="true" style="position: fixed; min-height: 200px;">
-				<div class="toast" style="position: fixed; top: 0; right: 0;">
-					<div class="toast-header">
-						<!-- <img src="..." class="rounded mr-2" alt="..."> -->
-						<strong class="mr-auto">Bootstrap</strong>
-						<small>11 mins ago</small>
-						<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="toast-body">
-						Hello, world! This is a toast message.
-					</div>
-				</div>
-			</div>
 			<div class="row justify-content-center h-100 align-items-center">
 				<div class="col-md-6">
 					<div class="authincation-content">
@@ -49,23 +34,23 @@
 										<?php endif ?>
 										<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
 											<?php echo 'is-invalid' ?>
-											<?php endif ?>" value="<?php echo set_value('email') ?> <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
-											<?php echo $this->session->flashdata('email') ?>
-											<?php endif ?>">
-											<div class="invalid-feedback">
-												<?= form_error('email') ?>
-												<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
-													<?php echo 'Wrong email/password' ?>
-												<?php endif ?>
-											</div>
+										<?php endif ?>" value="<?php echo set_value('email') ?> <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+										<?php echo $this->session->flashdata('email') ?>
+										<?php endif ?>">
+										<div class="invalid-feedback">
+											<?= form_error('email') ?>
+											<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+												<?php echo 'Wrong email/password' ?>
+											<?php endif ?>
 										</div>
-										<div class="form-group">
-											<label><strong>Password</strong></label>
-											<input type="password" name="password" class="form-control <?php if (form_error('password')): ?>
-											<?php echo 'is-invalid' ?>
-										<?php endif ?>
-										<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
-											<?php echo 'is-invalid' ?>
+									</div>
+									<div class="form-group">
+										<label><strong>Password</strong></label>
+										<input type="password" name="password" class="form-control <?php if (form_error('password')): ?>
+										<?php echo 'is-invalid' ?>
+									<?php endif ?>
+									<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+										<?php echo 'is-invalid' ?>
 										<?php endif ?>" value="">
 										<div class="invalid-feedback">
 											<?= form_error('password') ?>

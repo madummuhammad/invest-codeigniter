@@ -33,7 +33,7 @@
                                             <div class="progress-bar progress-bar-primary" style="width:<?php echo $persen.'%';  ?>" role="progressbar" aria-valuenow="90" aria-valuemin="88" aria-valuemax="100"></div>
                                         </div>
                                         <div class="stat-content mt-2">
-                                         <div class="btn-group">
+                                           <div class="btn-group">
                                             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalProjectEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
                                             <div class="modal fade" id="modalProjectEdit<?php echo $value['id'] ?>">
                                               <div class="modal-dialog modal-dialog-centered">
@@ -52,13 +52,23 @@
                                                             <div class="form-group text-center">
                                                                 <?php echo get_id($value['id']) ?>
                                                                 <label for="" class="text-center p-2">Nama Project</label>
-                                                                <input type="text" class="form-control" id="email" placeholder="Masukan Nama Project" name="nama_project" value="<?php echo $value['nama_project'] ?>">
+                                                                <input type="text" class="form-control <?php if (form_error('edit_nama_project')): ?>
+                                                                    <?php echo 'is-invalid' ?>
+                                                                <?php endif ?>" id="email" placeholder="Masukan Nama Project" name="edit_nama_project" value="<?php echo $value['nama_project'] ?>">
+                                                                <div class="invalid-feedback">
+                                                                    <?= form_error('edit_nama_project') ?>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group text-center">
                                                                 <label for="" class="p-2">Target Alokasi</label>
-                                                                <input type="number" class="form-control" name="target" placeholder="Masukan target alokasi" value="<?php echo $value['target'] ?>">
+                                                                <input type="number" class="form-control <?php if (form_error('edit_target')): ?>
+                                                                    <?php echo 'is-invalid' ?>
+                                                                <?php endif ?>" name="edit_target" placeholder="Masukan target alokasi" value="<?php echo $value['target'] ?>">
+                                                                <div class="invalid-feedback">
+                                                                    <?= form_error('edit_target') ?>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -66,13 +76,23 @@
                                                         <div class="col">
                                                             <div class="form-group text-center">
                                                                 <label for="" class="p-2">Min Target</label>
-                                                                <input type="number" class="form-control" name="min" placeholder="Masukan min target" value="<?php echo $value['min'] ?>">
+                                                                <input type="number" class="form-control <?php if (form_error('edit_min')): ?>
+                                                                    <?php echo 'is-invalid' ?>
+                                                                <?php endif ?>" name="edit_min" placeholder="Masukan min target" value="<?php echo $value['min'] ?>">
+                                                                <div class="invalid-feedback">
+                                                                    <?= form_error('edit_min') ?>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group text-center">
                                                                 <label for="" class="p-2">Max Target</label>
-                                                                <input type="number" class="form-control" name="max" placeholder="Masukan Max Target" value="<?php echo $value['max'] ?>">
+                                                                <input type="number" class="form-control <?php if (form_error('edit_max')): ?>
+                                                                    <?php echo 'is-invalid' ?>
+                                                                <?php endif ?>" name="edit_max" placeholder="Masukan Max Target" value="<?php echo $value['max'] ?>">
+                                                                <div class="invalid-feedback">
+                                                                    <?= form_error('edit_max') ?>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -130,13 +150,23 @@
               <div class="col">
                 <div class="form-group text-center">
                   <label for="" class="text-center p-2">Nama Project</label>
-                  <input type="text" class="form-control" id="email" placeholder="Masukan Nama Project" name="nama_project" value="">
-              </div>
-          </div>
-          <div class="col">
+                  <input type="text" class="form-control <?php if (form_error('nama_project')): ?>
+                  <?php echo 'is-invalid' ?>
+                  <?php endif ?>" id="email" name="nama_project" value="">
+                  <div class="invalid-feedback">
+                    <?= form_error('nama_project') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col">
             <div class="form-group text-center">
                 <label for="" class="p-2">Target Alokasi</label>
-                <input type="number" class="form-control" name="target" placeholder="Masukan target alokasi">
+                <input type="number" class="form-control <?php if (form_error('target')): ?>
+                <?php echo 'is-invalid' ?>
+                <?php endif ?>" name="target" placeholder="">
+                <div class="invalid-feedback">
+                    <?= form_error('target') ?>
+                </div>
             </div>
         </div>
     </div>
@@ -144,13 +174,23 @@
         <div class="col">
             <div class="form-group text-center">
                 <label for="" class="p-2">Min Target</label>
-                <input type="number" class="form-control" name="min" placeholder="Masukan min target">
+                <input type="number" class="form-control <?php if (form_error('min')): ?>
+                <?php echo 'is-invalid' ?>
+                <?php endif ?>" name="min" placeholder="">
+                <div class="invalid-feedback">
+                    <?= form_error('min') ?>
+                </div>
             </div>
         </div>
         <div class="col">
             <div class="form-group text-center">
                 <label for="" class="p-2">Max Target</label>
-                <input type="number" class="form-control" name="max" placeholder="Masukan Max Target">
+                <input type="number" class="form-control <?php if (form_error('max')): ?>
+                <?php echo 'is-invalid' ?>
+                <?php endif ?>" name="max" placeholder="">
+                <div class="invalid-feedback">
+                    <?= form_error('max') ?>
+                </div>
             </div>
         </div>
     </div>

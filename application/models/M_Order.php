@@ -100,10 +100,24 @@ class M_Order extends CI_Model {
 		];
 
 		if ($validasi->run()==false) {
-			redirect(member_url());
+			$message=[
+				'message'=>'gagal',
+				'request'=>'order'
+			];
+			$this->session->set_flashdata($message);
+			$data['project']=$this->M_Project->index();
+			$this->load->view('admin/partial/v_header');
+			$this->load->view('admin/partial/v_topbar');
+			$this->load->view('admin/partial/v_sidebar');
+			$this->load->view('member/v_dashboard',$data);
 		} else {
 			$this->db->insert('order',$data);
-			redirect(member_url('riwayat'));
+			$message=[
+				'message'=>'success',
+				'request'=>'order'
+			];
+			$this->session->set_flashdata($message);
+			redirect(member_url());
 		}
 	}
 
@@ -131,7 +145,15 @@ class M_Order extends CI_Model {
 		];
 
 		if ($validasi->run()==false) {
-			redirect(member_url('riwayat'));
+			$message=[
+				'message'=>'gagal'
+			];
+			$this->session->set_flashdata($message);
+			$data['project']=$this->M_Order->index();
+			$this->load->view('admin/partial/v_header');
+			$this->load->view('admin/partial/v_topbar');
+			$this->load->view('admin/partial/v_sidebar');
+			$this->load->view('member/v_riwayat_pembelian',$data);
 		} else {
 			if ($bukti_tf !== NULL) {
 				if ($gambar_lama['gambar'] !== 'default.png') {
@@ -139,8 +161,16 @@ class M_Order extends CI_Model {
 				}
 				$this->db->where('id_order',$id);
 				$this->db->update('order',$data);
+				$message=[
+					'message'=>'success'
+				];
+				$this->session->set_flashdata($message);
 				redirect(member_url('riwayat'));
 			} else {
+				$message=[
+					'message'=>'gagal'
+				];
+				$this->session->set_flashdata($message);
 				redirect(member_url('riwayat'));
 			}
 		}

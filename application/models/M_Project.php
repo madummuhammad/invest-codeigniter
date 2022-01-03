@@ -50,7 +50,12 @@ class M_Project extends CI_Model {
 				'message'=>'gagal'
 			];
 			$this->session->set_flashdata($message);
-			redirect(admin_url('project'));
+			$data['project']=$this->M_Project->index();
+			$this->load->view('admin/partial/v_header');
+			$this->load->view('admin/partial/v_topbar');
+			$this->load->view('admin/partial/v_sidebar');
+			$this->load->view('admin/v_project',$data);
+			// redirect(admin_url('project'));
 		} else {
 			$message=[
 				'request'=>'create',
@@ -65,15 +70,15 @@ class M_Project extends CI_Model {
 	public function update()
 	{
 		$id=form('id');
-		$nama_project=form('nama_project');
-		$min=form('min');
-		$max=form('max');
-		$target=form('target');
+		$nama_project=form('edit_nama_project');
+		$min=form('edit_min');
+		$max=form('edit_max');
+		$target=form('edit_target');
 		$rules=[
-			rules_array('nama_project','required'),
-			rules_array('min','required'),
-			rules_array('max','required'),
-			rules_array('target','required')
+			rules_array('edit_nama_project','required'),
+			rules_array('edit_min','required'),
+			rules_array('edit_max','required'),
+			rules_array('edit_target','required')
 		];
 
 		$validasi=$this->form_validation->set_rules(rules($rules));
@@ -90,7 +95,11 @@ class M_Project extends CI_Model {
 				'message'=>'gagal'
 			];
 			$this->session->set_flashdata($message);
-			redirect(admin_url('project'));
+			$data['project']=$this->M_Project->index();
+			$this->load->view('admin/partial/v_header');
+			$this->load->view('admin/partial/v_topbar');
+			$this->load->view('admin/partial/v_sidebar');
+			$this->load->view('admin/v_project',$data);
 		} else {
 			$this->db->where('id',$id);
 			$this->db->update('project',$data);

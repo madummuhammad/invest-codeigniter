@@ -250,14 +250,21 @@
               <?php if (get_cookie('lang_is')=='in'): ?>
                 <h3 class="text-center">Verifikasi Email</h3>
                 <p class="text-center">Masukan kode yang dikirim ke email anda</p>
-              <?php else: ?>
-                <h3 class="text-center">Verifikasi Email</h3>
-                <p class="text-center">Masukan kode yang dikirim ke email anda</p>
                 <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
                   <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
                   <?php echo method('_patch') ?>
                   <div class="form-group d-flex justify-content-center">
                     <button type="submit" class="btn btn-outline-primary badge">Ganti Email?</button>
+                  </div>
+                </form>
+              <?php else: ?>
+                <h3 class="text-center">Verify Your Email</h3>
+                <p class="text-center">Enter code we have sent to your email</p>
+                <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
+                  <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                  <?php echo method('_patch') ?>
+                  <div class="form-group d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-primary badge">Change Email?</button>
                   </div>
                 </form>
               <?php endif ?>

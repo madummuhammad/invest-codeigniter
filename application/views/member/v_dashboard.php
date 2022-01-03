@@ -56,12 +56,17 @@
                                                           <div class="col">
                                                             <div class="form-group text-center">
                                                               <label for="" class="text-center p-2">Jumlah Beli ( Min: $<?php echo $value['min'] ?>, Max: $<?php echo $value['max'] ?>)</label>
-                                                              <input type="number" class="form-control" id="email" placeholder="" name="jml" value="" min="<?php echo $value['min'] ?>" max="<?php echo $value['max'] ?>" autocomplete="off">
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="modal-footer">
+                                                              <input type="number" class="form-control <?php if (form_error('jml')): ?>
+                                                                  <?php echo 'is-invalid' ?>
+                                                              <?php endif ?>" id="email" placeholder="" name="jml" value="" min="<?php echo $value['min'] ?>" max="<?php echo $value['max'] ?>" autocomplete="off" value="<?php echo set_value('jml') ?>">
+                                                              <div class="invalid-feedback">
+                                                                <?= form_error('jml') ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
                                                 <button type="submit" class="btn btn-outline-primary">Buy</button>
                                                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                             </div>
@@ -78,6 +83,53 @@
     </div>
 </div>
 </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
+<?php $this->load->view('admin/partial/v_footer'); ?>
+<script>
+    $(document).ready(function(){
+        <?php if (null !== $this->session->flashdata('message')): ?>
+            <?php if ($this->session->flashdata('message')=='success'): ?>
+                toastr.success("Mohon tunggu sebentar! Silakan upload bukti transfer", "Pemberlian Berhasil", {
+                    timeOut: 500000000,
+                    closeButton: !0,
+                    debug: !1,
+                    newestOnTop: !0,
+                    progressBar: !0,
+                    positionClass: "toast-top-center",
+                    preventDuplicates: !0,
+                    onclick: null,
+                    showDuration: "300",
+                    hideDuration: "1000",
+                    extendedTimeOut: "1000",
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                    tapToDismiss: !1
+                })
+                setTimeout(function (){
+                    window.location.href="<?php echo member_url('riwayat') ?>";
+                }, 1000);
+            <?php endif ?>
+            <?php if ($this->session->flashdata('message')=='gagal'): ?>
+                toastr.error("Isi form dengan benar!", "Pembelian Gagal", {
+                    timeOut: 2000,
+                    closeButton: !0,
+                    debug: !1,
+                    newestOnTop: !0,
+                    progressBar: !0,
+                    positionClass: "toast-top-center",
+                    preventDuplicates: !0,
+                    onclick: null,
+                    showDuration: "300",
+                    hideDuration: "1000",
+                    extendedTimeOut: "1000",
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                    tapToDismiss: !1
+                })
+            <?php endif ?>
+        <?php endif ?>
+    })
+</script>
