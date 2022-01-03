@@ -53,10 +53,10 @@ Content body start
                                            <td>
                                             <div class="custom-control custom-switch">
                                              <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
-                                             <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch1" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
+                                             <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch<?php echo $value['id_order'] ?>" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
                                              <?php echo 'checked' ?>
                                              <?php endif ?>>
-                                             <label class="custom-control-label" for="switch1">Konfirmasi</label>
+                                             <label class="custom-control-label" for="switch<?php echo $value['id_order'] ?>">Konfirmasi</label>
 
                                          </div>
                                      </td>
@@ -94,9 +94,9 @@ Content body start
                         var id=$(this).data('id');
                         var status = $(this).val();
                         var method = '_post';
-                        var csrf=$('input[name=csrf_test_name]').val(); 
+                        var csrf=$('input[name=csrf_test_name]').val();
                         $.ajax({
-                            url: "<?php echo base_url('adminsystem/member') ?>",
+                            url: "<?php echo base_url('adminsystem') ?>",
                             type:'POST',
                             data:{
                                 id:id,
@@ -105,6 +105,52 @@ Content body start
                                 csrf_test_name:csrf
                             },
                             success: function(e){
+                                if (status==1) {
+                                    toastr.success("Mohon tunggu sebentar", "Konfirmasi berhasil dibatalkan", {
+                                        timeOut: 2000,
+                                        closeButton: !0,
+                                        debug: !1,
+                                        newestOnTop: !0,
+                                        progressBar: !0,
+                                        positionClass: "toast-top-center",
+                                        preventDuplicates: !0,
+                                        onclick: null,
+                                        showDuration: "300",
+                                        hideDuration: "1000",
+                                        extendedTimeOut: "1000",
+                                        showEasing: "swing",
+                                        hideEasing: "linear",
+                                        showMethod: "fadeIn",
+                                        hideMethod: "fadeOut",
+                                        tapToDismiss: !1
+                                    })
+                                    setTimeout(function (){
+                                        window.location.href="<?php echo base_url('adminsystem/order/').$this->uri->segment(3) ?>";
+                                    }, 500);
+                                } else{
+                                    toastr.success("Mohon tunggu sebentar", "Berhasil dikonfirmasi", {
+                                        timeOut: 2000,
+                                        closeButton: !0,
+                                        debug: !1,
+                                        newestOnTop: !0,
+                                        progressBar: !0,
+                                        positionClass: "toast-top-center",
+                                        preventDuplicates: !0,
+                                        onclick: null,
+                                        showDuration: "300",
+                                        hideDuration: "1000",
+                                        extendedTimeOut: "1000",
+                                        showEasing: "swing",
+                                        hideEasing: "linear",
+                                        showMethod: "fadeIn",
+                                        hideMethod: "fadeOut",
+                                        tapToDismiss: !1
+                                    })
+                                    setTimeout(function (){
+                                        window.location.href="<?php echo base_url('adminsystem/order/').$this->uri->segment(3) ?>";
+                                    }, 500);
+                                }
+                                
                             }
                         });
                     }

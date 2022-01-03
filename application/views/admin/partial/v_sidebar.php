@@ -17,7 +17,9 @@
                         </li>
                         <li class="nav-label">Project</li>
                         <li><a href="<?php echo admin_url('project') ?>" aria-expanded="false"><i class="icon icon-app-store"></i><span class="nav-text">Kelola Project</span></a></li>
-                        <li><a href="<?php echo admin_url('order') ?>" aria-expanded="false"><i class="icon icon-form"></i><span class="nav-text">Kelola Pesanan</span></a></li>
+                        <li class="<?php if ($this->uri->segment(2)=='order'): ?>
+                            <?php echo 'mm-active' ?>
+                        <?php endif ?>"><a href="<?php echo admin_url('order') ?>" aria-expanded="false"><i class="icon icon-form"></i><span class="nav-text">Kelola Pesanan</span></a></li>
                         <li class="nav-label">Member</li>
                         <li><a href="<?php echo admin_url('member') ?>" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Member</span></a></li>
                     </ul>

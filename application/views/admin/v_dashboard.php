@@ -38,7 +38,7 @@ Content body start
                                             <td>
                                                 <div class="custom-control custom-switch">
                                                    <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
-                                                   <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch1" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
+                                                   <input type="checkbox" data-project="<?php echo $value['id_project'] ?>" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch1" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
                                                    <?php echo 'checked' ?>
                                                    <?php endif ?>>
                                                    <label class="custom-control-label" for="switch1">Konfirmasi</label>
@@ -65,6 +65,7 @@ Content body start
                 var button_modal = $(".konfirmasi");
                 for (let i = 0; i < button_modal.length; i++) {
                     button_modal[i].onclick = function () {
+                        var project=$(this).data('project');
                         var id=$(this).data('id');
                         var status = $(this).val();
                         var method = '_post';
@@ -79,14 +80,14 @@ Content body start
                                 csrf_test_name:csrf
                             },
                             success: function(e){
-                                Swal.fire({         //displays a pop up with sweetalert
+                                Swal.fire({    
                                     icon: 'success',
                                     title: 'Berhasil Dikonfirmasi',
                                     showConfirmButton: false,
                                     timer: 1000
                                 });
                                 setTimeout(function (){
-                                    window.location.href="<?php echo base_url('adminsystem/order') ?>";
+                                    window.location.href="<?php echo base_url('adminsystem/order/') ?>"+project;
                                 }, 1000);
                             }
                         });
