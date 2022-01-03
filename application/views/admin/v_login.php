@@ -44,17 +44,40 @@
 										<?php echo method('_get') ?>
 										<div class="form-group">
 											<label><strong>Email</strong></label>
-											<input type="email" name="email" class="form-control" value="">
+											<input type="email" name="email" class="form-control <?php if (form_error('email')): ?>
+											<?php echo 'is-invalid' ?>
+										<?php endif ?>
+										<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+											<?php echo 'is-invalid' ?>
+											<?php endif ?>" value="<?php echo set_value('email') ?> <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+											<?php echo $this->session->flashdata('email') ?>
+											<?php endif ?>">
+											<div class="invalid-feedback">
+												<?= form_error('email') ?>
+												<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+													<?php echo 'Wrong email/password' ?>
+												<?php endif ?>
+											</div>
 										</div>
 										<div class="form-group">
 											<label><strong>Password</strong></label>
-											<input type="password" name="password" class="form-control" value="">
+											<input type="password" name="password" class="form-control <?php if (form_error('password')): ?>
+											<?php echo 'is-invalid' ?>
+										<?php endif ?>
+										<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+											<?php echo 'is-invalid' ?>
+										<?php endif ?>" value="">
+										<div class="invalid-feedback">
+											<?= form_error('password') ?>
+											<?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+												<?php echo 'Wrong email/password' ?>
+											<?php endif ?>
 										</div>
-										<div class="text-center">
-											<button type="submit" id="login" class="btn btn-primary btn-block">Sign Up <span class="spinner-border-sm"></span></button>
-										</div>
-									</form>
-								</div>
+									</div>
+									<div class="text-center">
+										<button type="submit" id="login" class="btn btn-primary btn-block">Sign Up <span class="spinner-border-sm"></span></button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -62,6 +85,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 
     <!--**********************************

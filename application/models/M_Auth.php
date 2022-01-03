@@ -52,7 +52,7 @@ class M_Auth extends CI_Model {
 				'message'=>'gagal'
 			];
 			$this->session->set_flashdata($message);
-			redirect(admin_url('login'));
+			$this->load->view('admin/v_login');
 
 		}else{
 			$this->db->where('email',$email);
@@ -73,17 +73,21 @@ class M_Auth extends CI_Model {
 					redirect(admin_url('login'));
 				} else{
 					$message=[
-						'message'=>'gagal'
+						'message'=>'gagal',
+						'error'=>'wrongakun',
+						'email'=>$email
 					];
 					$this->session->set_flashdata($message);
 					redirect(admin_url('login'));
 				}
 			} else {
 				$message=[
-					'message'=>'gagal'
+					'message'=>'gagal',
+					'error'=>'wrongakun',
+					'email'=>$email
 				];
 				$this->session->set_flashdata($message);
-				redirect(admin_url('adminsystem/login'));
+				redirect(admin_url('login'));
 			}
 		}	
 	}
