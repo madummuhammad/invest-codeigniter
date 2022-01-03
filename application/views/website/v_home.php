@@ -117,7 +117,7 @@
                 <?= form_error('login_email') ?>
                 <?php if ($this->session->flashdata('request')=='loginMember'): ?>
                   <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
-                    <?php echo 'Wrong username/password' ?>
+                    <?php echo 'Wrong Email/Password' ?>
                   <?php endif ?>
                 <?php endif ?>
               </div>
@@ -137,7 +137,7 @@
               <?= form_error('login_password') ?>
               <?php if ($this->session->flashdata('request')=='loginMember'): ?>
                 <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
-                  <?php echo 'Wrong username/password' ?>
+                  <?php echo 'Wrong Email/Password' ?>
                 <?php endif ?>
               <?php endif ?>
             </div>
