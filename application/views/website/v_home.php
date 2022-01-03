@@ -41,19 +41,39 @@
         <?php if (get_cookie('lang_is')=='in'): ?>
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#login">Login</a>
+              <a class="nav-link <?php if ($this->session->flashdata('request')=='registrasi'): ?>
+              <?php if ($this->session->flashdata('message')=='gagal'): ?>
+                <?php echo '' ?>
+              <?php endif ?>
+            <?php else: ?>
+              <?php echo 'active' ?>
+              <?php endif ?>" data-toggle="tab" href="#login">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#registrasi">Daftar</a>
+              <a class="nav-link <?php if ($this->session->flashdata('request')=='registrasi'): ?>
+              <?php if ($this->session->flashdata('message')=='gagal'): ?>
+                <?php echo 'active' ?>
+              <?php endif ?>
+              <?php endif ?>" data-toggle="tab" href="#registrasi">Daftar</a>
             </li>
           </ul>
         <?php else: ?>
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#login">Sign in</a>
+              <a class="nav-link <?php if ($this->session->flashdata('request')=='registrasi'): ?>
+              <?php if ($this->session->flashdata('message')=='gagal'): ?>
+                <?php echo '' ?>
+              <?php endif ?>
+            <?php else: ?>
+              <?php echo 'active' ?>
+              <?php endif ?>" data-toggle="tab" href="#login">Sign in</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#registrasi">Register</a>
+              <a class="nav-link <?php if ($this->session->flashdata('request')=='registrasi'): ?>
+              <?php if ($this->session->flashdata('message')=='gagal'): ?>
+                <?php echo 'active' ?>
+              <?php endif ?>
+              <?php endif ?>" data-toggle="tab" href="#registrasi">Register</a>
             </li>
           </ul>
         <?php endif ?>
@@ -61,104 +81,152 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div class="tab-pane container active" id="login">
-            <?php if (get_cookie('lang_is')=='in'): ?>
-              <h3 class="text-center">Silakan Login</h3>
-            <?php else: ?>
-              <h3 class="text-center">Sign in</h3>
+          <div class="tab-pane container <?php if ($this->session->flashdata('request')=='registrasi'): ?>
+          <?php if ($this->session->flashdata('message')=='gagal'): ?>
+            <?php echo '' ?>
+          <?php endif ?>
+        <?php else: ?>
+          <?php echo 'active' ?>
+          <?php endif ?>" id="login">
+          <?php if (get_cookie('lang_is')=='in'): ?>
+            <h3 class="text-center">Silakan Login</h3>
+          <?php else: ?>
+            <h3 class="text-center">Sign in</h3>
+          <?php endif ?>
+          <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
+            <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+            <?php echo method('_get') ?>
+            <div class="form-group mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control<?php if (form_error('login_email')): ?>
+              <?php echo 'is-invalid' ?>
             <?php endif ?>
-            <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
-              <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-              <?php echo method('_get') ?>
-              <div class="form-group mb-3">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" autocomplete="off" autofocus="on">
+            <?php if ($this->session->flashdata('request')=='loginMember'): ?>
+              <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+                <?php echo 'is-invalid' ?>
+              <?php endif ?>
+            <?php endif ?>
+            " placeholder="Enter email" name="login_email" id="email" autocomplete="off" autofocus="on" value="
+            <?php echo set_value('login_email') ?>
+            <?php if ($this->session->flashdata('request')=='loginMember'): ?>
+              <?php if ($this->session->flashdata('message')=='gagal'): ?>
+                <?php echo $this->session->flashdata('email') ?>
+              <?php endif ?>
+              <?php endif ?>">
+              <div class="invalid-feedback">
+                <?= form_error('login_email') ?>
+                <?php if ($this->session->flashdata('request')=='loginMember'): ?>
+                  <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+                    <?php echo 'Wrong username/password' ?>
+                  <?php endif ?>
+                <?php endif ?>
               </div>
-              <div class="form-group mb-3">
-                <label for="pwd">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter password" id="pwd" autocomplete="off">
-              </div>
-              <div class="form-group mb-3">
-                <a class="nav-link" target="_blank" href="<?php echo base_url('forgotpassword') ?>">Forgot password?</a>
-              </div>
-              <button type="submit" class="btn btn-outline-primary">Sign in</button>
-            </form>
+            </div>
+            <div class="form-group mb-3">
+              <label for="pwd">Password</label>
+              <input type="password" class="form-control <?php if (form_error('login_password')): ?>
+              <?php echo 'is-invalid' ?>
+            <?php endif ?>
+            <?php if ($this->session->flashdata('request')=='loginMember'): ?>
+              <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+                <?php echo 'is-invalid' ?>
+              <?php endif ?>
+            <?php endif ?>
+            " name="login_password" placeholder="Enter password" id="pwd" autocomplete="off">
+            <div class="invalid-feedback">
+              <?= form_error('login_password') ?>
+              <?php if ($this->session->flashdata('request')=='loginMember'): ?>
+                <?php if ($this->session->flashdata('error')=='wrongakun'): ?>
+                  <?php echo 'Wrong username/password' ?>
+                <?php endif ?>
+              <?php endif ?>
+            </div>
           </div>
-          <div class="tab-pane container fade" id="registrasi">
-            <?php if (get_cookie('lang_is')=='in'): ?>
-              <h3 class="text-center">Silakan Daftar</h3>
-            <?php else: ?>
-              <h3 class="text-center">Register</h3>
-            <?php endif ?>
-            <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
-              <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-              <?php echo method('_post') ?>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group mb-3">
-                    <label for="email">Full Name</label>
-                    <input type="text" class="form-control <?php if (form_error('nama')): ?>
-                      <?php echo 'is-invalid' ?>
-                    <?php endif ?>" placeholder="Enter full name" name="nama" id="email" autocomplete="off" autofocus="on" value="<?php echo set_value('nama') ?>">
-                    <div class="invalid-feedback"><?= form_error('nama') ?></div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="email">Telegram Account</label>
-                    <input type="text" class="form-control <?php if (form_error('telegram')): ?>
-                      <?php echo 'is-invalid' ?>
-                    <?php endif ?>" placeholder="Enter telegram account" name="telegram" id="email" autocomplete="off" value="<?php echo set_value('telegram') ?>">
-                    <div class="invalid-feedback"><?= form_error('telegram') ?></div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="pwd">Phone</label>
-                    <input type="number" class="form-control <?php if (form_error('phone')): ?>
-                      <?php echo 'is-invalid' ?>
-                    <?php endif ?>" placeholder="Enter number phone" name="phone" id="pwd" autocomplete="off" value="<?php echo set_value('phone') ?>">
-                    <div class="invalid-feedback"><?= form_error('phone') ?></div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="pwd">Wallet address</label>
-                    <input type="text" class="form-control <?php if (form_error('wallet')): ?>
-                      <?php echo 'is-invalid' ?>
-                    <?php endif ?>" placeholder="Enter wallet address" name="wallet" id="pwd" autocomplete="off" value="<?php echo set_value('wallet') ?>">
-                    <div class="invalid-feedback"><?= form_error('wallet') ?></div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group mb-3">
-                    <label for="pwd">Referral ID</label>
-                    <?php if ($referral !== ''): ?>
-                      <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo $referral?>" readonly>
-                    <?php else: ?>
-                      <input type="number" class="form-control <?php if (form_error('referral')): ?>
-                      <?php echo 'is-invalid' ?>
-                    <?php endif ?>" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo set_value('referral') ?>">
-                    <div class="invalid-feedback"><?= form_error('referral') ?></div>
-                    <?php endif ?>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control <?php if (form_error('email')): ?>
-                      <?php echo 'is-invalid' ?>
-                    <?php endif ?>" placeholder="Enter email" name="email" id="email" autocomplete="off" value="<?php echo set_value('email') ?>">
-                    <div class="invalid-feedback"><?= form_error('email') ?></div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="pwd">Password</label>
-                    <input type="password" class="form-control <?php if (form_error('password')): ?>
-                      <?php echo 'is-invalid' ?>
-                    <?php endif ?>" placeholder="Enter password" name="password" id="pwd" autocomplete="off" value="<?php echo set_value('password') ?>">
-                    <div class="invalid-feedback"><?= form_error('password') ?></div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="pwd">Repeat Password</label>
-                    <input type="password" class="form-control <?php if (form_error('repeat_password')): ?>
-                      <?php echo 'is-invalid' ?>
-                    <?php endif ?>" placeholder="Repeat password" name="repeat_password" id="pwd" autocomplete="off" value="<?php echo set_value('repeat_password') ?>">
-                    <div class="invalid-feedback"><?= form_error('repeat_password') ?></div>
-                  </div>
-                </div>
-              </div>
+          <div class="form-group mb-3">
+            <a class="nav-link" target="_blank" href="<?php echo base_url('forgotpassword') ?>">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn btn-outline-primary">Sign in</button>
+        </form>
+      </div>
+      <div class="tab-pane container fade  <?php if ($this->session->flashdata('request')=='registrasi'): ?>
+      <?php if ($this->session->flashdata('message')=='gagal'): ?>
+        <?php echo 'active show' ?>
+      <?php endif ?>
+      <?php endif ?>" id="registrasi">
+      <?php if (get_cookie('lang_is')=='in'): ?>
+        <h3 class="text-center">Silakan Daftar</h3>
+      <?php else: ?>
+        <h3 class="text-center">Register</h3>
+      <?php endif ?>
+      <form action="<?php echo base_url('login') ?>" method="POST" enctype="multipart/form-data">
+        <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+        <?php echo method('_post') ?>
+        <div class="row">
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="email">Full Name</label>
+              <input type="text" class="form-control <?php if (form_error('nama')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Enter full name" name="nama" id="email" autocomplete="off" autofocus="on" value="<?php echo set_value('nama') ?>">
+              <div class="invalid-feedback"><?= form_error('nama') ?></div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="email">Telegram Account</label>
+              <input type="text" class="form-control <?php if (form_error('telegram')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Enter telegram account" name="telegram" id="email" autocomplete="off" value="<?php echo set_value('telegram') ?>">
+              <div class="invalid-feedback"><?= form_error('telegram') ?></div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="pwd">Phone</label>
+              <input type="number" class="form-control <?php if (form_error('phone')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Enter number phone" name="phone" id="pwd" autocomplete="off" value="<?php echo set_value('phone') ?>">
+              <div class="invalid-feedback"><?= form_error('phone') ?></div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="pwd">Wallet address</label>
+              <input type="text" class="form-control <?php if (form_error('wallet')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Enter wallet address" name="wallet" id="pwd" autocomplete="off" value="<?php echo set_value('wallet') ?>">
+              <div class="invalid-feedback"><?= form_error('wallet') ?></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="pwd">Referral ID</label>
+              <?php if ($referral !== ''): ?>
+                <input type="number" class="form-control" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo $referral?>" readonly>
+              <?php else: ?>
+                <input type="number" class="form-control <?php if (form_error('referral')): ?>
+                <?php echo 'is-invalid' ?>
+                <?php endif ?>" placeholder="Enter referal id" name="referral" id="pwd" autocomplete="off" value="<?php echo set_value('referral') ?>">
+                <div class="invalid-feedback"><?= form_error('referral') ?></div>
+              <?php endif ?>
+            </div>
+            <div class="form-group mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control <?php if (form_error('email')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Enter email" name="email" id="email" autocomplete="off" value="<?php echo set_value('email') ?>">
+              <div class="invalid-feedback"><?= form_error('email') ?></div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="pwd">Password</label>
+              <input type="password" class="form-control <?php if (form_error('password')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Enter password" name="password" id="pwd" autocomplete="off" value="">
+              <div class="invalid-feedback"><?= form_error('password') ?></div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="pwd">Repeat Password</label>
+              <input type="password" class="form-control <?php if (form_error('repeat_password')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Repeat password" name="repeat_password" id="pwd" autocomplete="off" value="">
+              <div class="invalid-feedback"><?= form_error('repeat_password') ?></div>
+            </div>
+          </div>
+        </div>
                <!--  <div class="form-group mb-3">
                   <a class="nav-link" data-toggle="tab" href="#login">Already have an account?</a>
                 </div> -->
