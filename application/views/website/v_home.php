@@ -743,7 +743,11 @@
             <h3 class="text-center"><?php echo $contact['keterangan'] ?></h3>
           </div>
           <div class="col-lg-12 d-flex justify-content-center">
-            <a href="" target="_blank" class="custom-btn-outline-primary px-5 py-2">Bergabung</a>
+            <a <?php if ($this->session->userdata('authentication')=='verifikasi'): ?>
+            href="#verifikasi"
+          <?php else: ?>
+            href="#joinUs"
+            <?php endif ?> data-toggle="modal" class="custom-btn-outline-primary px-5 py-2"><?php if (get_cookie('lang_is')=='in'): ?>Bergabung <?php else: ?> Join With Us <?php endif ?></a>
           </div>
         </div>
       </div>
