@@ -17,7 +17,10 @@ class Order extends CI_Controller {
 			$this->M_Order->konfirmasi();
 		} elseif ($this->input->post('_get') !== NULL) {
 			$this->M_Order->delete();
+		} elseif ($this->input->post('_update') !== NULL) {
+			$this->M_Order->update_keterangan();
 		} else {
+			$data['keterangan']=$this->M_Order->keterangan();
 			$data['project']=$this->M_Project->index();
 			$data['order']=$this->M_Order->all_order();
 			$this->load->view('admin/partial/v_header');

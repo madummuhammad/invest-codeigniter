@@ -24,10 +24,9 @@ Content body start
                                 </thead>
                                 <tbody>
                                     <?php foreach ($project as $key => $value): ?>
-                                        <tr class="text-center">
+                                        <tr class="">
                                             <td><?php echo $value['id'].'-'.$value['nama_project'] ?></td>
                                             <td><span><?php echo $value['jml'] ?></span></td>
-                                            <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
                                             <td>
                                                 <button class="btn badge btn-outline-primary" data-toggle="modal" data-target="#buktitf<?php echo $value['id_order'] ?>">Bukti Transfer <?php if ($value['bukti_tf']!=='default.png'): ?>
                                                 <i class="fas fa-check"></i>
@@ -46,6 +45,13 @@ Content body start
                                                             <a type="button" class="close" data-dismiss="modal">&times;</a>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <p class="font-weight-bold">Note :</p>
+                                                                    <div><?php echo $keterangan['isi'] ?> </div>
+                                                                </div>
+                                                            </div>
                                                             <div class="row">
                                                               <div class="col">
                                                                 <div class="form-group text-center">
@@ -77,30 +83,28 @@ Content body start
                                         </div>
                                     </form>
                                 </div>
-                                                            <!-- <div class="img-table d-flex justify-content-center">
-                                                               <img class="img-thumbnail w-50" src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf'] ?> " alt="<?php echo $value['bukti_tf'] ?>">
-                                                           </div> -->
-                                                       </td>
-                                                       <td>
-                                                        <?php if ($value['applied']==1): ?>
-                                                            <span class="badge badge-success">Applied</span>
-                                                        <?php else: ?>
-                                                            <span class="badge badge-warning">Pending</span>
-                                                        <?php endif ?>
+                            </td>
+                            <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
+                            <td>
+                                <?php if ($value['applied']==1): ?>
+                                    <span class="badge badge-success">Applied</span>
+                                <?php else: ?>
+                                    <span class="badge badge-warning">Pending</span>
+                                <?php endif ?>
 
-                                                    </td>
-                                                    <!-- <span class="badge badge-warning">Pending</span> -->
-                                                </tr>
-                                            <?php endforeach ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </td>
+                            <!-- <span class="badge badge-warning">Pending</span> -->
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
         <!--**********************************
             Content body end
             ***********************************-->

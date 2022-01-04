@@ -23,6 +23,7 @@ class Project extends CI_Controller {
 	}
 	public function riwayat()
 	{
+		$data['keterangan']=$this->M_Order->keterangan();
 		$data['project']=$this->M_Order->index();
 		$this->load->view('admin/partial/v_header');
 		$this->load->view('admin/partial/v_topbar');
