@@ -32,7 +32,7 @@
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-primary" style="width:<?php echo $persen.'%';  ?>" role="progressbar" aria-valuenow="90" aria-valuemin="88" aria-valuemax="100"></div>
                                         </div>
-                                        <div class="stat-content mt-2">
+                                        <div class="stat-content mt-2 text-left">
                                             <?php echo $value['keterangan'] ?> 
                                         </div>
                                         <div class="stat-content mt-2">
