@@ -12,22 +12,10 @@ class M_Partner extends CI_Model {
 		$this->db->where('id',1);
 		$gambar_lama=$this->db->get('partner')->row_array();
 		$gambar=upload_gambar($path, $type, $file_name);
-
-		if ($gambar==NULL) {
-			$gambar='default.png';
-		}
-
-		$rules=[
-			rules_array('gambar','required'),
-		];
-
-		$validasi=$this->form_validation->set_rules(rules($rules));
-
 		$data=[
 			'gambar'=>$gambar
 		];
-
-		if ($validasi->run()==false) {
+		if ($gambar==NULL) {
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
@@ -40,6 +28,7 @@ class M_Partner extends CI_Model {
 				redirect(admin_url());
 			}
 		}
+
 	}
 
 	public function update()

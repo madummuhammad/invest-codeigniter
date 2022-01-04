@@ -16,6 +16,8 @@ class Website extends CI_Controller {
 		$data['portofolio']=$this->M_Website_Ind->portofolio();
 		$data['team']=$this->M_Website_Ind->team();
 		$data['partner']=$this->M_Website_Ind->partner();
+		$data['contact']=$this->M_Website_Ind->kontak();
+		$data['footer']=$this->M_Website_Ind->footer();
 		$this->load->view('admin/website/v_home',$data);
 	}
 	public function english()
@@ -26,6 +28,8 @@ class Website extends CI_Controller {
 		$data['portofolio']=$this->M_Website_Eng->portofolio();
 		$data['team']=$this->M_Website_Eng->team();
 		$data['partner']=$this->M_Website_Eng->partner();
+		$data['contact']=$this->M_Website_Eng->kontak();
+		$data['footer']=$this->M_Website_Eng->footer();
 		$this->load->view('admin/website/v_home',$data);
 	}
 }

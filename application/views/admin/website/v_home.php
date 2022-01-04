@@ -709,39 +709,75 @@
         <?php endforeach ?>
       </div>
       <div class="swiper-pagination"></div>
-    </div>
-  </div>
-  <?php foreach ($partner as $key => $value): ?>
-    <div class="modal fade" id="modalPartnerEdit<?php echo $value['id'] ?>">
-      <div class="modal-dialog modal-dialog-centered">
-       <form action="<?php echo admin_url('website/partner') ?>" method="POST" enctype="multipart/form-data">
-        <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-        <?php echo method('_patch') ?>
-        <?php echo bahasa($this->uri->segment(2)) ?>
-        <?php echo get_id($value['id']) ?>
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Edit Partner</h4>
-            <a type="button" class="close" data-dismiss="modal">&times;</a>
-          </div>
-          <div class="modal-body">
-            <div class="row d-flex justify-content-center">
-              <div class="col-6">
-               <div class="form-grop text-center">
-                <img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-                <input type="file" class="form-control mt-2" id="email" placeholder="" name="gambar">
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-outline-primary">Kirim</button>
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      <div class="row mt-2">
+        <div class="col-lg-12">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPartner"><i class="fas fa-plus"></i></button>
         </div>
       </div>
-    </form>
+    </div>
   </div>
+  <div class="modal fade" id="modalPartner">
+    <div class="modal-dialog modal-dialog-centered">
+     <form action="<?php echo admin_url('website/partner') ?>" method="POST" enctype="multipart/form-data">
+      <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+      <?php echo method('_post') ?>
+      <?php echo bahasa($this->uri->segment(2)) ?>
+      <?php echo get_id($value['id']) ?>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah Partner</h4>
+          <a type="button" class="close" data-dismiss="modal">&times;</a>
+        </div>
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center">
+            <div class="col-6">
+             <div class="form-grop text-center">
+              <img src="<?php echo base_url() ?>assets/img/clients/default.png" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+              <input type="file" class="form-control mt-2" id="email" placeholder="" name="gambar">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-primary">Kirim</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<?php foreach ($partner as $key => $value): ?>
+  <div class="modal fade" id="modalPartnerEdit<?php echo $value['id'] ?>">
+    <div class="modal-dialog modal-dialog-centered">
+     <form action="<?php echo admin_url('website/partner') ?>" method="POST" enctype="multipart/form-data">
+      <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+      <?php echo method('_patch') ?>
+      <?php echo bahasa($this->uri->segment(2)) ?>
+      <?php echo get_id($value['id']) ?>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Partner</h4>
+          <a type="button" class="close" data-dismiss="modal">&times;</a>
+        </div>
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center">
+            <div class="col-6">
+             <div class="form-grop text-center">
+              <img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+              <input type="file" class="form-control mt-2" id="email" placeholder="" name="gambar">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-primary">Kirim</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </form>
+</div>
 </div>
 <form action="<?php echo admin_url('website/partner') ?>" method="POST">
   <div class="modal fade" id="modalPartnerHapus<?php echo $value['id'] ?>">
@@ -771,99 +807,169 @@
 <section id="contact" class="contact">
 
   <div class="container" data-aos="fade-up">
-
+    <div class="col-lg-12">
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalKontak"><i class="fas fa-edit"></i></button>
+    </div>
     <header class="section-header">
-      <img src="<?php echo base_url('assets/img/logo.png') ?>" alt="">
-          <!-- <h2>Contact</h2>
-            <p>Contact Us</p> -->
-          </header>
+      <img src="<?php echo base_url('assets/img/').$contact['gambar'] ?>" alt="">
+    </header>
+    <div class="row gy-4">
+      <div class="col-lg-12">
+        <h2 class="text-center"><?php echo $contact['tagline'] ?></h2>
+        <h3 class="text-center"><?php echo $contact['keterangan'] ?></h3>
+      </div>
+      <div class="col-lg-12 d-flex justify-content-center">
+        <a href="" target="_blank" class="custom-btn-outline-primary px-5 py-2">Bergabung</a>
+      </div>
+    </div>
+  </div>
 
-          <?php if ($this->uri->segment(2)=='indonesia'): ?>
-            <div class="row gy-4">
-              <div class="col-lg-12">
-                <h2 class="text-center">Bergabung dengan Kami</h2>
-                <h3 class="text-center">Dapatkan kesuksesan bersama kami</h3>
-              </div>
-              <div class="col-lg-12 d-flex justify-content-center">
-                <a href="" class="custom-btn-outline-primary px-5 py-2">Bergabung</a>
-              </div>
+</section><!-- End Contact Section -->
+<div class="modal fade" id="modalKontak">
+  <div class="modal-dialog modal-dialog-centered">
+   <form action="<?php echo admin_url('website/kontak') ?>" method="POST">
+    <?php echo method('_patch') ?>
+    <?php echo bahasa($this->uri->segment('2')); ?>
+    <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Kontak</h4>
+        <a type="button" class="close" data-dismiss="modal">&times;</a>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group text-center">
+              <label for="" class="text-center p-2">Tagline</label>
+              <input type="text" class="form-control" id="email" placeholder="Masukan Tagline" name="tagline" value="<?php echo $contact['tagline'] ?>">
             </div>
-          <?php else: ?>
-            <div class="row gy-4">
-              <div class="col-lg-12">
-                <h2 class="text-center">Join the Community</h2>
-                <h3 class="text-center">Get all the latest news and updates from us!</h3>
-              </div>
-              <div class="col-lg-12 d-flex justify-content-center">
-                <a href="" class="custom-btn-outline-primary px-5 py-2">Join Us</a>
-              </div>
-            </div>
-          <?php endif ?>
-
-
-        </div>
-
-      </section><!-- End Contact Section -->
-
-    </main><!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-
-      <div class="footer-top">
-        <div class="container">
-          <div class="row gy-4 d-flex justify-content-center">
-            <div class="col-lg-5 col-md-12 footer-info d-flex flex-column align-items-center">
-              <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
-                <span>Atoze Capital</span>
-              </a>
-              <p class="text-center">Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-              <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
+          </div>
+          <div class="col">
+            <div class="form-group text-center">
+              <label for="" class="p-2">Keterangan</label>
+              <textarea name="keterangan" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Isi Konten"><?php echo $contact['keterangan'] ?></textarea>
             </div>
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-primary">Kirim</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</main><!-- End #main -->
 
-      <div class="container">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Atoze Capital</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-          <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="col-lg-12">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalFooter"><i class="fas fa-edit"></i></button>
+      </div>
+      <div class="row gy-4 d-flex justify-content-center">
+        <div class="col-lg-5 col-md-12 footer-info d-flex flex-column align-items-center">
+          <a class="logo d-flex align-items-center">
+            <img src="assets/img/logo.png" alt="">
+            <span><?php echo $footer['nama_perusahaan'] ?></span>
+          </a>
+          <p class="text-center"><?php echo $footer['keterangan'] ?></p>
+          <div class="social-links mt-3">
+            <a href="<?php echo $footer['twiter'] ?>" target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="<?php echo $footer['telegram'] ?>" target="_black" class="linkedin"><i class="bi bi-telegram"></i></a>
+          </div>
         </div>
       </div>
-    </footer><!-- End Footer -->
+    </div>
+  </div>
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Atoze Capital</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+      <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+    </div>
+  </div>
+  <div class="modal fade" id="modalFooter">
+    <div class="modal-dialog modal-dialog-centered">
+     <form action="<?php echo admin_url('website/footer') ?>" method="POST">
+      <?php echo method('_patch') ?>
+      <?php echo bahasa($this->uri->segment('2')); ?>
+      <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Footer</h4>
+          <a type="button" class="close" data-dismiss="modal">&times;</a>
+        </div>
+        <div class="modal-body">
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+          <div class="row">
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="text-center p-2">Nama Perusahaan</label>
+                <textarea name="nama_perusahaan" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Isi Konten"><?php echo $footer['nama_perusahaan'] ?></textarea>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="p-2">Keterangan</label>
+                <textarea name="keterangan" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Isi Konten"><?php echo $footer['keterangan'] ?></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="p-2">Link Telegram</label>
+                <textarea name="telegram" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Isi Konten"><?php echo $footer['telegram'] ?></textarea>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group text-center">
+                <label for="" class="p-2">Link Twitter</label>
+                <textarea name="twiter" id="" cols="30" rows="4" class="form-control" placeholder="Masukan Isi Konten"><?php echo $footer['twiter'] ?></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-primary">Kirim</button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</footer><!-- End Footer -->
 
-    <!-- Vendor JS Files -->
-    <script src="<?php echo base_url() ?>assets/vendor/purecounter/purecounter.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendor/aos/aos.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendor/php-email-form/validate.js"></script>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Template Main JS File -->
-    <script src="<?php echo base_url() ?>assets/js/main.js"></script>
+<!-- Vendor JS Files -->
+<script src="<?php echo base_url() ?>assets/vendor/purecounter/purecounter.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/aos/aos.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/php-email-form/validate.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/script.js"></script>
+<!-- Template Main JS File -->
+<script src="<?php echo base_url() ?>assets/js/main.js"></script>
 
-  </body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/script.js"></script>
 
-  </html>
+</body>
+
+</html>

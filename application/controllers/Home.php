@@ -20,6 +20,8 @@ class Home extends CI_Controller {
 		$data['portofolio']=$this->M_Home->portofolio();
 		$data['team']=$this->M_Home->team();
 		$data['partner']=$this->M_Home->partner();
+		$data['contact']=$this->M_Home->kontak();
+		$data['footer']=$this->M_Home->footer();
 		$this->load->view('website/v_home',$data);
 	}
 }
