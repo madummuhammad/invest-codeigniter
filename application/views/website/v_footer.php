@@ -56,7 +56,7 @@
         <?php endif ?>
       <?php endif ?>
 
-      <?php if ($this->session->flashdata('request')=='registrasi'): ?>
+      <?php if ($this->session->flashdata('request')=='registrasi' AND $this->session->flashdata('referral')==1): ?>
         <?php if ($this->session->flashdata('message')=='success'): ?>
           const Toast = Swal.mixin({
             toast: true,
@@ -94,7 +94,6 @@
           })
         <?php endif ?>
       <?php endif ?>
-
       <?php if ($this->session->flashdata('request')=='verifikasiMember'): ?>
         <?php if ($this->session->flashdata('message')=='success'): ?>
           const Toast = Swal.mixin({

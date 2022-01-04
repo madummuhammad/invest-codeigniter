@@ -150,7 +150,8 @@ class M_Auth extends CI_Model {
 		if ($validasi->run()==false) {
 			$message=[
 				'message'=>'gagal',
-				'request'=>'registrasi'
+				'request'=>'registrasi',
+				'referral'=>1
 			];
 
 			$this->session->set_flashdata($message);
