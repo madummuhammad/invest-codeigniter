@@ -17,6 +17,8 @@ class Dashboard extends CI_Controller {
 			$this->M_Order->konfirmasi();
 		} elseif ($this->input->post('_get') !== NULL) {
 			$this->M_Order->delete();
+		} elseif ($this->input->post('_update') !== NULL) {
+			$this->M_Order->cancel();
 		} else {
 			$data['project']=$this->M_Order->new_order();
 			$this->load->view('admin/partial/v_header');

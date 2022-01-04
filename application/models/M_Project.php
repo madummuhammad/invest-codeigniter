@@ -13,6 +13,7 @@ class M_Project extends CI_Model {
 	public function sum($id)
 	{
 		$this->db->select('SUM(jml) AS jml');
+		$this->db->where('cancelled',0);
 		$this->db->where('id_project',$id);
 		return $this->db->get('order')->row_array();
 	}

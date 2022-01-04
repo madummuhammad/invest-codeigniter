@@ -86,11 +86,23 @@ class M_Order extends CI_Model {
 		if ($applied == 0) {
 			$this->db->where('id_order',$id);
 			$this->db->update('order',['applied'=>1]);
-			// redirect('asdf');
 		} else {
 			$this->db->where('id_order',$id);
 			$this->db->update('order',['applied'=>0]);
-			// redirect('fdsaa');
+		}
+		
+	}
+
+	public function cancel()
+	{
+		$id=form('id');
+		$cancelled=form('cancelled');
+		if ($cancelled == 0) {
+			$this->db->where('id_order',$id);
+			$this->db->update('order',['cancelled'=>1]);
+		} else {
+			$this->db->where('id_order',$id);
+			$this->db->update('order',['cancelled'=>0]);
 		}
 		
 	}
@@ -115,6 +127,7 @@ class M_Order extends CI_Model {
 			'bukti_tf'=>'default.png',
 			'jml'=>$jml,
 			'applied'=>0,
+			'cancelled'=>0,
 			'timestamp'=>time()
 		];
 
