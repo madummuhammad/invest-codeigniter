@@ -70,6 +70,11 @@
 
         <script src="<?php echo base_url() ?>assets/admin/vendor/toastr/js/toastr.min.js"></script>
 
+        <!-- Summernote -->
+        <script src="<?php echo base_url() ?>assets/admin/vendor/summernote/js/summernote.min.js"></script>
+        <!-- Summernote init -->
+        <script src="<?php echo base_url() ?>assets/admin/js/plugins-init/summernote-init.js"></script>
+
 
     </body>
 

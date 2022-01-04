@@ -33,7 +33,10 @@
                                             <div class="progress-bar progress-bar-primary" style="width:<?php echo $persen.'%';  ?>" role="progressbar" aria-valuenow="90" aria-valuemin="88" aria-valuemax="100"></div>
                                         </div>
                                         <div class="stat-content mt-2">
-                                           <div class="btn-group">
+                                            <?php echo $value['keterangan'] ?> 
+                                        </div>
+                                        <div class="stat-content mt-2">
+                                         <div class="btn-group">
                                             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalProjectEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
                                             <div class="modal fade" id="modalProjectEdit<?php echo $value['id'] ?>">
                                               <div class="modal-dialog modal-dialog-centered">
@@ -46,7 +49,7 @@
                                                         <h4 class="modal-title">Edit Project</h4>
                                                         <a type="button" class="close" data-dismiss="modal">&times;</a>
                                                     </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body text-left">
                                                         <div class="row">
                                                           <div class="col">
                                                             <div class="form-group text-center">
@@ -108,6 +111,14 @@
                                                             <?php echo $this->session->flashdata('description') ?>
                                                         <?php endif ?>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card-body">
+                                                    <p class="text-left">Keterangan</p>
+                                                    <textarea class="summernote" name="edit_keterangan"><?php echo set_value('keterangan') ?><?php echo $value['keterangan'] ?> </textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -200,7 +211,7 @@
         <?php endif ?>
         <?php if ($this->session->flashdata('request')=='create'): ?>
             <?php echo 'is-invalid' ?>
-            <?php endif ?>" name="min" placeholder="" value="<?php echo set_value('min') ?><?php echo $this->session->flashdata('request')=='create' ?>">
+            <?php endif ?>" name="min" placeholder="" value="<?php echo set_value('min') ?><?php echo $this->session->flashdata('min') ?>">
             <div class="invalid-feedback">
                 <?= form_error('min') ?>
                 <?php if ($this->session->flashdata('request')=='create'): ?>
@@ -225,6 +236,14 @@
         </div>
     </div>
 </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card-body">
+            <p class="text-center">Keterangan</p>
+            <textarea class="summernote" name="keterangan"><?php echo set_value('keterangan') ?></textarea>
+        </div>
+    </div>
 </div>
 </div>
 <div class="modal-footer">

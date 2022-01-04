@@ -30,8 +30,10 @@
                                         <?php endif ?>
                                         
                                         <div class="progress">
-
                                             <div class="progress-bar progress-bar-primary" style="width:<?php echo $persen.'%';  ?>" role="progressbar" aria-valuenow="90" aria-valuemin="88" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="stat-content mt-2">
+                                            <?php echo $value['keterangan'] ?> 
                                         </div>
                                         <div class="stat-content mt-2">
                                             <?php if ($jml==$value['target']): ?>
@@ -57,13 +59,16 @@
                                                             <div class="form-group text-center">
                                                               <label for="" class="text-center p-2">Jumlah Beli ( Min: $<?php echo $value['min'] ?>, Max: $<?php echo $value['max'] ?>)</label>
                                                               <input type="number" class="form-control <?php if (form_error('jml')): ?>
-                                                                  <?php echo 'is-invalid' ?>
+                                                              <?php echo 'is-invalid' ?>
                                                               <?php endif ?>" id="email" placeholder="" name="jml" value="" min="<?php echo $value['min'] ?>" max="<?php echo $value['max'] ?>" autocomplete="off" value="<?php echo set_value('jml') ?>">
                                                               <div class="invalid-feedback">
                                                                 <?= form_error('jml') ?>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="stat-content mt-2">
+                                                    <?php echo $value['keterangan'] ?> 
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
