@@ -307,6 +307,7 @@
     <form action="<?php echo admin_url('website/layanan') ?>" method="POST">
       <div class="modal fade" id="modalLayananHapus<?php echo $value['id'] ?>">
         <div class="modal-dialog modal-dialog-centered">
+          <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
           <?php echo method('_get') ?>
           <?php echo get_id($value['id']) ?>
           <?php echo bahasa($this->uri->segment(2)) ?>
@@ -327,6 +328,7 @@
     <div class="modal fade" id="modalLayananEdit<?php echo $value['id'] ?>">
       <div class="modal-dialog modal-dialog-centered">
        <form action="<?php echo admin_url('website/layanan') ?>" method="POST">
+        <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
         <?php echo method('_patch') ?>
         <?php echo get_id($value['id']) ?>
         <div class="modal-content">
@@ -406,6 +408,7 @@
   <div class="modal fade" id="modalPortofolio">
     <div class="modal-dialog modal-dialog-centered">
      <form action="<?php echo admin_url('website/portofolio') ?>" method="POST" enctype="multipart/form-data">
+      <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
       <?php echo method('_post') ?>
       <?php echo bahasa($this->uri->segment(2)) ?>
       <div class="modal-content">
@@ -446,6 +449,7 @@
   <form action="<?php echo admin_url('website/portofolio') ?>" method="POST">
     <div class="modal fade" id="modalPortofolioHapus<?php echo $value['id'] ?>">
       <div class="modal-dialog modal-dialog-centered">
+        <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
         <?php echo method('_get') ?>
         <?php echo get_id($value['id']) ?>
         <?php echo bahasa($this->uri->segment(2)) ?>
@@ -465,6 +469,7 @@
   <div class="modal fade" id="modalPortofolioEdit<?php echo $value['id'] ?>">
     <div class="modal-dialog modal-dialog-centered">
      <form action="<?php echo admin_url('website/portofolio') ?>" method="POST" enctype="multipart/form-data">
+      <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
       <?php echo method('_patch') ?>
       <?php echo get_id($value['id']) ?>
       <?php echo bahasa($this->uri->segment(2)) ?>
@@ -556,6 +561,7 @@
     <div class="modal fade" id="modalTeam">
       <div class="modal-dialog modal-dialog-centered">
         <form action="<?php echo admin_url('website/team') ?>" method="POST" enctype="multipart/form-data">
+          <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
           <?php echo method('_post') ?>
           <?php echo bahasa($this->uri->segment(2)) ?>
           <div class="modal-content">
@@ -604,6 +610,7 @@
 
       <div class="modal fade" id="modalTeamHapus<?php echo $value['id'] ?>">
         <div class="modal-dialog modal-dialog-centered">
+          <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
           <?php echo method('_get')?>
           <?php echo get_id($value['id'])?>
           <?php echo bahasa($this->uri->segment(2))?>
@@ -624,6 +631,7 @@
     <div class="modal fade" id="modalTeamEdit<?php echo $value['id'] ?>">
       <div class="modal-dialog modal-dialog-centered">
        <form action="<?php echo admin_url('website/team') ?>" method="POST" enctype="multipart/form-data">
+        <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
         <?php echo method('_patch') ?>
         <?php echo bahasa($this->uri->segment(2)) ?>
         <?php echo get_id($value['id']) ?>
@@ -691,13 +699,71 @@
     <div class="clients-slider swiper">
       <div class="swiper-wrapper align-items-center">
         <?php foreach ($partner as $key => $value): ?>
-          <div class="swiper-slide"><img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" class="img-fluid" alt=""></div>
+          <div class="swiper-slide">
+            <img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" class="img-fluid" alt="">
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPartnerEdit<?php echo $value['id'] ?>"><i class="fas fa-edit"></i></button>
+              <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalPartnerHapus<?php echo $value['id'] ?>"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
         <?php endforeach ?>
       </div>
       <div class="swiper-pagination"></div>
     </div>
   </div>
+  <?php foreach ($partner as $key => $value): ?>
+    <div class="modal fade" id="modalPartnerEdit<?php echo $value['id'] ?>">
+      <div class="modal-dialog modal-dialog-centered">
+       <form action="<?php echo admin_url('website/partner') ?>" method="POST" enctype="multipart/form-data">
+        <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+        <?php echo method('_patch') ?>
+        <?php echo bahasa($this->uri->segment(2)) ?>
+        <?php echo get_id($value['id']) ?>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Partner</h4>
+            <a type="button" class="close" data-dismiss="modal">&times;</a>
+          </div>
+          <div class="modal-body">
+            <div class="row d-flex justify-content-center">
+              <div class="col-6">
+               <div class="form-grop text-center">
+                <img src="<?php echo base_url() ?>assets/img/clients/<?php echo $value['gambar'] ?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                <input type="file" class="form-control mt-2" id="email" placeholder="" name="gambar">
+              </div>
+            </div>
+          </div>
 
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-primary">Kirim</button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<form action="<?php echo admin_url('website/partner') ?>" method="POST">
+  <div class="modal fade" id="modalPartnerHapus<?php echo $value['id'] ?>">
+    <div class="modal-dialog modal-dialog-centered">
+      <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+      <?php echo method('_get') ?>
+      <?php echo get_id($value['id']) ?>
+      <?php echo bahasa($this->uri->segment(2)) ?>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Konfirmasi Hapus</h4>
+          <a type="button" class="close" data-dismiss="modal">&times;</a>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-primary">Konfirmasi</button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<?php endforeach ?>
 </section><!-- End Clients Section -->
 <!-- End Recent Blog Posts Section -->
 

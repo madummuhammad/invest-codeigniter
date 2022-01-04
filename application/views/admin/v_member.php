@@ -21,6 +21,8 @@ Content body start
                                         <th>Telegram</th>
                                         <th>Phone</th>
                                         <th>Wallet Address</th>
+                                        <th>Referral Id</th>
+                                        <th>My Referral</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -31,6 +33,8 @@ Content body start
                                             <td><?php echo $value['telegram'] ?></td>
                                             <td><?php echo $value['phone'] ?></td>
                                             <td><?php echo $value['wallet'] ?></td>
+                                            <td><?php echo $value['referral_id'] ?></td>
+                                            <td><?php echo $value['own_referral'] ?> </td>
                                         </tr>
                                     <?php endforeach ?>
                                 </tbody>
@@ -41,6 +45,8 @@ Content body start
                                         <th>Telegram</th>
                                         <th>Phone</th>
                                         <th>Wallet Address</th>
+                                        <th>Referral Id</th>
+                                        <th>My Referral</th>
                                     </tr>
                                 </tfoot>
                             </table>

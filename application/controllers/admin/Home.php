@@ -57,4 +57,17 @@ class Home extends CI_Controller {
 			redirect(admin_url());
 		}
 	}
+
+	public function partner()
+	{
+		if ($this->input->post('_patch') !== NULL) {
+			$this->M_Partner->update();
+		} elseif ($this->input->post('_post') !== NULL) {
+			$this->M_Partner->create();
+		} elseif ($this->input->post('_get') !== NULL) {
+			$this->M_Partner->delete();
+		} else {
+			redirect(admin_url());
+		}
+	}
 }
