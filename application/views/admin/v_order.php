@@ -36,6 +36,7 @@ Content body start
                                         <th>Waktu Pembelian</th>
                                         <th>Bukti Pembayaran</th>
                                         <th>Status</th>
+                                        <th>Batal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,6 +61,21 @@ Content body start
 
                                          </div>
                                      </td>
+                                     <td>
+                                         <div class="custom-control custom-switch">
+                                             <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
+                                             <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input batalkan" id="batalkan<?php echo $value['id_order'] ?>" value="<?php echo $value['cancelled'] ?>" <?php if ($value['cancelled']==0): ?>
+                                             <?php echo 'checked' ?>
+                                             <?php endif ?>>
+                                             <?php if ($value['cancelled']==0): ?>
+                                                 <label class="custom-control-label" for="batalkan<?php echo $value['id_order'] ?>">Batalkan</label>
+                                             <?php else: ?>
+                                                 <label class="custom-control-label" for="batalkan<?php echo $value['id_order'] ?>">Aktifkan</label>
+                                             <?php endif ?>
+
+
+                                         </div>
+                                     </td>
                                  </tr>
                              <?php endforeach ?>
                          </tbody>
@@ -71,6 +87,7 @@ Content body start
                                 <th>Waktu Pembelian</th>
                                 <th>Bukti Pembayaran</th>
                                 <th>Status</th>
+                                <th>Batal</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -106,7 +123,7 @@ Content body start
                             },
                             success: function(e){
                                 if (status==1) {
-                                    toastr.success("Mohon tunggu sebentar", "Konfirmasi berhasil dibatalkan", {
+                                    toastr.warning("Mohon tunggu sebentar", "Konfirmasi berhasil dibatalkan", {
                                         timeOut: 2000,
                                         closeButton: !0,
                                         debug: !1,
@@ -126,7 +143,7 @@ Content body start
                                     })
                                     setTimeout(function (){
                                         window.location.href="<?php echo base_url('adminsystem/order/').$this->uri->segment(3) ?>";
-                                    }, 500);
+                                    }, 1000);
                                 } else{
                                     toastr.success("Mohon tunggu sebentar", "Berhasil dikonfirmasi", {
                                         timeOut: 2000,
@@ -148,7 +165,74 @@ Content body start
                                     })
                                     setTimeout(function (){
                                         window.location.href="<?php echo base_url('adminsystem/order/').$this->uri->segment(3) ?>";
-                                    }, 500);
+                                    }, 1000);
+                                }
+                                
+                            }
+                        });
+                    }
+                }
+                var button_batal = $(".batalkan");
+                for (let i = 0; i < button_batal.length; i++) {
+                    button_batal[i].onclick = function () {
+                        var id=$(this).data('id');
+                        var cancelled = $(this).val();
+                        var method = '_update';
+                        var csrf=$('input[name=csrf_test_name]').val();
+                        $.ajax({
+                            url: "<?php echo base_url('adminsystem') ?>",
+                            type:'POST',
+                            data:{
+                                id:id,
+                                cancelled:cancelled,
+                                _update:method,
+                                csrf_test_name:csrf
+                            },
+                            success: function(e){
+                                if (cancelled==1) {
+                                    toastr.warning("Mohon tunggu sebentar", "Order berhasil dibatalkan", {
+                                        timeOut: 2000,
+                                        closeButton: !0,
+                                        debug: !1,
+                                        newestOnTop: !0,
+                                        progressBar: !0,
+                                        positionClass: "toast-top-center",
+                                        preventDuplicates: !0,
+                                        onclick: null,
+                                        showDuration: "300",
+                                        hideDuration: "1000",
+                                        extendedTimeOut: "1000",
+                                        showEasing: "swing",
+                                        hideEasing: "linear",
+                                        showMethod: "fadeIn",
+                                        hideMethod: "fadeOut",
+                                        tapToDismiss: !1
+                                    })
+                                    setTimeout(function (){
+                                        window.location.href="<?php echo base_url('adminsystem/order/').$this->uri->segment(3) ?>";
+                                    }, 1000);
+                                } else{
+                                    toastr.success("Mohon tunggu sebentar", "Order berhasil diaktifkan", {
+                                        timeOut: 2000,
+                                        closeButton: !0,
+                                        debug: !1,
+                                        newestOnTop: !0,
+                                        progressBar: !0,
+                                        positionClass: "toast-top-center",
+                                        preventDuplicates: !0,
+                                        onclick: null,
+                                        showDuration: "300",
+                                        hideDuration: "1000",
+                                        extendedTimeOut: "1000",
+                                        showEasing: "swing",
+                                        hideEasing: "linear",
+                                        showMethod: "fadeIn",
+                                        hideMethod: "fadeOut",
+                                        tapToDismiss: !1
+                                    })
+                                    setTimeout(function (){
+                                        window.location.href="<?php echo base_url('adminsystem/order/').$this->uri->segment(3) ?>";
+                                    }, 1000);
                                 }
                                 
                             }
