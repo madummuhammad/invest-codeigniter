@@ -21,6 +21,25 @@ class M_Order extends CI_Model {
 		return $this->db->get('order')->result_array();
 	}
 
+	public function keterangan()
+	{
+		$this->db->where('id',1);
+		return $this->db->get('keterangan')->row_array();
+	}
+
+	public function update_keterangan()
+	{
+		$keterangan=form('keterangan');
+
+		$data=[
+			'isi'=>$keterangan
+		];
+
+		$this->db->where('id',1);
+		$this->db->update('keterangan',$data);
+		redirect(admin_url('order'));
+	}
+
 	public function all_order()
 	{
 		$this->db->join('users','order.id_member=users.id');
