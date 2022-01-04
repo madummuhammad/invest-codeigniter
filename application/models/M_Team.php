@@ -37,8 +37,7 @@ class M_Team extends CI_Model {
 		];
 
 		if ($validasi->run()==false) {
-			echo "gagal";
-			// redirect('website/'.$bahasa);
+			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
 				$this->db->insert('team_ind',$data);

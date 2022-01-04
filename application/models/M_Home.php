@@ -63,6 +63,32 @@ class M_Home extends CI_Model {
 		return $this->db->get('partner')->result_array();
 	}
 
+	public function kontak()
+	{
+		if (get_cookie('lang_is')=='in') {
+			$this->db->where('id',1);
+			$data=$this->db->get('contact_ind')->row_array();
+			return $data;
+		} else {
+			$this->db->where('id',1);
+			$data=$this->db->get('contact_eng')->row_array();
+			return $data;
+		}
+	}
+
+	public function footer()
+	{
+		if (get_cookie('lang_is')=='in') {
+			$this->db->where('id',1);
+			$data=$this->db->get('footer_ind')->row_array();
+			return $data;
+		} else {
+			$this->db->where('id',1);
+			$data=$this->db->get('footer_eng')->row_array();
+			return $data;
+		}
+	}
+
 	public function edit_index()
 	{
 		$path='./assets/img/main/';

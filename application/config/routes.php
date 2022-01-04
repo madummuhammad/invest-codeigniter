@@ -64,6 +64,9 @@ $route['adminsystem/website/about']='admin/home/about';
 $route['adminsystem/website/layanan']='admin/home/layanan';
 $route['adminsystem/website/portofolio']='admin/home/portofolio';
 $route['adminsystem/website/team']='admin/home/team';
+$route['adminsystem/website/partner']='admin/home/partner';
+$route['adminsystem/website/kontak']='admin/home/kontak';
+$route['adminsystem/website/footer']='admin/home/footer';
 
 $route['adminsystem/project']='admin/project/index';
 $route['adminsystem/member']='admin/member/index';

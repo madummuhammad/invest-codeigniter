@@ -734,75 +734,38 @@
     <section id="contact" class="contact">
 
       <div class="container" data-aos="fade-up">
-
         <header class="section-header">
-          <img src="<?php echo base_url('assets/img/logo.png') ?>" alt="">
-          <!-- <h2>Contact</h2>
-            <p>Contact Us</p> -->
-          </header>
-
-          <?php if (get_cookie('lang_is')=='in'): ?>
-            <div class="row gy-4">
-              <div class="col-lg-12">
-                <h2 class="text-center">Bergabung dengan Kami</h2>
-                <h3 class="text-center">Dapatkan kesuksesan bersama kami</h3>
-              </div>
-              <div class="col-lg-12 d-flex justify-content-center">
-                <a href="" class="custom-btn-outline-primary px-5 py-2">Bergabung</a>
-              </div>
-            </div>
-          <?php else: ?>
-            <div class="row gy-4">
-              <div class="col-lg-12">
-                <h2 class="text-center">Join the Community</h2>
-                <h3 class="text-center">Get all the latest news and updates from us!</h3>
-              </div>
-              <div class="col-lg-12 d-flex justify-content-center">
-                <a href="#joinUs" data-toggle="modal" class="custom-btn-outline-primary px-5 py-2">Join Us</a>
-              </div>
-            </div>
-          <?php endif ?>
-
-
-        </div>
-
-      </section><!-- End Contact Section -->
-
-    </main><!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-
-    <!-- <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-12 text-center">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+          <img src="<?php echo base_url('assets/img/').$contact['gambar'] ?>" alt="">
+        </header>
+        <div class="row gy-4">
+          <div class="col-lg-12">
+            <h2 class="text-center"><?php echo $contact['tagline'] ?></h2>
+            <h3 class="text-center"><?php echo $contact['keterangan'] ?></h3>
           </div>
-          <div class="col-lg-6">
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
+          <div class="col-lg-12 d-flex justify-content-center">
+            <a href="" target="_blank" class="custom-btn-outline-primary px-5 py-2">Bergabung</a>
           </div>
         </div>
       </div>
-    </div> -->
 
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row gy-4 d-flex justify-content-center">
           <div class="col-lg-5 col-md-12 footer-info d-flex flex-column align-items-center">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a class="logo d-flex align-items-center">
               <img src="assets/img/logo.png" alt="">
-              <span>Atoze Capital</span>
+              <span><?php echo $footer['nama_perusahaan'] ?></span>
             </a>
-            <p class="text-center">Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <p class="text-center"><?php echo $footer['keterangan'] ?></p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="<?php echo $footer['twiter'] ?>" target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="<?php echo $footer['telegram'] ?>" target="_black" class="linkedin"><i class="bi bi-telegram"></i></a>
             </div>
           </div>
         </div>

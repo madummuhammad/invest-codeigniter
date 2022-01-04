@@ -35,6 +35,7 @@ Content body start
                                         <th>Jumlah</th>
                                         <th>Waktu Pembelian</th>
                                         <th>Bukti Pembayaran</th>
+                                        <th>Link</th>
                                         <th>Status</th>
                                         <th>Batal</th>
                                     </tr>
@@ -51,6 +52,7 @@ Content body start
                                                    <img class="img-thumbnail" src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf'] ?> " alt="<?php echo $value['bukti_tf'] ?>">
                                                </div>
                                            </td>
+                                           <td><?php echo $value['link'] ?></td>
                                            <td>
                                             <div class="custom-control custom-switch">
                                              <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
@@ -86,6 +88,7 @@ Content body start
                                 <th>Jumlah</th>
                                 <th>Waktu Pembelian</th>
                                 <th>Bukti Pembayaran</th>
+                                <th>Link</th>
                                 <th>Status</th>
                                 <th>Batal</th>
                             </tr>
