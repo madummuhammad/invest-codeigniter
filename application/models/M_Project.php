@@ -29,6 +29,7 @@ class M_Project extends CI_Model {
 		$min=form('min');
 		$max=form('max');
 		$target=form('target');
+		$keterangan=form('keterangan');
 		$rules=[
 			rules_array('nama_project','required'),
 			rules_array('min','required'),
@@ -42,7 +43,8 @@ class M_Project extends CI_Model {
 			'nama_project'=>$nama_project,
 			'min'=>$min,
 			'max'=>$max,
-			'target'=>$target
+			'target'=>$target,
+			'keterangan'=>$keterangan
 		];
 		if ($validasi->run()==false) {
 			$message=[
@@ -95,6 +97,7 @@ class M_Project extends CI_Model {
 		$min=form('edit_min');
 		$max=form('edit_max');
 		$target=form('edit_target');
+		$keterangan=form('edit_keterangan');
 		$rules=[
 			rules_array('edit_nama_project','required'),
 			rules_array('edit_min','required'),
@@ -108,7 +111,8 @@ class M_Project extends CI_Model {
 			'nama_project'=>$nama_project,
 			'min'=>$min,
 			'max'=>$max,
-			'target'=>$target
+			'target'=>$target,
+			'keterangan'=>$keterangan
 		];
 		if ($validasi->run()==false) {
 			$message=[
