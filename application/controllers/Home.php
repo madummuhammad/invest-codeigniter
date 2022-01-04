@@ -5,6 +5,14 @@ class Home extends CI_Controller {
 
 	public function index($referral='')
 	{
+		if ($referral !== '') {
+			$message=[
+				'message'=>'gagal',
+				'request'=>'registrasi'
+			];
+
+			$this->session->set_flashdata($message);
+		}
 		$data['referral']=$referral;
 		$data['home']=$this->M_Home->index();
 		$data['about']=$this->M_Home->about();
