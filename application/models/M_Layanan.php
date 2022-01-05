@@ -24,15 +24,33 @@ class M_Layanan extends CI_Model {
 			'content'=>$content,
 		];
 		if ($validasi->run()==false) {
+			$toast=[
+				'request'=>'layanan',
+				'icon'=>'error',
+				'title'=>'Tambah Section Layanan Gagal'
+			];
+			$this->session->set_flashdata($toast);
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
 				$this->db->insert('service_ind',$data);
 				$this->db->insert('service_eng',$data);
+				$toast=[
+					'request'=>'layanan',
+					'icon'=>'success',
+					'title'=>'Tambah Section Layanan Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/indonesia');
 			} elseif ($bahasa=='english') {
 				$this->db->insert('service_eng',$data);
 				$this->db->insert('service_ind',$data);
+				$toast=[
+					'request'=>'layanan',
+					'icon'=>'success',
+					'title'=>'Tambah Section Layanan Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/english');
 			} else{
 				redirect(admin_url());
@@ -62,6 +80,12 @@ class M_Layanan extends CI_Model {
 			'content'=>$content,
 		];
 		if ($validasi->run()==false) {
+			$toast=[
+				'request'=>'layanan',
+				'icon'=>'error',
+				'title'=>'Edit Section Layanan Gagal'
+			];
+			$this->session->set_flashdata($toast);
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
@@ -69,12 +93,24 @@ class M_Layanan extends CI_Model {
 				$this->db->update('service_ind',$data);
 				$this->db->where('id',$id);
 				$this->db->update('service_eng',['icon'=>$icon]);
+				$toast=[
+					'request'=>'layanan',
+					'icon'=>'success',
+					'title'=>'Edit Section Layanan Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/indonesia');
 			} elseif ($bahasa=='english') {
 				$this->db->where('id',$id);
 				$this->db->update('service_eng',$data);
 				$this->db->where('id',$id);
 				$this->db->update('service_ind',['icon'=>$icon]);
+				$toast=[
+					'request'=>'layanan',
+					'icon'=>'success',
+					'title'=>'Edit Section Layanan Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/english');
 			} else{
 				redirect(admin_url());
@@ -90,7 +126,12 @@ class M_Layanan extends CI_Model {
 		$this->db->delete('service_eng');
 		$this->db->where('id',$id);
 		$this->db->delete('service_ind');
-
+		$toast=[
+			'request'=>'layanan',
+			'icon'=>'warning',
+			'title'=>'Hapus Section Layanan Berhasil'
+		];
+		$this->session->set_flashdata($toast);
 		redirect(base_url('website/'.$bahasa));
 	}
 }

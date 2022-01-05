@@ -37,15 +37,33 @@ class M_Team extends CI_Model {
 		];
 
 		if ($validasi->run()==false) {
+			$toast=[
+				'request'=>'team',
+				'icon'=>'error',
+				'title'=>'Tambah Section Team Gagal'
+			];
+			$this->session->set_flashdata($toast);
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
 				$this->db->insert('team_ind',$data);
 				$this->db->insert('team_eng',$data);
+				$toast=[
+					'request'=>'team',
+					'icon'=>'success',
+					'title'=>'Tambah Section Team Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/indonesia');
 			} elseif ($bahasa=='english') {
 				$this->db->insert('team_eng',$data);
 				$this->db->insert('team_ind',$data);
+				$toast=[
+					'request'=>'team',
+					'icon'=>'success',
+					'title'=>'Tambah Section Team Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/english');
 			} else{
 				redirect(admin_url());
@@ -92,6 +110,12 @@ class M_Team extends CI_Model {
 		}
 
 		if ($validasi->run()==false) {
+			$toast=[
+				'request'=>'team',
+				'icon'=>'error',
+				'title'=>'Edit Section Team Gagal'
+			];
+			$this->session->set_flashdata($toast);
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
@@ -104,6 +128,12 @@ class M_Team extends CI_Model {
 					$this->db->where('id',$id);
 					$this->db->update('team_eng',['gambar'=>$gambar]);
 				}
+				$toast=[
+					'request'=>'team',
+					'icon'=>'success',
+					'title'=>'Edit Section Team Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/indonesia');
 			} elseif ($bahasa=='english') {
 				$this->db->where('id',$id);
@@ -115,6 +145,12 @@ class M_Team extends CI_Model {
 					$this->db->where('id',$id);
 					$this->db->update('team_ind',['gambar'=>$gambar]);
 				}
+				$toast=[
+					'request'=>'team',
+					'icon'=>'success',
+					'title'=>'Edit Section Team Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/english');
 			} else{
 				redirect(admin_url());
@@ -139,6 +175,12 @@ class M_Team extends CI_Model {
 		if ($gambar_lama['gambar'] !== 'default.png') {
 			unlink(FCPATH . 'assets/img/team/'.$gambar_lama['gambar']);
 		}
+		$toast=[
+			'request'=>'team',
+			'icon'=>'warning',
+			'title'=>'Hapus Section Team Berhasil'
+		];
+		$this->session->set_flashdata($toast);
 		redirect(base_url('website/'.$bahasa));
 	}
 }
