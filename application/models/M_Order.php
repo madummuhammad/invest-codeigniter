@@ -63,10 +63,10 @@ class M_Order extends CI_Model {
 
 		$output = fopen("php://output", "w"); 
 
-		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet','referral_id','my_referral'));
+		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet','referral_id','my_referral','jumlah pembelian','confirmed','cancelled'));
 
 		$id=$this->uri->segment(4);
-		$this->db->select('id_member,name,telegram,phone,wallet,referral_id,own_referral');
+		$this->db->select('id_member,name,email,telegram,phone,wallet,referral_id,own_referral,jml,applied,cancelled');
 		$this->db->join('users','order.id_member=users.id');
 		$this->db->join('project','order.id_project=project.id');
 		$this->db->where('id_project',$id);
@@ -74,6 +74,17 @@ class M_Order extends CI_Model {
 		$data=$this->db->get('order')->result_array();
 
 		foreach ($data as $key => $value) {
+			if ($value['applied']==0) {
+				$value['applied']="not confirm";
+			} else {
+				$value['applied']="confirmed";
+			}
+
+			if ($value['cancelled']==0) {
+				$value['cancelled']='active';
+			} else {
+				$value['cancelled']='cancel';
+			}
 			fputcsv($output, $value);
 		}
 		fclose($output);
