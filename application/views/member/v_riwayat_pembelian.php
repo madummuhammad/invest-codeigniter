@@ -17,8 +17,8 @@ Content body start
                                     <tr class="text-center">
                                         <th>Nama Project</th>
                                         <th>Jumlah</th>
-                                        <th>Waktu Pembelian</th>
                                         <th>Bukti Transfer</th>
+                                        <th>Waktu Pembelian</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
