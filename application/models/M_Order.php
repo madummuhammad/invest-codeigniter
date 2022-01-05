@@ -113,6 +113,10 @@ class M_Order extends CI_Model {
 		$id_project=form('project');
 		$jml=form('jml');
 		$applied=0;
+		$sum=$this->M_Project->sum($id_project)['jml'];
+		$this->db->where('id',$id_project);
+		$alokasi=$this->db->get('project')->row_array();
+		$sisa_jumlah_alokasi=$alokasi['target']-$sum;
 
 		$rules=[
 			rules_array('jml','required'),
@@ -143,13 +147,23 @@ class M_Order extends CI_Model {
 			$this->load->view('admin/partial/v_sidebar');
 			$this->load->view('member/v_dashboard',$data);
 		} else {
-			$this->db->insert('order',$data);
-			$message=[
-				'message'=>'success',
-				'request'=>'order'
-			];
-			$this->session->set_flashdata($message);
-			redirect(member_url());
+			if ($sisa_jumlah_alokasi<$jml) {
+				$message=[
+					'message'=>'gagal',
+					'request'=>'order',
+					'sisa'=>'Alokasi hanya tersisa $'.$sisa_jumlah_alokasi
+				];
+				$this->session->set_flashdata($message);
+				redirect(member_url());
+			} else {
+				$this->db->insert('order',$data);
+				$message=[
+					'message'=>'success',
+					'request'=>'order'
+				];
+				$this->session->set_flashdata($message);
+				redirect(member_url());
+			}
 		}
 	}
 
