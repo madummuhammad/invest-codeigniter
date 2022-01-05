@@ -28,7 +28,7 @@ Content body start
                                         <tr>
                                             <td>
                                                 <div class="round-img">
-                                                    <a href=""><img width="35" src="<?php echo base_url('assets/img/member').$value['gambar'] ?>" alt="<?php echo $value['gambar'] ?>"></a>
+                                                    <a href=""><img width="75" src="<?php echo base_url('assets/img/member/').$value['gambar'] ?>" alt="<?php echo $value['gambar'] ?>"></a>
                                                 </div>
                                             </td>
                                             <td><?php echo $value['name'] ?> </td>

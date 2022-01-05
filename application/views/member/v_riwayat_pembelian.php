@@ -86,14 +86,16 @@ Content body start
                             </td>
                             <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
                             <td>
-                                <?php if ($value['applied']==1): ?>
+                                <?php if ($value['applied']==1 AND $value['cancelled']==0): ?>
                                     <span class="badge badge-success">Applied</span>
-                                <?php else: ?>
+                                <?php endif ?>           
+                                <?php if ($value['applied']==0 AND $value['cancelled']==0): ?>
                                     <span class="badge badge-warning">Pending</span>
                                 <?php endif ?>
-
+                                <?php if ($value['cancelled']==1): ?>
+                                    <span class="badge badge-danger">Cancelled</span>
+                                <?php endif ?>
                             </td>
-                            <!-- <span class="badge badge-warning">Pending</span> -->
                         </tr>
                     <?php endforeach ?>
                 </tbody>
