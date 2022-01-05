@@ -123,6 +123,12 @@ class M_Home extends CI_Model {
 		}
 
 		if ($validasi->run()==false) {
+			$toast=[
+				'request'=>'banner',
+				'icon'=>'error',
+				'title'=>'Edit Banner Gagal'
+			];
+			$this->session->set_flashdata($toast);
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
@@ -131,6 +137,12 @@ class M_Home extends CI_Model {
 					unlink(FCPATH . 'assets/img/main/'.$gambar_lama['gambar']);
 					$this->db->update('home_eng',['gambar'=>$gambar]);
 				}
+				$toast=[
+					'request'=>'banner',
+					'icon'=>'success',
+					'title'=>'Edit Banner Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/indonesia');
 			} elseif ($bahasa=='english') {
 				$this->db->update('home_eng',$data);
@@ -138,6 +150,12 @@ class M_Home extends CI_Model {
 					unlink(FCPATH . 'assets/img/main/'.$gambar_lama['gambar']);
 					$this->db->update('home_ind',['gambar'=>$gambar]);
 				}
+				$toast=[
+					'request'=>'banner',
+					'icon'=>'success',
+					'title'=>'Edit Banner Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/english');
 			} else{
 				redirect(admin_url());
@@ -183,6 +201,12 @@ class M_Home extends CI_Model {
 		}
 
 		if ($validasi->run()==false) {
+			$toast=[
+				'request'=>'about',
+				'icon'=>'error',
+				'title'=>'Edit Section About Gagal'
+			];
+			$this->session->set_flashdata($toast);
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
@@ -191,6 +215,12 @@ class M_Home extends CI_Model {
 					unlink(FCPATH . 'assets/img/about/'.$gambar_lama['gambar']);
 					$this->db->update('about_eng',['gambar'=>$gambar]);
 				}
+				$toast=[
+					'request'=>'about',
+					'icon'=>'success',
+					'title'=>'Edit Section About Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/indonesia');
 			} elseif ($bahasa=='english') {
 				$this->db->update('about_eng',$data);
@@ -198,6 +228,12 @@ class M_Home extends CI_Model {
 					unlink(FCPATH . 'assets/img/about/'.$gambar_lama['gambar']);
 					$this->db->update('about_ind',['gambar'=>$gambar]);
 				}
+				$toast=[
+					'request'=>'about',
+					'icon'=>'success',
+					'title'=>'Edit Section About Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/english');
 			} else{
 				redirect(admin_url());

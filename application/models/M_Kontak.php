@@ -56,15 +56,33 @@ class M_Kontak extends CI_Model {
 		];
 
 		if ($validasi->run()==false) {
+			$toast=[
+				'request'=>'kontak',
+				'icon'=>'error',
+				'title'=>'Edit Section Kontak Gagal'
+			];
+			$this->session->set_flashdata($toast);
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
 				$this->db->where('id',1);
 				$this->db->update('contact_ind',$data);
+				$toast=[
+					'request'=>'kontak',
+					'icon'=>'success',
+					'title'=>'Edit Section Kontak Berhasil'
+				]; 
+				$this->session->set_flashdata($toast);
 				redirect('website/indonesia');
 			} elseif ($bahasa=='english') {
 				$this->db->where('id',1);
 				$this->db->update('contact_eng',$data);
+				$toast=[
+					'request'=>'kontak',
+					'icon'=>'success',
+					'title'=>'Edit Section Kontak Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/english');
 			} else{
 				redirect(admin_url());
@@ -80,7 +98,11 @@ class M_Kontak extends CI_Model {
 		$this->db->delete('service_eng');
 		$this->db->where('id',$id);
 		$this->db->delete('service_ind');
-
+		$toast=[
+			'request'=>'kontak',
+			'icon'=>'warning',
+			'title'=>'Edit Section Kontak Gagal'
+		];
 		redirect(base_url('website/'.$bahasa));
 	}
 }

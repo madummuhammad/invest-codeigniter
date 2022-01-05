@@ -29,6 +29,7 @@
   <link href="<?php echo base_url() ?>assets/css/custom.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/vendor/toastr/css/toastr.min.css">
 </head>
 
 <body>
@@ -87,6 +88,7 @@
           <div class="modal fade" id="myModal">
             <div class="modal-dialog modal-dialog-centered">
               <form action="<?php echo base_url('adminsystem/website') ?>" method="POST" enctype="multipart/form-data">
+                <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
                 <div class="modal-content">
                   <div class="modal-header">
                     <h4 class="modal-title">Home</h4>
@@ -150,6 +152,7 @@
           <div class="modal fade" id="modalAbout">
             <div class="modal-dialog modal-dialog-centered">
              <form action="<?php echo admin_url('website/about') ?>" method="POST" enctype="multipart/form-data">
+              <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
               <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title">About</h4>
@@ -966,10 +969,33 @@
 <script src="<?php echo base_url() ?>assets/js/main.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+  $(document).ready(function(){
+    <?php if ($this->session->flashdata('request')): ?>
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
 
+      Toast.fire({
+        icon: '<?php echo $this->session->flashdata('icon') ?>',
+        title: '<?php echo $this->session->flashdata('title') ?>',
+      })
+    <?php endif ?>
+  })
+</script>
 </body>
 
 </html>

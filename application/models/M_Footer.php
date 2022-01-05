@@ -68,6 +68,12 @@ class M_Footer extends CI_Model {
 		];
 		
 		if ($validasi->run()==false) {
+			$toast=[
+				'request'=>'footer',
+				'icon'=>'error',
+				'title'=>'Edit Section Footer Berhasil'
+			];
+			$this->session->set_flashdata($toast);
 			redirect('website/'.$bahasa);
 		} else {
 			if ($bahasa=='indonesia') {
@@ -76,7 +82,12 @@ class M_Footer extends CI_Model {
 
 				$this->db->where('id',1);
 				$this->db->update('footer_eng',$sosmed);
-
+				$toast=[
+					'request'=>'footer',
+					'icon'=>'success',
+					'title'=>'Edit Section Footer Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/indonesia');
 			} elseif ($bahasa=='english') {
 				$this->db->where('id',1);
@@ -84,7 +95,12 @@ class M_Footer extends CI_Model {
 
 				$this->db->where('id',1);
 				$this->db->update('footer_ind',$sosmed);
-
+				$toast=[
+					'request'=>'footer',
+					'icon'=>'success',
+					'title'=>'Edit Section Footer Berhasil'
+				];
+				$this->session->set_flashdata($toast);
 				redirect('website/english');
 			} else{
 				redirect(admin_url());
