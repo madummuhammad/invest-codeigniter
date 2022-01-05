@@ -181,6 +181,7 @@ class M_Order extends CI_Model {
 				'message'=>'gagal'
 			];
 			$this->session->set_flashdata($message);
+			$data['keterangan']=$this->M_Order->keterangan();
 			$data['project']=$this->M_Order->index();
 			$this->load->view('admin/partial/v_header');
 			$this->load->view('admin/partial/v_topbar');
