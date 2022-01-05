@@ -13,7 +13,7 @@ class Profile extends CI_Controller {
 		if ($this->input->post('_patch') !== NULL) {
 			$this->M_Profile->update();
 		} elseif ($this->input->post('_post') !== NULL) {
-			$this->M_Profile->create();
+			$this->M_Profile->ganti_sandi();
 		} elseif ($this->input->post('_get') !== NULL) {
 			$this->M_Profile->delete();
 		} else {

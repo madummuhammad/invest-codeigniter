@@ -13,7 +13,7 @@ class Profile extends CI_Controller {
 		if ($this->input->post('_patch') !== NULL) {
 			$this->M_Profile->update();
 		} elseif ($this->input->post('_post') !== NULL) {
-			$this->M_Profile->create();
+			$this->M_Profile->ganti_sandi();
 		} elseif ($this->input->post('_get') !== NULL) {
 			$this->M_Profile->delete();
 		} else {
@@ -22,7 +22,6 @@ class Profile extends CI_Controller {
 			$this->load->view('admin/partial/v_topbar');
 			$this->load->view('admin/partial/v_sidebar');
 			$this->load->view('admin/v_profile',$data);
-			$this->load->view('admin/partial/v_footer');
 		}
 	}
 }
