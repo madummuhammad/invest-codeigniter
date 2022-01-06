@@ -6,7 +6,6 @@ Content body start
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <p class="font-weight-bold">Note :</p>
                 <div><?php echo $keterangan['isi'] ?> </div>
             </div>
         </div>
