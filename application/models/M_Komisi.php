@@ -14,6 +14,17 @@ class M_Komisi extends CI_Model {
 		return $this->db->get('order')->result_array();
 	}
 
+	public function show()
+	{
+		$this->db->join('users','order.id_member=users.id');
+		$this->db->join('project','order.id_project=project.id');
+		$this->db->where('applied',1);
+		$this->db->where('cancelled',0);
+		$this->db->where('referral_id',$this->session->userdata('own_referral'));
+		$this->db->where('role_id',2);
+		return $this->db->get('order')->result_array();
+	}
+
 	public function upline($id,$referral)
 	{
 		$this->db->where('role_id',2);

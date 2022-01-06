@@ -86,4 +86,5 @@ $route['member']='member/member_area/index';
 $route['member/profile']='member/profile/index';
 $route['member/buy']='project/index';
 $route['member/riwayat']='project/riwayat';
+$route['member/komisi']='komisi/index';
 $route['referral/(:any)']='home/index/$1';
