@@ -63,7 +63,7 @@ class M_Order extends CI_Model {
 
 		$output = fopen("php://output", "w"); 
 
-		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet metamask/trustwallet','Wallet binance/tokocrypto','referral_id','my_referral','jumlah pembelian','link','confirmed','cancelled'));
+		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet metamask/trustwallet','Wallet binance/tokocrypto','referral_id','my_referral','jumlah Transfer','Buy','fee','link','confirmed','cancelled'));
 
 		$id=$this->uri->segment(4);
 		$this->db->select('id_member,name,email,telegram,phone,wallet,walletdua,referral_id,own_referral,jml,link,applied,cancelled');
@@ -85,7 +85,8 @@ class M_Order extends CI_Model {
 			} else {
 				$value['cancelled']='cancel';
 			}
-			fputcsv($output, $value);
+			$datas=[$value['id_member'],$value['name'],$value['email'],$value['telegram'],$value['phone'],$value['wallet'],$value['walletdua'],$value['referral_id'],$value['own_referral'],$value['jml']+(10/100*$value['jml']),$value['jml'],10/100*$value['jml'],$value['link'],$value['applied'],$value['cancelled']];
+			fputcsv($output, $datas);
 		}
 		fclose($output);
 	}
