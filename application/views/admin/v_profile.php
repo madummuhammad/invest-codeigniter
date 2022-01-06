@@ -92,8 +92,12 @@
                                                                     <input type="text" placeholder="" class="form-control" name="telegram" value="<?= $profile['telegram'] ?>">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Wallet Address</label>
+                                                                    <label>Wallet address (metamask/trustwallet)</label>
                                                                     <input type="text" placeholder="" class="form-control" name="wallet" value="<?= $profile['wallet'] ?>">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Wallet address (binance/tokocrypto)</label>
+                                                                    <input type="text" placeholder="" class="form-control" name="walletdua" value="<?= $profile['walletdua'] ?>">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Phone</label>

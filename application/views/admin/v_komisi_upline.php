@@ -31,28 +31,31 @@ Content body start
 						<div class="table-responsive">
 							<table id="example" class="display" style="min-width: 845px">
 								<thead>
-									<tr>
+									<tr class="text-center">
 										<th>User Upline</th>
 										<th>Jumlah Komisi</th>
-										<th>Wallet Address</th>
+										<th>Wallet Address<br><span class="text-center">(metamask/trustwallet)</span></th>
+										<th>Wallet Address<br><span class="text-center">(binance/tokocrypto)</span></th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php foreach ($komisi as $key => $value): ?>
-										<tr>
+										<tr class="text-center">
 											<td>
 												<?php echo $value['name'] ?>
 											</td>
 											<td>$<?php echo $this->M_Komisi->sum($value['id_member'])['komisi'] ?></td>
 											<td><?php echo $value['wallet'] ?></td>
+											<td><?php echo $value['walletdua'] ?></td>
 										</tr>
 									<?php endforeach ?>
 								</tbody>
 								<tfoot>
-									<tr>
+									<tr class="text-center">
 										<th>User Upline</th>
 										<th>Jumlah Komisi</th>
-										<th>Wallet Address</th>
+										<th>Wallet Address<br><span class="text-center">(metamask/trustwallet)</span></th>
+										<th>Wallet Address<br><span class="text-center">(binance/tokocrypto)</span></th>
 									</tr>
 								</tfoot>
 							</table>

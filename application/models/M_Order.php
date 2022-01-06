@@ -63,10 +63,10 @@ class M_Order extends CI_Model {
 
 		$output = fopen("php://output", "w"); 
 
-		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet','referral_id','my_referral','jumlah pembelian','link','confirmed','cancelled'));
+		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet metamask/trustwallet','Wallet binance/tokocrypto','referral_id','my_referral','jumlah pembelian','link','confirmed','cancelled'));
 
 		$id=$this->uri->segment(4);
-		$this->db->select('id_member,name,email,telegram,phone,wallet,referral_id,own_referral,jml,link,applied,cancelled');
+		$this->db->select('id_member,name,email,telegram,phone,wallet,walletdua,referral_id,own_referral,jml,link,applied,cancelled');
 		$this->db->join('users','order.id_member=users.id');
 		$this->db->join('project','order.id_project=project.id');
 		$this->db->where('id_project',$id);

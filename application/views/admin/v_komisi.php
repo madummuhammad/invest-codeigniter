@@ -31,13 +31,14 @@ Content body start
 						<div class="table-responsive">
 							<table id="example" class="display" style="min-width: 845px">
 								<thead>
-									<tr>
+									<tr class="text-center">
 										<th>Nama Project</th>
 										<th>User Upline</th>
 										<th>User Downline</th>
 										<th>Nilai Pembelian</th>
 										<th>Nilai Komisi</th>
-										<th>Wallet Address</th>
+										<th>Wallet Address<br><span class="text-center">(metamask/trustwallet)</span></th>
+										<th>Wallet Address<br><span class="text-center">(binance/tokocrypto)</span></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -52,18 +53,20 @@ Content body start
 												<td><?php echo '$'.$value['jml'] ?></td>
 												<td><?php echo '$'.$value['komisi'] ?></td>
 												<td><?php echo $this->M_Komisi->upline($this->uri->segment(4),$value['referral_id'])['wallet'] ?></td>
+												<td><?php echo $this->M_Komisi->upline($this->uri->segment(4),$value['referral_id'])['walletdua'] ?></td>
 											</tr>
 										<?php endif ?>
 									<?php endforeach ?>
 								</tbody>
 								<tfoot>
-									<tr>
+									<tr class="text-center">
 										<th>Nama Project</th>
 										<th>User Upline</th>
 										<th>User Downline</th>
 										<th>Nilai Pembelian</th>
 										<th>Nilai Komisi</th>
-										<th>Wallet Address</th>
+										<th>Wallet Address<br><span class="text-center">(metamask/trustwallet)</span></th>
+										<th>Wallet Address<br><span class="text-center">(binance/tokocrypto)</span></th>
 									</tr>
 								</tfoot>
 							</table>

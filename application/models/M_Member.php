@@ -20,9 +20,9 @@ class M_Member extends CI_Model {
 
 		$output = fopen("php://output", "w"); 
 
-		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet','referral_id','my_referral'));
+		fputcsv($output, array('ID', 'Nama','Email','Telegram','Phone','Wallet metamask/trustwallet','Wallet binance/tokocrypto','referral_id','my_referral'));
 
-		$this->db->select('id,name,email,telegram,phone,wallet,referral_id,own_referral');
+		$this->db->select('id,name,email,telegram,phone,wallet,walletdua,referral_id,own_referral');
 		$this->db->where('role_id',2);
 		$this->db->order_by('id','DESC');
 		$data=$this->db->get('users')->result_array();
