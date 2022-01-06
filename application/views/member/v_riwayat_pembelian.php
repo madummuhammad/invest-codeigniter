@@ -5,6 +5,12 @@ Content body start
     <!-- row -->
     <div class="container-fluid">
         <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Note :</p>
+                <div><?php echo $keterangan['isi'] ?> </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -45,13 +51,6 @@ Content body start
                                                             <a type="button" class="close" data-dismiss="modal">&times;</a>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <div class="row">
-
-                                                                <div class="col">
-                                                                    <p class="font-weight-bold">Note :</p>
-                                                                    <div><?php echo $keterangan['isi'] ?> </div>
-                                                                </div>
-                                                            </div>
                                                             <div class="row">
                                                               <div class="col">
                                                                 <div class="form-group text-center">
