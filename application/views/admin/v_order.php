@@ -33,7 +33,9 @@ Content body start
                                     <tr>
                                         <th>Member</th>
                                         <th>Project</th>
-                                        <th>Jumlah</th>
+                                        <th>Jumlah Transfer</th>
+                                        <th>Buy</th>
+                                        <th>Fee 10%</th>
                                         <th>Waktu Pembelian</th>
                                         <th>Bukti Pembayaran</th>
                                         <th>Link</th>
@@ -46,59 +48,80 @@ Content body start
                                         <tr>
                                             <td><?php echo $value['id_member'].'-'.$value['name'] ?> </td>
                                             <td><?php echo $value['id_order'].'-'.$value['nama_project'] ?></td>
-                                            <td><span><?php echo $value['jml'] ?></span></td>
+                                            <td><span>$<?php echo $value['jml']+(10/100*$value['jml']) ?></span></td>
+                                            <td><span>$<?php echo $value['jml']?></span></td>
+                                            <td><span>$<?php echo 10/100*$value['jml'] ?></span></td>
                                             <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
                                             <td>
                                                 <div class="img-table d-flex justify-content-center">
-                                                   <img class="img-thumbnail" src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf'] ?> " alt="<?php echo $value['bukti_tf'] ?>">
-                                               </div>
-                                           </td>
-                                           <td><?php echo $value['link'] ?></td>
-                                           <td>
-                                            <div class="custom-control custom-switch">
-                                             <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
-                                             <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch<?php echo $value['id_order'] ?>" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
-                                             <?php echo 'checked' ?>
-                                             <?php endif ?>>
-                                             <label class="custom-control-label" for="switch<?php echo $value['id_order'] ?>">Konfirmasi</label>
+                                                    <img class="img-thumbnail" data-toggle="modal" data-target="#modalImg<?php echo $value['id'] ?>" src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf'] ?> " alt="<?php echo $value['bukti_tf'] ?>">
+                                                </div>
+                                                <div class="modal fade" id="modalImg<?php echo $value['id'] ?>">
+                                                  <div class="modal-dialog modal-dialog-centered">
+                                                    <input type="text" name="project" value="<?php echo $value['id'] ?>" hidden>
+                                                    <div class="modal-content">
+                                                      <div class="modal-header">
+                                                        <h4 class="modal-title"></h4>
+                                                        <a type="button" class="close" data-dismiss="modal">&times;</a>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img class="img-thumbnail" data-toggle="modal" data-target="#modalImg<?php echo $value['id'] ?>" src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf'] ?> " alt="<?php echo $value['bukti_tf'] ?>">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><?php echo $value['link'] ?></td>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                         <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
+                                         <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input konfirmasi" id="switch<?php echo $value['id_order'] ?>" value="<?php echo $value['applied'] ?>" <?php if ($value['applied']==1): ?>
+                                         <?php echo 'checked' ?>
+                                         <?php endif ?>>
+                                         <label class="custom-control-label" for="switch<?php echo $value['id_order'] ?>">Konfirmasi</label>
 
-                                         </div>
-                                     </td>
-                                     <td>
-                                         <div class="custom-control custom-switch">
-                                             <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
-                                             <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input batalkan" id="batalkan<?php echo $value['id_order'] ?>" value="<?php echo $value['cancelled'] ?>" <?php if ($value['cancelled']==0): ?>
-                                             <?php echo 'checked' ?>
-                                             <?php endif ?>>
-                                             <?php if ($value['cancelled']==0): ?>
-                                                 <label class="custom-control-label" for="batalkan<?php echo $value['id_order'] ?>">Batalkan</label>
-                                             <?php else: ?>
-                                                 <label class="custom-control-label" for="batalkan<?php echo $value['id_order'] ?>">Aktifkan</label>
-                                             <?php endif ?>
+                                     </div>
+                                 </td>
+                                 <td>
+                                     <div class="custom-control custom-switch">
+                                         <?php echo  form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
+                                         <input type="checkbox" data-id="<?php echo $value['id_order'] ?>" class="custom-control-input batalkan" id="batalkan<?php echo $value['id_order'] ?>" value="<?php echo $value['cancelled'] ?>" <?php if ($value['cancelled']==0): ?>
+                                         <?php echo 'checked' ?>
+                                         <?php endif ?>>
+                                         <?php if ($value['cancelled']==0): ?>
+                                             <label class="custom-control-label" for="batalkan<?php echo $value['id_order'] ?>">Batalkan</label>
+                                         <?php else: ?>
+                                             <label class="custom-control-label" for="batalkan<?php echo $value['id_order'] ?>">Aktifkan</label>
+                                         <?php endif ?>
 
 
-                                         </div>
-                                     </td>
-                                 </tr>
-                             <?php endforeach ?>
-                         </tbody>
-                         <tfoot>
-                            <tr>
-                                <th>Member</th>
-                                <th>Project</th>
-                                <th>Jumlah</th>
-                                <th>Waktu Pembelian</th>
-                                <th>Bukti Pembayaran</th>
-                                <th>Link</th>
-                                <th>Status</th>
-                                <th>Batal</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                                     </div>
+                                 </td>
+                             </tr>
+                         <?php endforeach ?>
+                     </tbody>
+                     <tfoot>
+                        <tr>
+                            <th>Member</th>
+                            <th>Project</th>
+                            <th>Jumlah Transfer</th>
+                            <th>Buy</th>
+                            <th>Fee 10%</th>
+                            <th>Waktu Pembelian</th>
+                            <th>Bukti Pembayaran</th>
+                            <th>Link</th>
+                            <th>Status</th>
+                            <th>Batal</th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 </div>

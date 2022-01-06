@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['adminsystem']='admin/dashboard/index';
+$route['adminsystem/admin']='admin/auth/admin';
 $route['website/indonesia']='admin/website/indonesia';
 $route['website/english']='admin/website/english';
 $route['password/(:any)']='member/auth/forgot/$1';
