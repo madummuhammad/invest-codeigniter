@@ -29,15 +29,30 @@ Content body start
                                           <div class="col">
                                             <div class="form-group">
                                                 <label><strong>Admin Nama</strong></label>
-                                                <input type="text" name="nama" class="form-control" value="">
+                                                <input type="text" name="nama" class="form-control <?php if (form_error('nama')): ?>
+                                                <?php echo 'is-invalid' ?>
+                                                <?php endif ?>" value="<?php echo set_value('nama') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= form_error('nama') ?>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label><strong>Admin Email</strong></label>
-                                                <input type="email" name="email" class="form-control" value="">
+                                                <input type="email" name="email" class="form-control <?php if (form_error('email')): ?>
+                                                <?php echo 'is-invalid' ?>
+                                                <?php endif ?>" value="<?php echo set_value('email') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= form_error('email') ?>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label><strong>Admin Password</strong></label>
-                                                <input type="password" name="password" class="form-control" value="">
+                                                <input type="password" name="password" class="form-control <?php if (form_error('password')): ?>
+                                                <?php echo 'is-invalid' ?>
+                                                <?php endif ?>" value="">
+                                                <div class="invalid-feedback">
+                                                    <?= form_error('password') ?>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-switch">
@@ -177,25 +192,26 @@ Content body start
             $this->load->view('admin/partial/v_footer');
             ?>
             <script type="text/javascript">
-                var button_modal = $(".konfirmasi");
-                for (let i = 0; i < button_modal.length; i++) {
-                    button_modal[i].onclick = function () {
-                        var id=$(this).data('id');
-                        var status = $(this).val();
-                        var method = '_post';
-                        var csrf=$('input[name=csrf_test_name]').val(); 
-                        $.ajax({
-                            url: "<?php echo base_url('adminsystem/member') ?>",
-                            type:'POST',
-                            data:{
-                                id:id,
-                                applied:status,
-                                _post:method,
-                                csrf_test_name:csrf
-                            },
-                            success: function(e){
-                            }
-                        });
-                    }
-                }
-            </script>
+                $(document).ready(function(){
+                    <?php if ($this->session->flashdata('request')): ?>
+                        toastr.<?php echo $this->session->flashdata('icon') ?>('<?php echo $this->session->flashdata('title') ?>', '<?php echo $this->session->flashdata('message') ?>', {
+                        timeOut: 2000,
+                        closeButton: !0,
+                        debug: !1,
+                        newestOnTop: !0,
+                        progressBar: !0,
+                        positionClass: "toast-top-center",
+                        preventDuplicates: !0,
+                        onclick: null,
+                        showDuration: "300",
+                        hideDuration: "1000",
+                        extendedTimeOut: "1000",
+                        showEasing: "swing",
+                        hideEasing: "linear",
+                        showMethod: "fadeIn",
+                        hideMethod: "fadeOut",
+                        tapToDismiss: !1
+                    })
+                   <?php endif ?>
+               })
+           </script>

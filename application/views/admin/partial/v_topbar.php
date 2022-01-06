@@ -100,7 +100,7 @@
                                             <i class="mdi mdi-account"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <?php if ($this->session->userdata('role_id')==1): ?>
+                                            <?php if ($this->session->userdata('role_id')==1 OR $this->session->userdata('role_id')== 3): ?>
                                                 <a href="<?php echo admin_url('profile') ?>" class="dropdown-item">
                                                     <i class="icon-user"></i>
                                                     <span class="ml-2">Profile </span>

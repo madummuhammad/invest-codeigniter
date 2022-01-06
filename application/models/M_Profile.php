@@ -31,7 +31,7 @@ class M_Profile extends CI_Model {
 				'message'=>'Form tidak boleh kosong'
 			];
 			$this->session->set_flashdata($toast);
-			if ($this->session->userdata('role_id')==1) {
+			if ($this->session->userdata('role_id')==1 OR $this->session->userdata('role_id')== 3) {
 				redirect(admin_url('profile'));
 			} else {
 				redirect(member_url('profile'));
@@ -53,7 +53,7 @@ class M_Profile extends CI_Model {
 				$this->session->set_flashdata($toast);
 				$this->db->where('id',$id);
 				$this->db->update('users',['password'=>$hash]);
-				if ($this->session->userdata('role_id')==1) {
+				if ($this->session->userdata('role_id')==1 OR $this->session->userdata('role_id')== 3) {
 					redirect(admin_url('profile'));
 				} else {
 					redirect(member_url('profile'));
@@ -66,7 +66,7 @@ class M_Profile extends CI_Model {
 					'message'=>'Sandi yang anda masukan salah!'
 				];
 				$this->session->set_flashdata($toast);
-				if ($this->session->userdata('role_id')==1) {
+				if ($this->session->userdata('role_id')==1 OR $this->session->userdata('role_id')== 3) {
 					redirect(admin_url('profile'));
 				} else {
 					redirect(member_url('profile'));
@@ -77,7 +77,7 @@ class M_Profile extends CI_Model {
 
 	public function update()
 	{
-		if ($this->session->userdata('role_id')==1) {
+		if ($this->session->userdata('role_id')==1 OR $this->session->userdata('role_id')== 3) {
 			$path='./assets/admin/images/profile/';
 			$type='jpg|png|jpeg';
 			$file_name='admin';
