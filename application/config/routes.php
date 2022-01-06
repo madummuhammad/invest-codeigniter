@@ -73,6 +73,8 @@ $route['adminsystem/member']='admin/member/index';
 $route['adminsystem/member/export']='admin/member/export';
 $route['adminsystem/order']='order/index';
 $route['adminsystem/order/(:any)']='order/show/$1';
+$route['adminsystem/order/komisi/(:any)']='order/komisi/$1';
+$route['adminsystem/order/komisi/export/(:any)']='order/export_komisi/$1';
 $route['adminsystem/order/export/(:any)']='order/export/$1';
 $route['adminsystem/profile']='admin/profile/index';
 

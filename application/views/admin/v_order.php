@@ -13,7 +13,7 @@ Content body start
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo base_url('adminsystem/order') ?>">Kelola Pesanan</a></li>
+                    <li class="breadcrumb-item"><a class="text-primary" href="<?php echo base_url('adminsystem/order') ?>">Kelola Pesanan</a></li>
                     <li class="breadcrumb-item active"><a href="javascript:void(0)">Detail Pesanan</a></li>
                 </ol>
             </div>
@@ -26,6 +26,7 @@ Content body start
                     </div>
                     <div class="card-body">
                         <a href="<?php echo admin_url('order/export/').$this->uri->segment(3) ?>" class="btn btn-outline-primary mb-4">Export CSV</a>
+                        <a href="<?php echo admin_url('order/komisi/').$this->uri->segment(3) ?>" class="btn btn-outline-warning mb-4">Lihat Komisi <i class="fas fa-eye"></i></a>
                         <div class="table-responsive">
                             <table id="example" class="display" style="min-width: 845px">
                                 <thead>
@@ -192,7 +193,7 @@ Content body start
                                 csrf_test_name:csrf
                             },
                             success: function(e){
-                                if (cancelled==1) {
+                                if (cancelled==0) {
                                     toastr.warning("Mohon tunggu sebentar", "Order berhasil dibatalkan", {
                                         timeOut: 2000,
                                         closeButton: !0,
