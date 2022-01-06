@@ -40,6 +40,7 @@
                         <li class="nav-label">Pembelian</li>
                         <li><a href="<?php echo member_url('riwayat') ?>" aria-expanded="false"><i class="icon icon-single-copy-06"></i><span class="nav-text">Riwayat Pembelian</span></a></li>
                         <li><a href="<?php echo member_url('komisi') ?>" aria-expanded="false"><i class="custom-icon fas fa-dollar-sign"></i><span class="nav-text"> Komisi Referral</span></a></li>
+                        <li><a href="<?php echo member_url('network') ?>" aria-expanded="false"><i class="custom-icon fas fa-network-wired"></i><span class="nav-text"> Performance Nerwork</span></a></li>
                         <li class="nav-label">Pengaturan</li>
                         <li><a href="<?php echo member_url('profile') ?>" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Profile</span></a></li>
                     </ul>

@@ -151,6 +151,7 @@ class M_Profile extends CI_Model {
 			$nama=form('nama');
 			$telegram=form('telegram');
 			$wallet=form('wallet');
+			$walletdua=form('walletdua');
 			$phone=form('phone');
 			$id=$this->session->userdata('id');
 
@@ -171,6 +172,7 @@ class M_Profile extends CI_Model {
 					'name'=>$nama,
 					'telegram'=>$telegram,
 					'wallet'=>$wallet,
+					'walletdua'=>$walletdua,
 					'phone'=>$phone
 				];
 			} else {
@@ -178,6 +180,7 @@ class M_Profile extends CI_Model {
 					'name'=>$nama,
 					'telegram'=>$telegram,
 					'wallet'=>$wallet,
+					'walletdua'=>$walletdua,
 					'phone'=>$phone,
 					'gambar'=>$gambar
 				];

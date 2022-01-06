@@ -113,6 +113,7 @@ class M_Auth extends CI_Model {
 		$repeatPassword=form('repeat_password');
 		$passwordHash=password_hash($password, PASSWORD_DEFAULT);
 		$ownreferral=rand();
+		$walletdua=form('walletdua');
 		$auth=[
 			'authentication'=>'verifikasi',
 			'email'=>$email,
@@ -143,7 +144,8 @@ class M_Auth extends CI_Model {
 			'role_id'=>2,
 			'gambar'=>'default.png',
 			'kode_verifikasi'=>$rand,
-			'is_verified'=>0
+			'is_verified'=>0,
+			'walletdua'=>$walletdua
 		];
 
 		$validasi=$this->form_validation->set_rules(rules($rules));

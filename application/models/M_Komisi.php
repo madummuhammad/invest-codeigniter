@@ -11,6 +11,7 @@ class M_Komisi extends CI_Model {
 		$this->db->where('cancelled',0);
 		$this->db->where('id_project',$id);
 		$this->db->where('role_id',2);
+		$this->db->where('komisi >',0);
 		return $this->db->get('order')->result_array();
 	}
 
@@ -42,13 +43,13 @@ class M_Komisi extends CI_Model {
 	public function komisi_perupline($id)
 	{
 		// $this->db->where('own_referral',85381472437);
-		$this->db->select('users.name,order.id_member,users.wallet');
+		$this->db->select('users.name,order.id_member,users.wallet,users.walletdua');
 		$this->db->join('users','order.id_member=users.id');
 		$this->db->distinct('id_member');
 		$this->db->where('applied',1);
 		$this->db->where('cancelled',0);
 		$this->db->where('role_id',2);
-		$this->db->where('komisi >','0');
+		$this->db->where('komisi >',0);
 		return $this->db->get('order')->result_array();
 	}
 
@@ -60,12 +61,12 @@ class M_Komisi extends CI_Model {
 
 		$output = fopen("php://output", "w"); 
 
-		fputcsv($output, array('Nama Project', 'User Upline','User Downline','Nilai Pembelian','Nilai Komisi','Wallet Address'));
+		fputcsv($output, array('Nama Project', 'User Upline','User Downline','Nilai Pembelian','Nilai Komisi','Wallet metamask/trustwallet','Wallet binance/tokocrypto'));
 		$id=$this->uri->segment(5);
 		$data=$this->index($id);
 		foreach ($data as $key => $value) {
 			if ($value['komisi']>0) {
-				$datas=[$value['nama_project'],$this->upline($id,$value['referral_id'])['name'],$value['name'],$value['jml'],$value['komisi'],$value['wallet']];
+				$datas=[$value['nama_project'],$this->upline($id,$value['referral_id'])['name'],$value['name'],$value['jml'],$value['komisi'],$value['wallet'],$value['walletdua']];
 				fputcsv($output, $datas);
 			}
 		}
@@ -80,11 +81,11 @@ class M_Komisi extends CI_Model {
 
 		$output = fopen("php://output", "w"); 
 
-		fputcsv($output, array('Nama User Upline', 'Jumlah Komisi','Wallet Address'));
+		fputcsv($output, array('Nama User Upline', 'Jumlah Komisi','Wallet metamask/trustwallet','Wallet binance/tokocrypto'));
 		$id=$this->uri->segment(5);
 		$data=$this->komisi_perupline($id);
 		foreach ($data as $key => $value) {
-			$datas=[$value['name'],$this->sum($value['id_member'])['komisi'],$value['wallet']];
+			$datas=[$value['name'],$this->sum($value['id_member'])['komisi'],$value['wallet'],$value['walletdua']];
 			fputcsv($output, $datas);
 		}
 		fclose($output);

@@ -170,6 +170,10 @@
               <?php endif ?>" placeholder="Enter full name" name="nama" id="email" autocomplete="off" autofocus="on" value="<?php echo set_value('nama') ?>">
               <div class="invalid-feedback"><?= form_error('nama') ?></div>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
             <div class="form-group mb-3">
               <label for="email">Telegram Account</label>
               <input type="text" class="form-control <?php if (form_error('telegram')): ?>
@@ -185,11 +189,11 @@
               <div class="invalid-feedback"><?= form_error('phone') ?></div>
             </div>
             <div class="form-group mb-3">
-              <label for="pwd">Wallet address</label>
-              <input type="text" class="form-control <?php if (form_error('wallet')): ?>
+              <label for="pwd">Password</label>
+              <input type="password" class="form-control <?php if (form_error('password')): ?>
               <?php echo 'is-invalid' ?>
-              <?php endif ?>" placeholder="Enter wallet address" name="wallet" id="pwd" autocomplete="off" value="<?php echo set_value('wallet') ?>">
-              <div class="invalid-feedback"><?= form_error('wallet') ?></div>
+              <?php endif ?>" placeholder="Enter password" name="password" id="pwd" autocomplete="off" value="">
+              <div class="invalid-feedback"><?= form_error('password') ?></div>
             </div>
           </div>
           <div class="col">
@@ -212,13 +216,6 @@
               <div class="invalid-feedback"><?= form_error('email') ?></div>
             </div>
             <div class="form-group mb-3">
-              <label for="pwd">Password</label>
-              <input type="password" class="form-control <?php if (form_error('password')): ?>
-              <?php echo 'is-invalid' ?>
-              <?php endif ?>" placeholder="Enter password" name="password" id="pwd" autocomplete="off" value="">
-              <div class="invalid-feedback"><?= form_error('password') ?></div>
-            </div>
-            <div class="form-group mb-3">
               <label for="pwd">Repeat Password</label>
               <input type="password" class="form-control <?php if (form_error('repeat_password')): ?>
               <?php echo 'is-invalid' ?>
@@ -227,17 +224,37 @@
             </div>
           </div>
         </div>
-               <!--  <div class="form-group mb-3">
-                  <a class="nav-link" data-toggle="tab" href="#login">Already have an account?</a>
-                </div> -->
-                <button type="submit" class="btn btn-outline-primary">Sign Up</button>
-              </form>
+        <div class="row">
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="pwd">Wallet address (metamask/trustwallet)</label>
+              <input type="text" class="form-control <?php if (form_error('wallet')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Enter wallet address (metamask/trustwallet)" name="wallet" id="pwd" autocomplete="off" value="<?php echo set_value('wallet') ?>">
+              <div class="invalid-feedback"><?= form_error('wallet') ?></div>
             </div>
           </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="pwd">Wallet address (binance/tokocrypto)</label>
+              <input type="text" class="form-control <?php if (form_error('wallet')): ?>
+              <?php echo 'is-invalid' ?>
+              <?php endif ?>" placeholder="Enter wallet address (binance/tokocrypto)" name="walletdua" id="pwd" autocomplete="off" value="<?php echo set_value('wallet') ?>">
+              <p class="text-danger" style="font-size: 12px;">* Optional</p>
+              <div class="invalid-feedback"><?= form_error('walletdua') ?></div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+      </form>
     </div>
   </div>
+</div>
+</div>
+</div>
+</div>
 <?php endif ?>
 <?php if ($this->session->userdata('authentication') == 'verifikasi'): ?>
   <div class="modal fade" id="verifikasi">

@@ -15,12 +15,13 @@ Content body start
                                 <a href="<?php echo admin_url('member/export') ?>" class="btn btn-outline-primary mb-4">Export CSV</a>
                             <table id="example" class="display" style="min-width: 845px">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Telegram</th>
                                         <th>Phone</th>
-                                        <th>Wallet Address</th>
+                                        <th>Wallet Address<br><span class="text-center">(metamask/trustwallet)</span></th>
+                                        <th>Wallet Address<br><span class="text-center">(binance/tokocrypto)</span></th>
                                         <th>Referral Id</th>
                                         <th>My Referral</th>
                                     </tr>
@@ -33,6 +34,7 @@ Content body start
                                             <td><?php echo $value['telegram'] ?></td>
                                             <td><?php echo $value['phone'] ?></td>
                                             <td><?php echo $value['wallet'] ?></td>
+                                            <td><?php echo $value['walletdua'] ?></td>
                                             <td><?php echo $value['referral_id'] ?></td>
                                             <td><?php echo $value['own_referral'] ?> </td>
                                         </tr>
@@ -44,7 +46,8 @@ Content body start
                                         <th>Email</th>
                                         <th>Telegram</th>
                                         <th>Phone</th>
-                                        <th>Wallet Address</th>
+                                        <th>Wallet Address<br><span class="text-center">(metamask/trustwallet)</span></th>
+                                        <th>Wallet Address<br><span class="text-center">(binance/tokocrypto)</span></th>
                                         <th>Referral Id</th>
                                         <th>My Referral</th>
                                     </tr>
