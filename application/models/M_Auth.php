@@ -65,11 +65,13 @@ class M_Auth extends CI_Model {
 		}else{
 			$this->db->where('email',$email);
 			$this->db->where('role_id',1);
+			$this->db->or_where('role_id',3);
 			$num_rows=$this->db->get('users')->num_rows();
 
 			if ($num_rows>0) {
 				$this->db->where('email',$email);
 				$this->db->where('role_id',1);
+				$this->db->or_where('role_id',3);
 				$data=$this->db->get('users')->row_array();
 				if (password_verify($password, $data['password'])) {
 					$this->session->set_userdata($auth);

@@ -23,7 +23,7 @@ class M_Admin extends CI_Model {
 
 		$rules=[
 			rules_array('nama','required'),
-			rules_array('email','required|valid_email'),
+			rules_array('email','required|valid_email|is_unique[users.email]'),
 			rules_array('password','required')
 		];
 
@@ -39,17 +39,27 @@ class M_Admin extends CI_Model {
 
 		$validasi=$this->form_validation->set_rules(rules($rules));
 		if ($validasi->run()==false) {
-			$message=[
-				'message'=>'gagal'
+			$toast=[
+				'request'=>'add',
+				'icon'=>'error',
+				'title'=>'Tambah Admin Gagal',
+				'message'=>'Isi Form Dengan Benar'
 			];
-			$this->session->set_flashdata($message);
-			redirect(admin_url('admin'));
+			$this->session->set_flashdata($toast);
+			$data['admin']=$this->M_Admin->index();
+			$this->load->view('admin/partial/v_header');
+			$this->load->view('admin/partial/v_topbar');
+			$this->load->view('admin/partial/v_sidebar');
+			$this->load->view('admin/v_admin',$data);
 		} else {
 			$this->db->insert('users',$data);
-			$message=[
-				'message'=>'success'
+			$toast=[
+				'request'=>'add',
+				'icon'=>'success',
+				'title'=>'Tambah Admin Berhasil',
+				'message'=>'Admin Baru Berhasil Ditambah'
 			];
-			$this->session->set_flashdata($message);
+			$this->session->set_flashdata($toast);
 			redirect(admin_url('admin'));
 		}
 	}
@@ -90,18 +100,22 @@ class M_Admin extends CI_Model {
 
 		$validasi=$this->form_validation->set_rules(rules($rules));
 		if ($validasi->run()==false) {
-			$message=[
-				'message'=>'gagal'
+			$toast=[
+				'request'=>'edit',
+				'icon'=>'error',
+				'title'=>'Edit Admin Gagal'
 			];
-			$this->session->set_flashdata($message);
+			$this->session->set_flashdata($toast);
 			redirect(admin_url('admin'));
 		} else {
 			$this->db->where('id',$id);
 			$this->db->update('users',$data);
-			$message=[
-				'message'=>'success'
+			$toast=[
+				'request'=>'edit',
+				'icon'=>'success',
+				'title'=>'Edit Admin Berhasil'
 			];
-			$this->session->set_flashdata($message);
+			$this->session->set_flashdata($toast);
 			redirect(admin_url('admin'));
 		}
 	}
@@ -112,6 +126,13 @@ class M_Admin extends CI_Model {
 
 		$this->db->where('id',$id);
 		$this->db->delete('users');
+		$toast=[
+			'request'=>'delete',
+			'icon'=>'success',
+			'title'=>'Hapus Admin Berhasil',
+			// 'message'=>'Isi Form Dengan Benar'
+		];
+		$this->session->set_flashdata($toast);
 		redirect(admin_url('admin'));
 	}
 }

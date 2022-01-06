@@ -31,18 +31,23 @@ class Auth extends CI_Controller {
 
 	public function admin()
 	{
-		if ($this->input->post('_patch') !== NULL) {
-			$this->M_Admin->update();
-		} elseif ($this->input->post('_post') !== NULL) {
-			$this->M_Admin->create();
-		} elseif ($this->input->post('_get') !== NULL) {
-			$this->M_Admin->delete();
+		if ($this->session->userdata('role_id')==1) {
+			if ($this->input->post('_patch') !== NULL) {
+				$this->M_Admin->update();
+			} elseif ($this->input->post('_post') !== NULL) {
+				$this->M_Admin->create();
+			} elseif ($this->input->post('_get') !== NULL) {
+				$this->M_Admin->delete();
+			} else {
+				$data['admin']=$this->M_Admin->index();
+				$this->load->view('admin/partial/v_header');
+				$this->load->view('admin/partial/v_topbar');
+				$this->load->view('admin/partial/v_sidebar');
+				$this->load->view('admin/v_admin',$data);
+			}
 		} else {
-			$data['admin']=$this->M_Admin->index();
-			$this->load->view('admin/partial/v_header');
-			$this->load->view('admin/partial/v_topbar');
-			$this->load->view('admin/partial/v_sidebar');
-			$this->load->view('admin/v_admin',$data);
+			redirect(admin_url());
 		}
+		
 	}
 }

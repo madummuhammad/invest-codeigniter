@@ -54,7 +54,7 @@
                                                 <div id="about-me" class="tab-pane fade active show">
                                                     <div class="profile-personal-info">
                                                         <h4 class="text-primary mb-4 mt-4 text-center">Informasi Profil</h4>
-                                                        <?php if ($this->session->userdata('role_id')==1): ?>
+                                                        <?php if ($this->session->userdata('role_id')==1 OR $this->session->userdata('role_id')== 3): ?>
                                                            <form action="<?php echo admin_url('profile') ?>" method="POST" enctype="multipart/form-data">
                                                            <?php else: ?>
                                                              <form action="<?php echo member_url('profile') ?>" method="POST" enctype="multipart/form-data">
@@ -62,7 +62,7 @@
 
                                                              <?php echo method('_patch') ?>
                                                              <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-                                                             <?php if ($this->session->userdata('role_id')==1): ?>
+                                                             <?php if ($this->session->userdata('role_id')==1 OR $this->session->userdata('role_id')== 3): ?>
                                                                 <div class="form-group">
                                                                     <img height="300" width="300" src="<?= base_url('assets/admin/images/profile/').$profile['gambar'] ?>" id="preview" class="img-thumbnail" data-toggle="gambar">
                                                                 </div>
@@ -127,7 +127,7 @@
                                                 <div class="pt-3">
                                                     <div class="settings-form">
                                                         <h4 class="text-primary text-center">Ubah Kata Sandi</h4>
-                                                        <?php if ($this->session->userdata('role_id')==1): ?>
+                                                        <?php if ($this->session->userdata('role_id')==1 OR $this->session->userdata('role_id')== 3): ?>
                                                            <form action="<?php echo admin_url('profile') ?>" method="POST" enctype="multipart/form-data">
                                                            <?php else: ?>
                                                              <form action="<?php echo member_url('profile') ?>" method="POST" enctype="multipart/form-data">

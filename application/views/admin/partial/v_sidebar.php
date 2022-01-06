@@ -1,4 +1,4 @@
-<?php if ($this->session->userdata('role_id')== 1): ?>
+<?php if ($this->session->userdata('role_id')== 1 OR $this->session->userdata('role_id')== 3): ?>
             <!--**********************************
             Sidebar start
             ***********************************-->
@@ -22,8 +22,10 @@
                         <?php endif ?>"><a href="<?php echo admin_url('order') ?>" aria-expanded="false"><i class="icon icon-form"></i><span class="nav-text">Kelola Pesanan</span></a></li>
                         <li class="nav-label">Member</li>
                         <li><a href="<?php echo admin_url('member') ?>" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Member</span></a></li>
-                        <li class="nav-label">Admin</li>
-                        <li><a href="<?php echo admin_url('admin') ?>" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Admin</span></a></li>
+                        <?php if ($this->session->userdata('role_id')==1): ?>
+                            <li class="nav-label">Admin</li>
+                            <li><a href="<?php echo admin_url('admin') ?>" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Admin</span></a></li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </div>
