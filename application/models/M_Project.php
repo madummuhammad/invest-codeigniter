@@ -6,7 +6,6 @@ class M_Project extends CI_Model {
 	public function index()
 	{
 		$data=$this->db->get('project')->result_array();
-
 		return $data;
 	}
 
@@ -20,8 +19,16 @@ class M_Project extends CI_Model {
 
 	public function show($id)
 	{
-		$this->db->where('id',$id);
-		return $this->db->get('project')->row_array();
+		if ($this->uri->segment(4) =='komisi') {
+			$this->db->where('id',$this->uri->segment(4));
+			return $this->db->get('project')->row_array();
+		} elseif($this->uri->segment(4)=='upline'){
+			$this->db->where('id',$this->uri->segment(5));
+			return $this->db->get('project')->row_array();
+		} else{
+			$this->db->where('id',$id);
+			return $this->db->get('project')->row_array();
+		}
 	}
 
 	public function create()

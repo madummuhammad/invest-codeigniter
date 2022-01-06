@@ -30,6 +30,42 @@ class Order extends CI_Controller {
 		}
 	}
 
+	public function komisi($id)
+	{
+		if ($this->input->post('_patch') !== NULL) {
+			$this->M_Order->update();
+		} elseif ($this->input->post('_post') !== NULL) {
+			$this->M_Order->konfirmasi();
+		} elseif ($this->input->post('_get') !== NULL) {
+			$this->M_Order->delete();
+		} else {
+			$data['project']=$this->M_Project->show($id);
+			$data['komisi']=$this->M_Komisi->index($id);
+			$this->load->view('admin/partial/v_header');
+			$this->load->view('admin/partial/v_topbar');
+			$this->load->view('admin/partial/v_sidebar');
+			$this->load->view('admin/v_komisi',$data);
+		}
+	}
+
+	public function komisi_upline($id)
+	{
+		if ($this->input->post('_patch') !== NULL) {
+			$this->M_Order->update();
+		} elseif ($this->input->post('_post') !== NULL) {
+			$this->M_Order->konfirmasi();
+		} elseif ($this->input->post('_get') !== NULL) {
+			$this->M_Order->delete();
+		} else {
+			$data['project']=$this->M_Project->show($id);
+			$data['komisi']=$this->M_Komisi->komisi_perupline($id);
+			$this->load->view('admin/partial/v_header');
+			$this->load->view('admin/partial/v_topbar');
+			$this->load->view('admin/partial/v_sidebar');
+			$this->load->view('admin/v_komisi_upline',$data);
+		}
+	}
+
 	public function show($id="")
 	{
 		if ($this->input->post('_patch') !== NULL) {
@@ -51,5 +87,15 @@ class Order extends CI_Controller {
 	public function export()
 	{
 		$this->M_Order->export();
+	}
+
+	public function export_komisi()
+	{
+		$this->M_Komisi->export();
+	}
+
+	public function export_komisi_perupline()
+	{
+		$this->M_Komisi->export_perupline();
 	}
 }

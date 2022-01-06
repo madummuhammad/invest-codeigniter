@@ -128,6 +128,11 @@ class M_Order extends CI_Model {
 		$this->db->where('id',$id_project);
 		$alokasi=$this->db->get('project')->row_array();
 		$sisa_jumlah_alokasi=$alokasi['target']-$sum;
+		if ($this->session->userdata('referral_id')=='' OR $this->session->userdata('referral_id')==NULL) {
+			$komisi=0;
+		} else {
+			$komisi=$jml*1/100;
+		}
 
 		$rules=[
 			rules_array('jml','required'),
@@ -143,7 +148,8 @@ class M_Order extends CI_Model {
 			'jml'=>$jml,
 			'applied'=>0,
 			'cancelled'=>0,
-			'timestamp'=>time()
+			'timestamp'=>time(),
+			'komisi'=>$komisi
 		];
 
 		if ($validasi->run()==false) {
