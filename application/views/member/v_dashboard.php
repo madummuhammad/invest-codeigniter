@@ -57,7 +57,7 @@
                                                         <div class="row">
                                                           <div class="col">
                                                             <div class="form-group text-center">
-                                                              <label for="" class="text-center p-2">Jumlah Beli + fee 10% ( Min: $<?php echo $value['min'] ?>, Max: $<?php echo $value['max'] ?>)</label>
+                                                              <label for="" class="text-center p-2">Belum termasuk fee 10% ( Min: $<?php echo $value['min'] ?>, Max: $<?php echo $value['max'] ?>)</label>
                                                               <input type="number" class="form-control <?php if (form_error('jml')): ?>
                                                               <?php echo 'is-invalid' ?>
                                                               <?php endif ?><?php if ($this->session->flashdata('sisa')): ?>

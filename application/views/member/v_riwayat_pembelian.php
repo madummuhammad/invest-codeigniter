@@ -40,68 +40,75 @@ Content body start
                                                 <?php endif ?></button>
                                                 <div class="modal fade" id="buktitf<?php echo $value['id_order'] ?>">
                                                     <form action="<?php echo base_url('member/buy') ?>" method="POST" enctype="multipart/form-data">
-                                                      <div class="modal-dialog modal-dialog-centered">
-                                                        <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
-                                                        <?php echo method('_patch') ?>
-                                                        <input type="text" name="order" value="<?php echo $value['id_order'] ?>" hidden>
-                                                        <div class="modal-content">
-                                                          <div class="modal-header">
-                                                            <h4 class="modal-title">Upload Bukti Tf</h4>
-                                                            <a type="button" class="close" data-dismiss="modal">&times;</a>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                              <div class="col">
-                                                                <div class="form-group text-center">
-                                                                    <label for="" class="text-center p-2">Link</label>
-                                                                    <input type="text" class="form-control <?php if (form_error('link')): ?>
-                                                                    <?php echo 'is-invalid' ?>
-                                                                    <?php endif ?>" id="email" placeholder="" name="link" value="<?php echo $value['link'] ?>" value="<?php echo set_value('link') ?>">
-                                                                    <div class="invalid-feedback">
-                                                                        <?= form_error('link') ?>
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());  ?>
+                                                            <?php echo method('_patch') ?>
+                                                            <input type="text" name="order" value="<?php echo $value['id_order'] ?>" hidden>
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h4 class="modal-title">Upload Bukti Tf</h4>
+                                                                <a type="button" class="close" data-dismiss="modal">&times;</a>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="font-weight-bold">
+                                                                            <p class="text-center">Jumlah Beli + Fee 10%</p>
+                                                                            <p class="text-center">Silakan Transfer Sebesar: $<span style="text-decoration: underline;"><?php echo $value['jml']+(10/100*$value['jml']) ?></span></p></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                      <div class="col">
+                                                                        <div class="form-group text-center">
+                                                                            <label for="" class="text-center p-2">Link</label>
+                                                                            <input type="text" class="form-control <?php if (form_error('link')): ?>
+                                                                            <?php echo 'is-invalid' ?>
+                                                                            <?php endif ?>" id="email" placeholder="" name="link" value="<?php echo $value['link'] ?>" value="<?php echo set_value('link') ?>">
+                                                                            <div class="invalid-feedback">
+                                                                                <?= form_error('link') ?>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                      <div class="form-group text-center">
+                                                                          <div class="form-grop text-center">
+                                                                            <label for="">Upload Bukti Transfer</label>
+                                                                            <img src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf']?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
+                                                                            <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="gambar">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col">
-                                                              <div class="form-group text-center">
-                                                                  <div class="form-grop text-center">
-                                                                    <label for="">Upload Bukti Transfer</label>
-                                                                    <img src="<?php echo base_url('assets/admin/images/bukti/').$value['bukti_tf']?>" data-toggle="gambar" class="img-thumbnail mt-2" alt="">
-                                                                    <input type="file" class="form-control mt-2" id="email" placeholder="Masukan Judul" name="gambar">
-                                                                </div>
-                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-outline-primary">Upload</button>
+                                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-outline-primary">Upload</button>
-                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
+                                            </form>
                                         </div>
-                                    </form>
-                                </div>
-                            </td>
-                            <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
-                            <td>
-                                <?php if ($value['applied']==1 AND $value['cancelled']==0): ?>
-                                    <span class="badge badge-success">Applied</span>
-                                <?php endif ?>           
-                                <?php if ($value['applied']==0 AND $value['cancelled']==0): ?>
-                                    <span class="badge badge-warning">Pending</span>
-                                <?php endif ?>
-                                <?php if ($value['cancelled']==1): ?>
-                                    <span class="badge badge-danger">Cancelled</span>
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+                                    </td>
+                                    <td><span><?php echo date('Y-m-d, H:i',$value['timestamp']) ?></span></td>
+                                    <td>
+                                        <?php if ($value['applied']==1 AND $value['cancelled']==0): ?>
+                                            <span class="badge badge-success">Applied</span>
+                                        <?php endif ?>           
+                                        <?php if ($value['applied']==0 AND $value['cancelled']==0): ?>
+                                            <span class="badge badge-warning">Pending</span>
+                                        <?php endif ?>
+                                        <?php if ($value['cancelled']==1): ?>
+                                            <span class="badge badge-danger">Cancelled</span>
+                                        <?php endif ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 </div>
 </div>
