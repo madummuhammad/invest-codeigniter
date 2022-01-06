@@ -74,7 +74,9 @@ $route['adminsystem/member/export']='admin/member/export';
 $route['adminsystem/order']='order/index';
 $route['adminsystem/order/(:any)']='order/show/$1';
 $route['adminsystem/order/komisi/(:any)']='order/komisi/$1';
+$route['adminsystem/order/komisi/upline/(:any)']='order/komisi_upline/$1';
 $route['adminsystem/order/komisi/export/(:any)']='order/export_komisi/$1';
+$route['adminsystem/order/komisi/export_perupline/(:any)']='order/export_komisi_perupline/$1';
 $route['adminsystem/order/export/(:any)']='order/export/$1';
 $route['adminsystem/profile']='admin/profile/index';
 

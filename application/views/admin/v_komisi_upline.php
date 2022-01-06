@@ -14,8 +14,9 @@ Content body start
 			<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a class="text-primary" href="<?php echo base_url('adminsystem/order') ?>">Kelola Pesanan</a></li>
-					<li class="breadcrumb-item active"><a class="text-primary" href="<?php echo base_url('adminsystem/order/').$this->uri->segment(4) ?>">Detail Pesanan</a></li>
-					<li class="breadcrumb-item active"><a href="javascript:void(0)">Komisi</a></li>
+					<li class="breadcrumb-item active"><a class="text-primary" href="<?php echo base_url('adminsystem/order/').$this->uri->segment(5) ?>">Detail Pesanan</a></li>
+					<li class="breadcrumb-item active"><a class="text-primary" href="<?php echo base_url('adminsystem/order/komisi/').$this->uri->segment(5) ?>">Komisi</a></li>
+					<li class="breadcrumb-item active"><a href="javascript:void(0)">Komisi Perupline</a></li>
 				</ol>
 			</div>
 		</div>
@@ -23,46 +24,34 @@ Content body start
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Komisi Pemesan "<?php echo $project['nama_project'] ?>"</h4>
+						<h4 class="card-title">Komisi Per Upline "<?php echo $project['nama_project'] ?>"</h4>
 					</div>
 					<div class="card-body">
-						<a href="<?php echo admin_url('order/komisi/export/').$this->uri->segment(4) ?>" class="btn btn-outline-primary mb-4">Export CSV</a>
-						<a href="<?php echo admin_url('order/komisi/upline/').$this->uri->segment(4) ?>" class="btn btn-outline-warning mb-4">Komisi Per Upline <i class="fas fa-eye"></i></a>
+						<a href="<?php echo admin_url('order/komisi/export_perupline/').$this->uri->segment(5) ?>" class="btn btn-outline-primary mb-4">Export CSV</a>
 						<div class="table-responsive">
 							<table id="example" class="display" style="min-width: 845px">
 								<thead>
 									<tr>
-										<th>Nama Project</th>
 										<th>User Upline</th>
-										<th>User Downline</th>
-										<th>Nilai Pembelian</th>
-										<th>Nilai Komisi</th>
+										<th>Jumlah Komisi</th>
 										<th>Wallet Address</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php foreach ($komisi as $key => $value): ?>
-										<?php if ($value['komisi'] >0): ?>
-											<tr>
-												<td><?php echo $value['id_order'].'-'.$value['nama_project'] ?></td>
-												<td>
-													<?php echo $this->M_Komisi->upline($this->uri->segment(4),$value['referral_id'])['name'] ?>
-												</td>
-												<td><?php echo $value['name'] ?> </span></td>
-												<td><?php echo '$'.$value['jml'] ?></td>
-												<td><?php echo '$'.$value['komisi'] ?></td>
-												<td><?php echo $this->M_Komisi->upline($this->uri->segment(4),$value['referral_id'])['wallet'] ?></td>
-											</tr>
-										<?php endif ?>
+										<tr>
+											<td>
+												<?php echo $value['name'] ?>
+											</td>
+											<td>$<?php echo $this->M_Komisi->sum($value['id_member'])['komisi'] ?></td>
+											<td><?php echo $value['wallet'] ?></td>
+										</tr>
 									<?php endforeach ?>
 								</tbody>
 								<tfoot>
 									<tr>
-										<th>Nama Project</th>
 										<th>User Upline</th>
-										<th>User Downline</th>
-										<th>Nilai Pembelian</th>
-										<th>Nilai Komisi</th>
+										<th>Jumlah Komisi</th>
 										<th>Wallet Address</th>
 									</tr>
 								</tfoot>

@@ -19,10 +19,13 @@ class M_Project extends CI_Model {
 
 	public function show($id)
 	{
-		if ($this->uri->segment(4)) {
+		if ($this->uri->segment(4) =='komisi') {
 			$this->db->where('id',$this->uri->segment(4));
 			return $this->db->get('project')->row_array();
-		} else {
+		} elseif($this->uri->segment(4)=='upline'){
+			$this->db->where('id',$this->uri->segment(5));
+			return $this->db->get('project')->row_array();
+		} else{
 			$this->db->where('id',$id);
 			return $this->db->get('project')->row_array();
 		}
